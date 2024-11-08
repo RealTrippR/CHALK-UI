@@ -1,0 +1,115 @@
+﻿-----------------------------------------------------------------------------------------------------------------
+Proposals for V1:
+-----------------------------------------------------------------------------------------------------------------
+
+[✓] Add a button class that inherits from box class, and by default can change it's color upon being hovered and change to another color when clicked.
+
+[✓] Remove the contentBounds arg from the draw function in UI_Objects, as it redundant.
+
+[SCRAPPED] Add size to content for boxes. Note that this means that child with percent based sizes will not affect the size of these containers.
+    Also, have the minimum size of the container be the default size in pixels - only stretch it if the content extends its bounds.
+
+
+[ ] In the objectChild class add a vector of pointers to UI_Objects* to hold all visible children,
+	that way invisible children do not have to be iterated through in draw calls, thus rendering time will be decreased.
+
+[✓] make the addChild function private/protected or fix it so that it can be called directly on objectContainers
+
+[ ] Add a includeMarginInAbsoluteBounds property for all UI_Objects. This is nessecary because some objects will render with the margin accounted for, but can consume input of other objects because their absolute bounds extends beyond whats drawn.
+
+[ ] Add string values, int values, and float values that can be added as children of objects
+    or... even better... add a value class that can hold a pointer to any type of value via templates, and can easily be deferenced
+
+[ ] Everytime the user resizes the window, change the size of Workspace, then render, then after the next tick resize the window to the desired size.
+    This will eliminate the barely noticeable artififacts that appear on the first frame after the window is resized.
+
+[✓] Implement supoort for anti-aliasing... it must be applied to the renderTexture of every ObjectContainer
+
+[✓] Implement Z-Index
+
+[✓] Add a function to swap the index of children in object containers, and add another to insert a child into a certain index.
+
+[✓] Allow for the resizing, repositioning, and renaming of the window.
+
+[ ] Instead of hitTestThrough, change rename this hitTestConsume, and make objects with HitTestThrough recieve input, but not consume it, thus passing input through to any objects behind them
+
+[ ] All drawables should inherit from the drawable class - not the UI_Object class.
+
+[ ] As per C++ standards, create the .cpp files for all UI_Objects.
+
+[ ] Instead of including the audio functionality with chalk/UI.h, make a seperate chalk/audio.h or chalk/sound.h file for this purpose.
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+Proposals for V1.1:
+-----------------------------------------------------------------------------------------------------------------
+
+[ ] The events within the UI_Object class take up lots of memory - about 900 bytes per UI_Object. Consider rewriting the code to use less RAM.
+
+[ ] Implement multithreading of rendering to increase FPS and utilize more of CPU.
+
+[ ] Optimize the refresh function, there is no need to redraw the children of ObjectContainers if none of the children have a percent based sizing.
+
+[ ] Performance Target - 2000 FPS w/ 50 boxes (2 cores or less).
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+Proposals for V1.2:
+----------------------------------------------------------------------------
+
+[ ] Allow for the locking of all input.
+
+[ ] Make a function to compare lambdas in the event class - this should be possible by comparing the memory addresses of the lambdas.
+
+[ ] Allow for integration with OpenGL
+
+[ ] Implement shaders
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+Proposals for V1.3:
+-----------------------------------------------------------------------------------------------------------------
+
+!consider writing an inputReciever class to allow for better management of input!
+
+[ ] Add pre-draw and post-draw modifiers: Mirror, shadow, etc
+
+[ ] Implement scale and rotation for all UI_Objects
+
+[ ] Implement content transparency, scale, and rotation for Object Containers
+
+[ ] Add a group class, inherits from object container, and unlike a box it can render objects anywhere on the screen; it should also have certain events that allow that will fire when anyone of it's childrens events fire 
+    (i.e. if a child is clicked the onClickedEvent of the group should fire aswell, and when testing for intersects absolute bounds it should test all children and return true if the pos intersects at least one of it's childrens bounds)
+
+[ ] Sway towards the CSS style, and allow for backwards compatibility will CSS and HTML (i.e. set attributes from CSS, HTML, etc)
+
+[ ] Add Inches and CM as unit sizes to align with CSS
+
+[ ] Add relative and absolute poisitons
+
+[ ] Divide the sf::Text in textboxes and text into 256-byte chunks for the sake of efficiency, or create a largeText and largeTextbox class for this purpose.
+
+[ ] Add formatted textboxes
+
+[ ] Implement a polygon class - that is, a simple, convex polygon that behaves similar to a box, or object container, but has a customizable shape.
+    Implement a advanced polygon class - like the polygon class, but allows for convave shapes and holes.
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+Proposals for V2:
+-----------------------------------------------------------------------------------------------------------------
+
+[ ] Create a dedicated editor for the Chalk UI Engine to streamline the development process.
+
+[ ] Add scripts
+
+[ ] Rewrite the graphics portion of SFML to be compatible with Vulkan - use glslangValidator to convert all GLSL (OpenGL) shaders into SPIR-V (Vulkan).
+    To convert a shader from SPIR-V to GLSL, use SPIRV-Cross.
+
+[ ] Rewrite SFML and Chalk UI to allow for multiple windows at a time.
+
+[ ] If I do ever end up rewriting SFML's code, then I should omptimize the resizing of the RenderTexture with realloc(), if it isn't already.
