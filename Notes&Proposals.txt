@@ -9,18 +9,17 @@ Proposals for V1:
 [SCRAPPED] Add size to content for boxes. Note that this means that child with percent based sizes will not affect the size of these containers.
     Also, have the minimum size of the container be the default size in pixels - only stretch it if the content extends its bounds.
 
-
 [ ] In the objectChild class add a vector of pointers to UI_Objects* to hold all visible children,
 	that way invisible children do not have to be iterated through in draw calls, thus rendering time will be decreased.
 
 [✓] make the addChild function private/protected or fix it so that it can be called directly on objectContainers
 
-[ ] Add a includeMarginInAbsoluteBounds property for all UI_Objects. This is nessecary because some objects will render with the margin accounted for, but can consume input of other objects because their absolute bounds extends beyond whats drawn.
+[ ] Add a includeMarginInAbsoluteBounds propertyrender with the margin accounted for, but can consume input of other objects because their absolute bounds extends beyond whats drawn.
 
 [ ] Add string values, int values, and float values that can be added as children of objects
     or... even better... add a value class that can hold a pointer to any type of value via templates, and can easily be deferenced
 
-[ ] Everytime the user resizes the window, change the size of Workspace, then render, then after the next tick resize the window to the desired size.
+[IMPOSSIBLE DUE TO RESTRICTIONS] Everytime the user resizes the window, change the size of Workspace, then render, then after the next tick resize the window to the desired size.
     This will eliminate the barely noticeable artififacts that appear on the first frame after the window is resized.
 
 [✓] Implement supoort for anti-aliasing... it must be applied to the renderTexture of every ObjectContainer
@@ -31,25 +30,38 @@ Proposals for V1:
 
 [✓] Allow for the resizing, repositioning, and renaming of the window.
 
-[ ] Instead of hitTestThrough, change rename this hitTestConsume, and make objects with HitTestThrough recieve input, but not consume it, thus passing input through to any objects behind them
+[✓] Instead of hitTestThrough, change rename this hitTestConsume, and make objects with HitTestThrough recieve input, but not consume it, thus passing input through to any objects behind them
+    Note that Input handling must be changed to support Z-indexing.
+
+[✓] Fix Bug: HitTestThrough, HitTestConsume, and HitTestThroughAndConsume are not working properly for objects that aren't objectContainers
 
 [ ] All drawables should inherit from the drawable class - not the UI_Object class.
 
-[ ] As per C++ standards, create the .cpp files for all UI_Objects.
+[ ] As per C++ standards, create the .cpp files for all UI_Objects, as well as for Instance.h, Input.h, and Audio.h
 
-[ ] Instead of including the audio functionality with chalk/UI.h, make a seperate chalk/audio.h or chalk/sound.h file for this purpose.
+[ ] Instead of including the audio functionality with chalk/UI.h, make a seperate chalk/Audio.h or chalk/Sound.h file for this purpose.
 
+[✓] Change the font class to look in the static \ font folder by default, but if the path starts with a drive letter (i.e. C:\) then treat it as an absolute path.
 
+[✓] The cursor in text boxes should be able to be moved with the arrow keys (<- ->)
 
 -----------------------------------------------------------------------------------------------------------------
 Proposals for V1.1:
 -----------------------------------------------------------------------------------------------------------------
 
+[ ] Allow for Instances of UI_Objects to be overwritten with ==, rather than removing the instance and then creating a copy of the object.
+
+[ ] Add proper support for multiline textboxes, as well as clipping for text and textboxes
+
+[ ] Add a disabled option for the input handling mode
+
 [ ] The events within the UI_Object class take up lots of memory - about 900 bytes per UI_Object. Consider rewriting the code to use less RAM.
 
-[ ] Implement multithreading of rendering to increase FPS and utilize more of CPU.
+[ ] Implement multithreading of rendering to increase FPS and utilize more of CPU. Consider using SIMD along side multithreading, and be sure to add a Max Cores option.
 
 [ ] Optimize the refresh function, there is no need to redraw the children of ObjectContainers if none of the children have a percent based sizing.
+
+[ ] Divide the UI_Objects in the instance Class into 64-object chunks for the sake of efficiency and speed
 
 [ ] Performance Target - 2000 FPS w/ 50 boxes (2 cores or less).
 
@@ -57,7 +69,9 @@ Proposals for V1.1:
 
 -----------------------------------------------------------------------------------------------------------------
 Proposals for V1.2:
-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+
+[ ] Consider adding a dedicated keybind class (this was implemented in a pre-1.0 version, but later removed)
 
 [ ] Allow for the locking of all input.
 
@@ -68,7 +82,6 @@ Proposals for V1.2:
 [ ] Implement shaders
 
 
-
 -----------------------------------------------------------------------------------------------------------------
 Proposals for V1.3:
 -----------------------------------------------------------------------------------------------------------------
@@ -77,7 +90,7 @@ Proposals for V1.3:
 
 [ ] Add pre-draw and post-draw modifiers: Mirror, shadow, etc
 
-[ ] Implement scale and rotation for all UI_Objects
+[ ] Implement scale and rotation for all UI_Objects, consider allowing the rotation origin to be changed.
 
 [ ] Implement content transparency, scale, and rotation for Object Containers
 
@@ -98,18 +111,32 @@ Proposals for V1.3:
     Implement a advanced polygon class - like the polygon class, but allows for convave shapes and holes.
 
 
+-----------------------------------------------------------------------------------------------------------------
+Proposals for V1.4:
+-----------------------------------------------------------------------------------------------------------------
+
+[ ] Implement an animation library that adheres to css standards.
+
+-----------------------------------------------------------------------------------------------------------------
+Proposals for V1.5:
+-----------------------------------------------------------------------------------------------------------------
+
+[ ] Consider writing CHALK-UI bindings for Rust, Java, Go, and Python.
+
+
 
 -----------------------------------------------------------------------------------------------------------------
 Proposals for V2:
 -----------------------------------------------------------------------------------------------------------------
 
-[ ] Create a dedicated editor for the Chalk UI Engine to streamline the development process.
-
-[ ] Add scripts
-
 [ ] Rewrite the graphics portion of SFML to be compatible with Vulkan - use glslangValidator to convert all GLSL (OpenGL) shaders into SPIR-V (Vulkan).
     To convert a shader from SPIR-V to GLSL, use SPIRV-Cross.
 
 [ ] Rewrite SFML and Chalk UI to allow for multiple windows at a time.
+
+[ ] Create a dedicated editor for the Chalk UI Engine to streamline the development process.
+    (It would be nice to have a homebuilt IDE, and maybe add some drag and drop functionality (i.e. the ability to drag and drop if statements and entire lines and blocks of code))
+
+[ ] Add scripts (support both C++ and Go)
 
 [ ] If I do ever end up rewriting SFML's code, then I should omptimize the resizing of the RenderTexture with realloc(), if it isn't already.

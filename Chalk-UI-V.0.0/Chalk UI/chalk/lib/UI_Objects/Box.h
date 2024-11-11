@@ -1,60 +1,25 @@
 #ifndef CHK_BOX_HPP
 #define CHK_BOX_HPP
 
+#include <chalk/lib/Universal_Includes.h>
+#include <chalk/lib/DirtyRenderFlag.h>
+#include <chalk/lib/Instance.h>
+#include <chalk/lib/UI_Objects/UI_Object.h>
+#include <chalk/lib/UI_Objects/Object_Container.h>
+
 namespace chk {
 	class box : public objectContainer {
 	protected:
-		inline void drawChildren(sf::RenderTexture& RT) {
-			for (auto& Z_Level : M_ZIndexDrawMap) {
-				for (auto& obj : Z_Level.second) {
-					if (obj->getVisibility()) {
-						obj->draw(*M_RT);
-					}
-				}
-			}
-		}
+		 void drawChildren(sf::RenderTexture& RT);
 	public:
-		inline void draw(sf::RenderTexture& Parent_RT) override {
-			M_RT->clear(M_FillColor);
-			drawChildren(*M_RT);
-			M_RT->display();
-			M_rect.setTexture(&M_RT->getTexture());
-			Parent_RT.draw(M_rect);
-		}
+		 void draw(sf::RenderTexture& Parent_RT) override;
 
 	protected:
-		inline void updateRenderTexture() {
-			M_rect.setTextureRect(sf::IntRect(0,0, getSizePixels().x, getSizePixels().y));
+		 void updateRenderTexture();
 
-			sf::ContextSettings cset;
-			cset.antialiasingLevel = M_antiAliasingLevel;
-			M_RT->create(getSizePixels().x, getSizePixels().y,cset);
-			sf::View v = sf::View(sf::FloatRect(0, 0, getSizePixels().x, getSizePixels().y));
-			M_RT->setView(v);
-		}
+		 void updateTransform(bool callToParent = false);
 
-		inline void updateTransformBox() {
-			M_rect.setPosition(getPositionPixels());
-			M_rect.setSize(getSizePixels());
-			updateRenderTexture();
-			
-
-			unsigned int smallestSidePixels = std::min(getSizePixels().x, getSizePixels().y);
-			M_rect.setCornersRadius(std::clamp(M_cornerTaper, 0u, smallestSidePixels / 2u));
-			switch (M_cornerTaper) {
-			case 0:
-				M_rect.setCornerPointCount(1);
-				break;
-			default:
-				M_rect.setCornerPointCount(M_rect.getCornersRadius());
-				break;
-			}
-		}
-		inline void updateTransform(bool callToParent = false) override {
-			updateTransformUI_Object(callToParent);
-			updateTransformObjectContainer(callToParent);
-			updateTransformBox();
-		}
+		 void updateTransformBox();
 	public:
 		//void addChild(UI_Object obj) {
 			//M_Children.push_back(std::make_shared<UI_Object>(obj));
@@ -97,49 +62,24 @@ namespace chk {
 			//}
 		}
 
-		sf::RenderTexture* getRenderTexture() {
-			return M_RT;
-		}
+		sf::RenderTexture* getRenderTexture();
 
 	public:
-		inline void setFillColor(sf::Color fillColor) {
-			// DO NNOOOTT SET THE FILL COLOR OF M_RECT!! e.g. M_rect.setFillColor(fillColor)
-			M_FillColor = fillColor;
-			refresh();
-		}
+		 void setFillColor(sf::Color fillColor);
 
-		inline sf::Color getFillColor() {
-			return M_FillColor;
-		}
+		 sf::Color getFillColor();
 
-		virtual inline void setOutlineColor(sf::Color outlineColor) {
-			M_rect.setOutlineColor(outlineColor);
-			refresh();
-		}
+		virtual  void setOutlineColor(sf::Color outlineColor);
 
-		virtual inline sf::Color getOutlineColor() {
-			return M_rect.getOutlineColor();
-		}
+		virtual  sf::Color getOutlineColor();
 
-		inline void setOutlineThickness(int thickness) {
-			M_rect.setOutlineThickness(thickness);
-			refresh();
-		}
+		 void setOutlineThickness(int thickness);
 
-		inline int getOutlineThickness() {
-			return M_rect.getOutlineThickness();
-		}
+		 int getOutlineThickness();
 
-		inline void setCornerTaper(const unsigned int cornerTaper) {
-			M_cornerTaper = cornerTaper;
-			updateTransform(); // corner taper of rounded rect is set in this function
-			refresh();
-		}
+		 void setCornerTaper(const unsigned int cornerTaper);
 
-		inline unsigned int getCornerTaper() {
-			return M_cornerTaper;
-		}
-
+		 unsigned int getCornerTaper();
 	protected:
 
 		unsigned int M_cornerTaper = 0;

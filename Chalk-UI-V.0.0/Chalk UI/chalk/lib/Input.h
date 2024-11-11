@@ -14,43 +14,73 @@ namespace chk {
 		}
 
 		
+		// To fix this function, take into account Z-index
+
 		std::vector<UI_Object*> getHoveredObjects(sf::Vector2i& mpos, objectContainer* parent) {
-			std::vector<UI_Object*> returnList;
+			std::vector<UI_Object*> returnList; // all hovered objects
 			if (!parent->getVisibility()) {
 				return {};
 			}
-			for (int i = parent->getChildren().size() - 1; i >= 0; --i) {
-				auto child = parent->getChildren()[i];
-				if (!child->getVisibility()) {
-					continue;
-				}
 
-				objectContainer* childAsContainer = dynamic_cast<objectContainer*>(child);
-				// the child is an objectContainer
-				if (childAsContainer != NULL) {
-					// the objects list is the all the hovered objects in the childcontainer
-					std::vector<UI_Object*> objects = getHoveredObjects(mpos, childAsContainer);
-					// if no children of the childcontainer are being hovered, than check the childContainer
-					if (objects.empty()) {
-						if (childAsContainer->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
-							returnList.push_back(childAsContainer);
-						}
+			auto& zMap = parent->getZIndexMap();
+			// Loops backwards through the Z-index map
+			for (auto it = zMap.rbegin(); it != zMap.rend(); ++it) {
+				auto v = it->second;
+				for (int i = v.size() - 1; i >= 0; --i) {
+					auto child = v[i];
+					if (!child->getVisibility()) {
+						continue;
 					}
-					else {
-						for (auto& obj : objects) {
-							if (obj->getInputHandlingType()==passThrough && obj->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
+
+					objectContainer* childAsContainer = dynamic_cast<objectContainer*>(child);
+					// the child is an objectContainer
+					if (childAsContainer != NULL) {
+						// the objects list is the all the hovered objects in the childcontainer
+						std::vector<UI_Object*> objects = getHoveredObjects(mpos, childAsContainer);
+						// if no children of the childcontainer are being hovered, than check the childContainer
+						if (objects.empty()) {
+							if (childAsContainer->getInputHandlingType() == consume
+								&& childAsContainer->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
+								returnList.push_back(childAsContainer);
+								return returnList;
+							}
+							if (childAsContainer->getInputHandlingType() == consumeAndPassThrough
+								&& childAsContainer->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
 								returnList.push_back(childAsContainer);
 							}
 						}
-						returnList.insert(returnList.end(), objects.begin(), objects.end());
-						return returnList;
+						else {
+							// iterates through childAsContainer's children that are being hovered over
+							for (auto& obj : objects) {
+								if ((obj->getInputHandlingType() == consume)
+									&& obj->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
+									returnList.push_back(childAsContainer);
+									return returnList;
+								}
+								if ((obj->getInputHandlingType() == consumeAndPassThrough)
+									&& obj->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
+									returnList.push_back(childAsContainer);
+								}
+							}
+
+							// adds the objects from the recursive calls to the return list
+							returnList.insert(returnList.end(), objects.begin(), objects.end());
+							return returnList;
+						}
 					}
-				}
-				// the child is not an objectContainer
-				else {
-					if (child->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
+					// the child is not an objectContainer
+					else {
+						if (child->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y)))
 						{
-							returnList.push_back(child);
+							if (child->getInputHandlingType() == consume)
+							{
+								returnList.push_back(child);
+								return returnList;
+							}
+							if (child->getInputHandlingType() == consumeAndPassThrough)
+							{
+								returnList.push_back(child);
+							}
 						}
 					}
 				}

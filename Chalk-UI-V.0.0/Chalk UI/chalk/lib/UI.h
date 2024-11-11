@@ -6,7 +6,6 @@
 #define CHK_DEFAULT_OUTLINE_THICKNESS 2
 #define CHK_WINDOW_BACKGROUND_COLOR sf::Color::Black
 
-#include "SFML_extensions/RoundedRectangle.h"
 
 #include "Universal_Includes.h"
 #include "DirtyRenderFlag.h"
@@ -188,16 +187,21 @@ namespace chk {
 
 		sf::RenderWindow &window=*windowPtr;
 		sf::View view = window.getDefaultView();
-		window.setSize(sf::Vector2u(size.x, size.y));
 		view.setSize(size.x, size.y);
+
 		view.setCenter({
 			static_cast<float>(size.x) / 2.f,
 			static_cast<float>(size.y) / 2.f
 		});
-		window.setView(view);
+
+		Workspace.setSize(UI_Vector2f(size.x, size.y, absolute));
+
 		window_RT->create(size.x, size.y);
 		r.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
-		Workspace.setSize(UI_Vector2f(size.x, size.y, absolute));
+
+		window.setSize(sf::Vector2u(size.x, size.y));
+		window.setView(view);
+
 		onWindowResize.invoke(windowPtr);
 	}
 

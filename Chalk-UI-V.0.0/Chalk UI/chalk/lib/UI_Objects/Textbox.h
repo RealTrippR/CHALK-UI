@@ -86,8 +86,10 @@ namespace chk {
 			refresh();
 		}
 
-		void setFont(const std::string& filename) {
-			M_FontHandle = FontManager::loadFontFromDisk(filename);
+		// loads the desired font from the font folder if the path is not absolute,
+		// if it is absolute it is loaded from the absolute path.
+		void setFont(const std::string& filePath) {
+			M_FontHandle = FontManager::loadFontFromDisk(filePath);
 			M_txt.setFont(*FontManager::getFontFromHandle(M_FontHandle));
 			updateTransform();
 			refresh();
@@ -232,12 +234,23 @@ namespace chk {
 						deselect();
 						return;
 					}
+
 					if (*k == sf::Keyboard::Enter && consumedIndex < 1) {
 						onStringEntered.invoke(this);
 						consumedIndex++;
 						deselect();
 						return;
 					}
+
+					if (*k == sf::Keyboard::Left) {
+						auto& i = M_currentlySelectedIndex;
+						i = std::clamp(i - 1, 0, int(M_txt.getString().getSize() - 1));
+					}
+					if (*k == sf::Keyboard::Right) {
+						auto& i = M_currentlySelectedIndex;
+						i = std::clamp(i + 1, 0, int(M_txt.getString().getSize() - 1));
+					}
+
 					if (*k == sf::Keyboard::BackSpace) {
 						handleKeyDelete();
 					}

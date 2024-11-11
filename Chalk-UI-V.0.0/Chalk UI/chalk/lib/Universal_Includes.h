@@ -21,5 +21,7 @@
 #include "UI_PaddingData.h"
 #include "Enums.h"
 #include "Util.h"
+#include "chalk/lib/SFML_Extensions/RoundedRectangle.h"
+
 
 #endif // !CHK_UNIVERSAL_INCLUDES_H

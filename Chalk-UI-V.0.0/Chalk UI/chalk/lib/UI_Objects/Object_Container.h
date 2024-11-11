@@ -150,12 +150,16 @@ namespace chk {
 			return M_Children;
 		}
 
+		std::map<int, std::vector<UI_Object*>>& getZIndexMap() {
+			return M_ZIndexDrawMap;
+		}
+
 		inline int getChildrenCount() {
 			return M_Children.size();
 		}
 	
 		// swaps the draw order of two children.
-		// If both objects have a different Z index, then their Z index will be swapped.
+		// If both objects have a different Z index, then their Z indexes will be swapped.
 		inline void swapChildren(UI_Object* obj1, UI_Object* obj2) {
 			const short z1 = obj1->getZIndex();
 			const short z2 = obj2->getZIndex();
