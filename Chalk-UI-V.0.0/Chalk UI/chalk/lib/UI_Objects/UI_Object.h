@@ -3,7 +3,7 @@
 
 #include <chalk/lib/Universal_Includes.h>
 #include <SFML/Graphics/Shader.hpp>
-#include <chalk/lib/Events/Event.h>;
+#include <chalk/lib/standardEvents.h>
 
 
 namespace chk {

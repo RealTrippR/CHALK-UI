@@ -72,7 +72,7 @@ namespace chk {
 		}
 
 		void deselect() {
-			M_currentlySelectedIndex = -1;
+			M_currentlySelectedIndex = -2;
 			M_InsertionBarHidden = true;
 			onDeselected.invoke(this);
 			updateTransform();
@@ -211,7 +211,7 @@ namespace chk {
 
 			onTick.bind([this](float* DT) {
 
-				if (M_currentlySelectedIndex != -1) {
+				if (M_currentlySelectedIndex != -2) {
 					M_currentTimerMilli += *DT;
 					if (M_InsertionBarHidden && M_currentTimerMilli > M_millisecondsInsertionBarHidden) {
 						M_InsertionBarHidden = false;
@@ -227,7 +227,7 @@ namespace chk {
 				});
 
 			onKeyPress.bind([this](sf::Keyboard::Key *k, int &consumedIndex) {
-				if (M_currentlySelectedIndex != -1) {
+				if (M_currentlySelectedIndex != -2) {
 
 					if (*k == sf::Keyboard::Escape && consumedIndex < 1) {
 						consumedIndex++;
@@ -244,11 +244,11 @@ namespace chk {
 
 					if (*k == sf::Keyboard::Left) {
 						auto& i = M_currentlySelectedIndex;
-						i = std::clamp(i - 1, 0, int(M_txt.getString().getSize() - 1));
+						i = std::clamp(i - 1, -1, int(M_txt.getString().getSize() - 1));
 					}
 					if (*k == sf::Keyboard::Right) {
 						auto& i = M_currentlySelectedIndex;
-						i = std::clamp(i + 1, 0, int(M_txt.getString().getSize() - 1));
+						i = std::clamp(i + 1, -1, int(M_txt.getString().getSize() - 1));
 					}
 
 					if (*k == sf::Keyboard::BackSpace) {
@@ -389,7 +389,7 @@ namespace chk {
 
 	private:
 
-		int M_currentlySelectedIndex = -1; // -1 represents unselected
+		int M_currentlySelectedIndex = -2; // -2 represents unselected
 
 		bool M_Enabled = true;
 		

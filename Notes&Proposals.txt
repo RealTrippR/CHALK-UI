@@ -1,5 +1,5 @@
 ﻿-----------------------------------------------------------------------------------------------------------------
-Proposals for V1:
+Proposals for V1.0:
 -----------------------------------------------------------------------------------------------------------------
 
 [✓] Add a button class that inherits from box class, and by default can change it's color upon being hovered and change to another color when clicked.
@@ -37,7 +37,7 @@ Proposals for V1:
 
 [ ] All drawables should inherit from the drawable class - not the UI_Object class.
 
-[ ] As per C++ standards, create the .cpp files for all UI_Objects, as well as for Instance.h, Input.h, and Audio.h
+[~] As per C++ standards, create the .cpp files for all UI_Objects
 
 [ ] Instead of including the audio functionality with chalk/UI.h, make a seperate chalk/Audio.h or chalk/Sound.h file for this purpose.
 
@@ -45,11 +45,18 @@ Proposals for V1:
 
 [✓] The cursor in text boxes should be able to be moved with the arrow keys (<- ->)
 
+[✓] Fix bug: currently textboxes cannot have the insertion bar before the first character.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 -----------------------------------------------------------------------------------------------------------------
 Proposals for V1.1:
 -----------------------------------------------------------------------------------------------------------------
 
 [ ] Allow for Instances of UI_Objects to be overwritten with ==, rather than removing the instance and then creating a copy of the object.
+
+[ ] Add an instancedImage class, indentical to image, but uses less memory because rather than storing a image for every image object,
+    it holds a reference to an image that can be shared across multiple instancedImage objects
 
 [ ] Add proper support for multiline textboxes, as well as clipping for text and textboxes
 
@@ -126,7 +133,7 @@ Proposals for V1.5:
 
 
 -----------------------------------------------------------------------------------------------------------------
-Proposals for V2:
+Proposals for V2.0:
 -----------------------------------------------------------------------------------------------------------------
 
 [ ] Rewrite the graphics portion of SFML to be compatible with Vulkan - use glslangValidator to convert all GLSL (OpenGL) shaders into SPIR-V (Vulkan).

@@ -23,5 +23,8 @@
 #include "Util.h"
 #include "chalk/lib/SFML_Extensions/RoundedRectangle.h"
 
+namespace chk {
+	namespace fs = std::filesystem;
+}
 
 #endif // !CHK_UNIVERSAL_INCLUDES_H

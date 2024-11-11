@@ -1,106 +1,58 @@
 #ifndef CHK_IMAGE_HPP
 #define CHK_IMAGE_HPP
+#include <chalk/lib/Universal_Includes.h>
+#include <chalk/lib/DirtyRenderFlag.h>
+#include <chalk/lib/Instance.h>
+#include <chalk/lib/UI_Objects/UI_Object.h>
 
 namespace chk {
 	class image : public UI_Object {
 	public:
-		void draw(sf::RenderTexture& Parent_RT) override {
-			Parent_RT.draw(M_Rect);
-		}
-	protected:
-		inline void updateColorAndTexture() {
-			M_Rect.setFillColor(M_FillColor);
-			M_Rect.setTexture(&M_Texture,true);
-		}
+		void draw(sf::RenderTexture& Parent_RT) override;
 
-		inline void updateTransform(bool callToParent = false) override {
-			updateTransformUI_Object();
-			M_Rect.setSize(getSizePixels());
-			M_Rect.setPosition(getPositionPixels());
-			updateColorAndTexture();
-		}
+	protected:
+		inline void updateColorAndTexture();
+
+		void updateTransform(bool callToParent = false);
+
 	public:
 		// GETTERS
+		sf::Image getImage();
 
-		sf::Image getImage() {
-			return M_Image;
-		}
+		sf::Image& getImageAsRef();
 
-		sf::Image& getImageAsRef() {
-			return M_Image;
-		}
-
-		sf::Color getPixel(int x, int y) {
-			return M_Image.getPixel(x, y);
-		}
+		sf::Color getPixel(int x, int y);
 
 		// returns the size of the image as it is in disk
-		sf::Vector2u getImageSize() {
-			return M_Image.getSize();
-		}
+		sf::Vector2u getImageSize();
 
 	public:
 
-		sf::Vector2f getPosition() {
-			return M_Rect.getPosition();
-		}
+		sf::Vector2f getPosition();
 
-		void setPosition(UI_Vector2f position) {
-			M_Position = position;
-			updateTransform();
-			refresh();
-		}
+		void setPosition(UI_Vector2f position);
 
-		sf::Vector2f getSize() {
-			return M_Rect.getSize();
-		}
+		sf::Vector2f getSize();
 
-		void setSize(UI_Vector2f size) {
-			M_Size = size;
-			updateTransform();
-			refresh();
-		}
+		void setSize(UI_Vector2f size);
 
-		void setFillColor(sf::Color fillColor) {
-			M_FillColor = fillColor;
-			updateTransform();
-			refresh();
-		}
+		void setFillColor(sf::Color fillColor);
 
-		sf::Color getFillColor() {
-			return M_FillColor;
-		}
+		sf::Color getFillColor();
 
-		void setOutlineColor(sf::Color outlineColor) {
-			M_Rect.setOutlineColor(outlineColor);
-			refresh();
-		}
+		void setOutlineColor(sf::Color outlineColor);
 
-		sf::Color getOutlineColor() {
-			return M_Rect.getOutlineColor();
-		}
+		sf::Color getOutlineColor();
 
-		void setOutlineThickness(int thickness) {
-			M_Rect.setOutlineThickness(thickness);
-			refresh();
-		}
+		void setOutlineThickness(int thickness);
 
-		int getOutlineThickness() {
-			return M_Rect.getOutlineThickness();
-		}
+		int getOutlineThickness();
+
 	public:
 		// SETTERS
-		void setImage(std::string path) {
-			M_Image.loadFromFile(fs::absolute(path).string());
-			M_Texture.loadFromImage(M_Image);
-			updateTransform();
-			refresh();
-		}
+		void setImage(std::string path);
 
-		void setPixel(int x, int y, sf::Color color) {
-			M_Image.setPixel(x, y, color);
-			refresh();
-		}
+		void setPixel(int x, int y, sf::Color color);
 
 		image() {
 			setImage("..\\Chalk UI\\default assets\\Default_Image.png");

@@ -1,98 +1,44 @@
 #ifndef CHK_BUTTON_H
 #define CHK_BUTTON_H
 
+#include <chalk/lib/Universal_Includes.h>
+#include <chalk/lib/DirtyRenderFlag.h>
+#include <chalk/lib/Instance.h>
+#include <chalk/lib/UI_Objects/box.h>
+
 namespace chk {
 	class button : public box {
-		// I think that the contentBounds arg can be removed. maybe.
-		inline void draw(sf::RenderTexture& Parent_RT) override {
-			//FUNCTION INCOMPLETE!
-
-			M_RT->clear(M_CurrentFillColor);
-			drawChildren(*M_RT);
-			M_RT->display();
-			M_rect.setTexture(&M_RT->getTexture());
-			Parent_RT.draw(M_rect);
-		}
+		void draw(sf::RenderTexture& Parent_RT) override;
 	public:
-		void setFillColorOnHover(const sf::Color color) {
-			M_FillColorOnHover = color;
-			if (!M_Hovered) {
-				M_FillColorOnHover = color;
-			}
-			refresh();
-		}
+		void setFillColorOnHover(const sf::Color color);
 
-		void setOutlineColorOnHover(const sf::Color color) {
-			M_OutlineColorOnHover = color;
-			if (!M_Hovered) {
-				M_CurrentOutlineColor = color;
-			}
-			refresh();
-		}
+		void setOutlineColorOnHover(const sf::Color color);
 
-		void setFillColorOnClick(const sf::Color color) {
-			M_FillColorOnClick = color;
-			refresh();
-		}
+		void setFillColorOnClick(const sf::Color color);
 
-		void setOutlineColorOnClick(const sf::Color color) {
-			M_OutlineColorOnClick = color;
-			refresh();
-		}
+		void setOutlineColorOnClick(const sf::Color color);
 
-		void setFillColorAndOutlineColorOnHover(const sf::Color fillColor, const sf::Color outlineColor) {
-			M_FillColorOnHover = fillColor;
-			if (!M_Hovered) {
-				M_CurrentFillColor = fillColor;
-			}
-			M_OutlineColorOnHover = outlineColor;
-			if (!M_Hovered) {
-				M_CurrentOutlineColor = outlineColor;
-			}
-			refresh();
-		}
+		void setFillColorAndOutlineColorOnHover(const sf::Color fillColor, const sf::Color outlineColor);
 
-		void setFillColorAndOutlineColorOnClick(const sf::Color fillColor, const sf::Color outlineColor) {
-			M_FillColorOnClick = fillColor;
-			M_OutlineColorOnClick = outlineColor;
-			refresh();
-		}
+		void setFillColorAndOutlineColorOnClick(const sf::Color fillColor, const sf::Color outlineColor);
 
 	public:
 
-		inline void setFillColor(sf::Color fillColor) {
-			M_FillColor = fillColor;
-			if (!M_Hovered) {
-				M_CurrentFillColor = fillColor;
-			}
-			refresh();
-		}
+		void setFillColor(sf::Color fillColor);
 
-		inline sf::Color getFillColor() {
-			return M_FillColor;
-		}
+		sf::Color getFillColor();
 
-		inline void setOutlineColor(sf::Color outlineColor) override {
-			M_OutlineColor = outlineColor;
-			refresh();
-		}
+		void setOutlineColor(sf::Color outlineColor) override;
 
-		inline sf::Color getOutlineColor() override {
-			return M_OutlineColor;
-		}
+		sf::Color getOutlineColor() override;
 	public:
-		const sf::Color getFillColorOnHover() {
-			return M_FillColorOnHover;
-		}
-		const sf::Color getOutlineColorOnHover() {
-			return M_OutlineColorOnHover;
-		}
-		const sf::Color getFillColorOnClick() {
-			return M_FillColorOnClick;
-		}
-		const sf::Color getOutlineColorOnClick() {
-			return M_OutlineColorOnClick;
-		}
+		const sf::Color getFillColorOnHover();
+
+		const sf::Color getOutlineColorOnHover();
+
+		const sf::Color getFillColorOnClick();
+
+		const sf::Color getOutlineColorOnClick();
 	public:
 		button() : box() {
 			this->onLeftMouseClickedEvent.bind([this]() {

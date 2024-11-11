@@ -15,9 +15,12 @@ bool chk::dirty_render_flag = true; // declared as an extern var in DirtyRenderF
 chk::instance chk::Instance; //definition of extern var, declared in Instance.h
 
 #include "Events/Event.h"
+#include <chalk/lib/standardEvents.h>
 
 namespace chk {
 	sf::Vector2i getMousePosition();
+
+	// declared as extern in StandardEvents.h
 	Event<sf::Window> onWindowResize;
 	Event<sf::Keyboard::Key> onKeyPress;
 	Event<sf::Keyboard::Key> onKeyRelease;
@@ -28,7 +31,6 @@ namespace chk {
 	Event<void> onQuit;
 }
 
-#include "FontManager.h"
 #include "Config.h"
 #include "Util.h"
 #include "Events/KeybindBindingGroup.h"
