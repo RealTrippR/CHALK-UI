@@ -2,8 +2,6 @@
 #define CHK_UI_HPP
 
 
-#define CHK_DEFAULT_ASSETS_DIR std::string("..\\Chalk UI\\default assets\\")
-#define CHK_DEFAULT_OUTLINE_THICKNESS 2
 #define CHK_WINDOW_BACKGROUND_COLOR sf::Color::Black
 
 
@@ -16,8 +14,10 @@ chk::instance chk::Instance; //definition of extern var, declared in Instance.h
 
 #include "Events/Event.h"
 #include <chalk/lib/standardEvents.h>
+#include <chalk/lib/StandardFunctions.h>
 
 namespace chk {
+	// declared as extern in StandardFunctions.h
 	sf::Vector2i getMousePosition();
 
 	// declared as extern in StandardEvents.h

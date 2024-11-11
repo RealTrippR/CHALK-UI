@@ -1,9 +1,13 @@
 #pragma once
 
+#ifndef CHK_UI_OBJECT_H
+#define CHK_UI_OBJECT_H
+
 
 #include <chalk/lib/Universal_Includes.h>
 #include <SFML/Graphics/Shader.hpp>
-#include <chalk/lib/standardEvents.h>
+#include <chalk/lib/StandardEvents.h>
+#include <chalk/lib/StandardFunctions.h>
 
 
 namespace chk {
@@ -191,3 +195,5 @@ namespace chk {
 		inputHandlingType M_InputHandlingType = inputHandlingType::consume;
 	};
 }
+
+#endif // !CHK_UI_OBJECT_H

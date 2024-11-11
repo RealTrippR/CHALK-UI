@@ -1,205 +1,87 @@
 #ifndef CHK_TEXTBOX_HPP
 #define CHK_TEXTBOX_HPP
 
+#include <chalk/lib/Universal_Includes.h>
+#include <chalk/lib/DirtyRenderFlag.h>
+#include <chalk/lib/Instance.h>
+#include <chalk/lib/UI_Objects/UI_Object.h>
+#include <chalk/lib/FontManager.h>
+
 namespace chk {
 	class textBox : public UI_Object {
 	public:
-		inline void draw(sf::RenderTexture& Parent_RT) override {
-			Parent_RT.draw(M_txt);
-			if (!M_InsertionBarHidden) {
-				Parent_RT.draw(M_insertionBar);
-			}
-		}
+		void draw(sf::RenderTexture& Parent_RT) override;
 	public:
 		Event<textBox> onStringUpdated;
 		Event<textBox> onStringEntered;
 		Event<textBox> onSelected;
 		Event<textBox> onDeselected;
 	public:
-		void onMouseClick(const sf::Vector2i& mPos, const sf::Vector2i& mDelta) override {
-			onLeftMouseClickedEvent.invoke(this);
-			if (M_Enabled) {
-				M_currentlySelectedIndex = getCharacterIndexAtMousePosition();
-
-				select(false);
-				updateTransform();
-			}
-		}
+		void onMouseClick(const sf::Vector2i& mPos, const sf::Vector2i& mDelta) override;
 
 
-		inline void updateInsertionBar() {
-			int& i = M_currentlySelectedIndex;
-			if (M_txt.getString().getSize() > 0) {
-				int charWidth = getCharacterWidthAtIndex(i);
-				M_insertionBar.setPosition(M_txt.findCharacterPos(i).x + charWidth - M_txt.getLetterSpacing()
-					, M_txt.getPosition().y - M_pixelOffset.y);
-			}
-			else {
-				M_insertionBar.setPosition(M_txt.getPosition().x
-					, M_txt.getPosition().y - M_pixelOffset.y);
-			}
-			M_insertionBar.setSize(sf::Vector2f(M_insertionBar.getSize().x, M_txt.getCharacterSize() + M_pixelOffset.y));
-			M_insertionBar.setFillColor(sf::Color::White);
-		}
+		inline void updateInsertionBar();
 
-		inline void updateTransform(bool callToParent = false) override {
-			updateTransformUI_Object();
-
-			sf::Text tmp = M_txt; // gets height of standard character, in this case 'A'
-			tmp.setString("A");
-			int yOffset = -tmp.getLocalBounds().top;
-			int charHeight = tmp.getLocalBounds().height;
-
-			M_Size = UI_Vector2f(M_txt.getGlobalBounds().width, charHeight, absolute);
-
-			M_pixelOffset.y = yOffset; // consider adding a M_privatePixelOffset for situations like these
-			M_txt.setPosition(getPositionPixels());
-			updateInsertionBar();
-			//M_txt.setPosition(sf::Vector2f(M_Position.x, M_Position.y - M_txt.getLocalBounds().top));
-		}
+		void updateTransform(bool callToParent = false) override;
 
 	public:
-		void select(bool overrideSelectedIndex = true) {
-			M_currentTimerMilli = 0;
-			if (overrideSelectedIndex) {
-				M_currentlySelectedIndex = std::clamp(int(M_txt.getString().getSize()) - 1, 0, INT_MAX);
-			}
-			M_InsertionBarHidden = false;
-			onSelected.invoke(this);
+		void select(bool overrideSelectedIndex = true);
 
-			updateTransform();
-			refresh();
-		}
-
-		void deselect() {
-			M_currentlySelectedIndex = -2;
-			M_InsertionBarHidden = true;
-			onDeselected.invoke(this);
-			updateTransform();
-			refresh();
-		}
+		void deselect();
 
 	public:
 		// SETTERS
-		void setEnabled(bool enabled) {
-			M_Enabled = enabled;
-			refresh();
-		}
+		void setEnabled(bool enabled);
 
 		// loads the desired font from the font folder if the path is not absolute,
 		// if it is absolute it is loaded from the absolute path.
-		void setFont(const std::string& filePath) {
-			M_FontHandle = FontManager::loadFontFromDisk(filePath);
-			M_txt.setFont(*FontManager::getFontFromHandle(M_FontHandle));
-			updateTransform();
-			refresh();
-		}
+		void setFont(const std::string& filePath);
 
-		void setFillColor(const sf::Color& color) {
-			M_txt.setFillColor(color);
-			updateTransform();
-			refresh();
-		}
+		void setFillColor(const sf::Color& color);
 
-		void setOutlineColor(const sf::Color& color) {
-			M_txt.setOutlineColor(color);
-			updateTransform();
-			refresh();
-		}
+		void setOutlineColor(const sf::Color& color);
 
-		void setOutlineThickness(const int& size) {
-			M_txt.setOutlineThickness(size);
-			updateTransform();
-			refresh();
-		}
+		void setOutlineThickness(const int& size);
 
-		void setCharacterSize(const int& size) {
-			M_txt.setCharacterSize(size);
-			updateTransform();
-			refresh();
-		}
+		void setCharacterSize(const int& size);
 
-		void setLetterSpacing(const int& spacing) {
-			M_txt.setLetterSpacing(spacing);
-			updateTransform();
-			refresh();
-		}
+		void setLetterSpacing(const int& spacing);	
 
-		void setLineSpacing(const int& spacing) {
-			M_txt.setLineSpacing(spacing);
-			updateTransform();
-			refresh();
-		}
+		void setLineSpacing(const int& spacing);
 
-		void setString(const std::string& string) {
-			M_txt.setString(string);
-			updateTransform();
-			onStringUpdated.invoke(this);
-			refresh();
-		}
+		void setString(const std::string& string);
 
-		void setInsertionBarThickness(const int thicknessInPixels) {
-			M_insertionBar.setSize(sf::Vector2f(thicknessInPixels, M_insertionBar.getSize().y));
-			updateTransform();
-			refresh();
-		}
+		void setInsertionBarThickness(const int thicknessInPixels);
 
-		void setCurrentSelectedIndex(const int index) {
-			M_currentlySelectedIndex = index;
-		}
-		void setInsertionBarColor(const sf::Color color) {
-			M_insertionBar.setFillColor(color);
-		}
+		void setCurrentSelectedIndex(const int index);
+
+		void setInsertionBarColor(const sf::Color color);
 
 	public:
 		// GETTERS
-		bool getEnabled() {
-			return M_Enabled;
-		}
+		bool getEnabled();
 
-		std::string getString() {
-			return M_txt.getString();
-		}
+		std::string getString();
 
-		sf::Font& getFontAsRef() {
-			return *FontManager::getFontFromHandle(M_FontHandle);
-		}
+		sf::Font& getFontAsRef();
 
-		sf::Color getFillColor() {
-			return M_txt.getFillColor();
-		}
+		sf::Color getFillColor();
 
-		sf::Color getOutlineColor() {
-			return M_txt.getOutlineColor();
-		}
+		sf::Color getOutlineColor();
 
-		int getOutlineThickness() {
-			return M_txt.getOutlineThickness();
-		}
+		int getOutlineThickness();
 
-		int getCharacterSize() {
-			return M_txt.getCharacterSize();
-		}
+		int getCharacterSize();
 
-		int getLetterSpacing() {
-			return M_txt.getLetterSpacing();
-		}
+		int getLetterSpacing();
 
-		int getLineSpacing() {
-			return M_txt.getLineSpacing();
-		}
+		int getLineSpacing();
 
-		int getInsertionBarThickness() {
-			return M_insertionBar.getSize().x;
-		}
+		int getInsertionBarThickness();
 
-		int getCurrentSelectedIndex() {
-			return M_currentlySelectedIndex;
-		}
+		int getCurrentSelectedIndex();
 
-		sf::Color getInsertionBarColor() {
-			return M_insertionBar.getFillColor();
-		}
+		sf::Color getInsertionBarColor();
 
 	public:
 		// default Constructor
@@ -294,99 +176,32 @@ namespace chk {
 		}
 
 	public:
-		void setBackgroundFillColor(const sf::Color color) {
-			M_Rect.setFillColor(color);
-		}
+		void setBackgroundFillColor(const sf::Color color);
 
-		sf::Color getBackgroundFillColor() {
-			return M_Rect.getFillColor();
-		}
+		sf::Color getBackgroundFillColor();
 
-		void setBackgroundOutlineColor(const sf::Color outlineColor) {
-			M_Rect.setOutlineColor(outlineColor);
-		}
+		void setBackgroundOutlineColor(const sf::Color outlineColor);
 
-		sf::Color getBackgroundOutlineColor() {
-			return M_Rect.getOutlineColor();
-		}
+		sf::Color getBackgroundOutlineColor();
 
-		void setBackgroundOutlineThickness(const int thickness) {
-			M_Rect.setOutlineThickness(thickness);
-		}
+		void setBackgroundOutlineThickness(const int thickness);
 
-		int getBackgroundOutlineThickness() {
-			return M_Rect.getOutlineThickness();
-		}
+		int getBackgroundOutlineThickness();
 
-		void setBackgroundVisibility(const bool visible) {
-			M_BackgroundRectVisible = visible;
-		}
+		void setBackgroundVisibility(const bool visible);
 
-		bool getBackgroundVisibility() {
-			return M_BackgroundRectVisible;
-		}
+		bool getBackgroundVisibility();
 
 	private:
-		int getCharacterIndexAtMousePosition() {
-			sf::Vector2i pos = getMousePosition();
-			pos -= sf::Vector2i(getAbsolutePositionPixels().x,getAbsolutePositionPixels().y); // converts the mouse pos to local space.
-			pos += sf::Vector2i(M_txt.getPosition());
+		int getCharacterIndexAtMousePosition();
 
-			for (int i = 0; i < M_txt.getString().getSize(); ++i) {
-				sf::Vector2f charPosition = M_txt.findCharacterPos(i);
-				const sf::FloatRect textBounds = M_txt.getGlobalBounds();
+		int getCharacterWidthAtIndex(int i);
 
-				float characterWidth = M_txt.findCharacterPos(i + 1).x - charPosition.x;
-
-				sf::FloatRect LocalCharBounds = sf::FloatRect(charPosition.x, charPosition.y, characterWidth, M_txt.getCharacterSize());
-
-				if (LocalCharBounds.contains(sf::Vector2f(pos))) {
-					return i;
-				}
-			}
-			return (M_txt.getString().getSize()==0) ? 0 : M_txt.getString().getSize() - 1;
-		}
-
-		int getCharacterWidthAtIndex(int i) {
-			const sf::FloatRect textBounds = M_txt.getGlobalBounds();
-			sf::Vector2f charPosition = M_txt.findCharacterPos(i);
-			// Handle the last character in the string
-
-			//return (i==M_txt.getString().getSize()-1) ? textBounds.width - charPosition.x : M_txt.findCharacterPos(i+1).x - charPosition.x;
-			return M_txt.findCharacterPos(i + 1).x - charPosition.x;
-		}
 	private:
 
-		void handleCharPress(char k) {
-			int& i = M_currentlySelectedIndex;
-			std::string str = M_txt.getString().toAnsiString();
-			if (i >= str.length()-1)
-				str.push_back(k);
-			else
-				str.insert(str.begin() + i, k);
-			M_txt.setString(str);
-			(M_txt.getString().getSize() == 1) ? i = 0 : ++i;
+		void handleCharPress(char k);
 
-			onStringUpdated.invoke(this);
-		}
-		void handleKeyDelete() {
-			int& i = M_currentlySelectedIndex;
-
-			// Ensure index is within bounds
-			if (i < 0 || i >= M_txt.getString().getSize()) {
-				return;
-			}
-
-			std::string str = M_txt.getString().toAnsiString();
-			str.erase(str.begin() + i);
-			M_txt.setString(str);
-
-			if (i > 0) {
-				--i;
-			}
-			onStringUpdated.invoke(this);
-		}
-
+		void handleKeyDelete();
 	private:
 
 		int M_currentlySelectedIndex = -2; // -2 represents unselected

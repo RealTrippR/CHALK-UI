@@ -25,6 +25,8 @@
 
 namespace chk {
 	namespace fs = std::filesystem;
+	#define CHK_DEFAULT_ASSETS_DIR std::string("..\\Chalk UI\\default assets\\")
+	#define CHK_DEFAULT_OUTLINE_THICKNESS 2
 }
 
 #endif // !CHK_UNIVERSAL_INCLUDES_H

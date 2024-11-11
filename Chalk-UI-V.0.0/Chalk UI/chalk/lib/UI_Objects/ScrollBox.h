@@ -1,6 +1,8 @@
 #ifndef CHK_SCROLL_BOX_H*
-
 #define CHK_SCROLL_BOX_H
+
+#include <chalk/lib/UI_Objects/Box.h>
+
 namespace chk {
 	enum scrollbar_alignment {
 		left,
@@ -27,162 +29,52 @@ namespace chk {
 
 		scrollBox() = default;
 	public:
-		inline sf::Vector2f getContentBoundsPixels() override {
-			sf::Vector2f r = getSizePixels();
-			r.y = getScrollDepthPixels();
-			r.x -= M_ContentPadding.left + M_ContentPadding.right;
-			r.y -= M_ContentPadding.top + M_ContentPadding.bottom;
-			return r;
-		}
-	protected:
+		sf::Vector2f getContentBoundsPixels() override;
+
+		void draw(sf::RenderTexture& Parent_RT) override;
+
+		void updateTransform(bool callToParent = false) override;
+
+		void onMouseClick(const sf::Vector2i& mousePos, const sf::Vector2i& mDelta) override;
+
+		void onMouseHold(const sf::Vector2i& mousePos, const sf::Vector2i& mDelta) override;
+
+		void onMouseRelease(const sf::Vector2i& mousePos, const sf::Vector2i& mDelta) override;
 
 	public:
-		inline void draw(sf::RenderTexture& Parent_RT) override {
-			M_RT->clear(M_FillColor);
-			drawChildren(*M_RT);
-			
-			M_RT->setView(M_RT->getDefaultView());
-			//M_RT.draw(M_ScrollBarBackground);
-			M_RT->draw(M_ScrollBar);
-			M_RT->display();
-			M_rect.setTexture(&M_RT->getTexture());
-			Parent_RT.draw(M_rect);
-		}
+		void setScrollBarThickness(int thickness);
 
-		inline void updateTransform(bool callToParent = false) override {
-			updateTransformUI_Object(callToParent);
-			updateTransformObjectContainer(callToParent);
+		int getScrollBarThickness();
 
-			M_rect.setPosition(getPositionPixels());
-			M_rect.setSize(getSizePixels());
-			updateRenderTexture();
+		void setScrollbarOutlineThickness(int thickness);
 
-			unsigned int smallestSidePixels = std::min(getSizePixels().x, getSizePixels().y);
-			M_rect.setCornersRadius(std::clamp(M_cornerTaper, 0u, smallestSidePixels / 2u));
-			switch (M_cornerTaper) {
-			case 0:
-				M_rect.setCornerPointCount(1);
-				break;
-			default:
-				M_rect.setCornerPointCount(M_rect.getCornersRadius());
-				break;
-			}
+		int getScrollbarOutlineThickness();
 
-			updateScrollBarTransform();
-		}
+		void setScrollBarFillColor(sf::Color fillColor);
 
-		void onMouseClick(const sf::Vector2i& mousePos, const sf::Vector2i& mDelta) override {
-			onLeftMouseClickedEvent.invoke(this);
-			if (intersectsScrollbar(mousePos)) {
-				M_scrollbarHeldDown = true;
-			}
-		}
-
-		void onMouseHold(const sf::Vector2i& mousePos, const sf::Vector2i& mDelta) override {
-			onMouseHoldEvent.invoke(this);
-			if (M_scrollbarHeldDown) {
-				M_ScrollBarPercent += mDelta.y / M_ScrollBar.getSize().y;
-				M_ScrollBarPercent = std::clamp(M_ScrollBarPercent, double(0), double(1));
-
-				M_contentOffset.y = M_ScrollBarPercent * (getScrollDepthPixels());
-				updateScrollBarTransform();
-			}
-		}
-
-		void onMouseRelease(const sf::Vector2i& mousePos, const sf::Vector2i& mDelta) override {
-			onMouseReleaseEvent.invoke(this);
-			M_scrollbarHeldDown = false;
-		}
-
-	public:
-		inline void setScrollBarThickness(int thickness) {
-			M_ScrollBarThickness = thickness;
-			refresh();
-		}
-
-		inline int getScrollBarThickness() {
-			return M_ScrollBarThickness;
-		}
-
-		inline void setScrollbarOutlineThickness(int thickness) {
-			M_ScrollBar.setOutlineThickness(thickness);
-			refresh();
-		}
-
-		inline int getScrollbarOutlineThickness() {
-			M_ScrollBar.getOutlineThickness();
-		}
-
-		inline void setScrollBarFillColor(sf::Color fillColor) {
-			M_ScrollBar.setFillColor(fillColor);
-			refresh();
-		}
-
-		inline sf::Color getScrollBarFillColor() {
-			return M_ScrollBar.getFillColor();
-		}
+		sf::Color getScrollBarFillColor();
 		
-		inline void setScrollBarOutlineColor(sf::Color outlineColor) {
-			M_ScrollBar.setOutlineColor(outlineColor);
-			refresh();
-		}
+		void setScrollBarOutlineColor(sf::Color outlineColor);
 
-		inline sf::Color getScrollBarOutlineColor() {
-			return M_ScrollBar.getOutlineColor();
-		}
+		sf::Color getScrollBarOutlineColor();
 
-		inline void setScrollBarPercent(float percent) {
-			M_ScrollBarPercent = percent;
-			refresh();
-		}
-		inline float getScrollBarPercent() {
-			return M_ScrollBarPercent;
-		}
+		void setScrollBarPercent(float percent);
 
-		inline void setScrollbarBackgroundColor(sf::Color color) {
-			M_ScrollBarBackground.setFillColor(color);
-			refresh();
-		}
-		inline sf::Color getScrollbarBackgroundColor() {
-			return M_ScrollBarBackground.getFillColor();
-		}
+		float getScrollBarPercent();
 
-		inline void setScrollDepth(int pixels) {
-			M_ScrollDepth = pixels;
-			updateTransform();
-			refresh();
-		}
+		void setScrollbarBackgroundColor(sf::Color color);
 
-		inline int getScrollDepthPixels() {
-			return M_ScrollDepth;
-		}
+		sf::Color getScrollbarBackgroundColor();
+
+		void setScrollDepth(int pixels);
+
+		int getScrollDepthPixels();
+
 	protected:
-		void updateScrollBarTransform() {
-			sf::View view(sf::FloatRect(0.f, M_contentOffset.y, M_RT->getSize().x, M_RT->getSize().y + M_contentOffset.y));
-			M_RT->setView(view);
+		void updateScrollBarTransform();
 
-			int height = getSizePixels().y / getScrollDepthPixels() * getSizePixels().y;
-			int yOffset = (getSizePixels().y - M_ScrollBar.getSize().y) * M_ScrollBarPercent;
-			M_ScrollBar.setSize(sf::Vector2f(M_ScrollBarThickness, height));
-			if (M_Alignment == left) {
-				M_ScrollBar.setPosition(sf::Vector2f(0, yOffset));
-			}
-			else if (M_Alignment == right) {
-				M_ScrollBar.setPosition(sf::Vector2f(getSizePixels().x, yOffset)-sf::Vector2f(M_ScrollBarThickness,0));
-			}
-		}
+		bool intersectsScrollbar(const sf::Vector2i& mPos);
 
-		bool intersectsScrollbar(const sf::Vector2i &mPos) {
-			const int width = M_ScrollBar.getSize().x;
-			const int height = M_ScrollBar.getSize().y;
-			const sf::Vector2f offset = M_ScrollBar.getPosition();
-			const sf::Vector2f topLeft = getAbsolutePositionPixels() + offset;
-			if (mPos.x >= topLeft.x && mPos.y >= topLeft.y
-				&& mPos.x <= topLeft.x+width && mPos.y <= topLeft.y + height) {
-				return true;
-			}
-			return false;
-		}
 	protected:
 		sf::RectangleShape M_ScrollBarBackground;
 		sf::RectangleShape M_ScrollBar;
