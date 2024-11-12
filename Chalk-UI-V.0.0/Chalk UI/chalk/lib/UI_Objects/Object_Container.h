@@ -5,11 +5,11 @@
 #include <chalk/lib/Universal_Includes.h>
 #include <chalk/lib/DirtyRenderFlag.h>
 #include <chalk/lib/Instance.h>
-#include <chalk/lib/UI_Objects/UI_Object.h>
+#include <chalk/lib/UI_Objects/UI_Drawable.h>
 
 namespace chk {
 	// keep this virtual - a compilation error will occur elsewise
-	class objectContainer : public  UI_Object {
+	class objectContainer : public  UI_Drawable {
 	public:
 		// when the object is destroyed, all of it's children will be deallocated
 		~objectContainer() {
@@ -19,14 +19,14 @@ namespace chk {
 		objectContainer() = default;
 
 		// deep copy
-		objectContainer(const objectContainer& other) : UI_Object(other) {
+		objectContainer(const objectContainer& other) : UI_Drawable(other) {
 			M_ContentPadding = other.M_ContentPadding;
 			M_contentOffset = other.M_contentOffset;
 		}
 
 	public:
-		Event<UI_Object> onChildAddedEvent;
-		Event<UI_Object> onChildRemovedEvent;
+		Event<UI_Drawable> onChildAddedEvent;
+		Event<UI_Drawable> onChildRemovedEvent;
 	public:
 		void updateTransform(bool callToParent = false) override;
 		void updateTransformObjectContainer(bool callToParent = false);
@@ -64,42 +64,42 @@ namespace chk {
 		//	return xy;
 		//}
 	public:
-		virtual void onChildAdded(UI_Object* child);
-		virtual void onChildRemoved(UI_Object* child);
+		virtual void onChildAdded(UI_Drawable* child);
+		virtual void onChildRemoved(UI_Drawable* child);
 	public:
 
 
-		void addChild(UI_Object* obj);
+		void addChild(UI_Drawable* obj);
 		
 		// This function removes the child from the parent, and by default this function deallocates it as well.
 
 		// there might be a logic error within this function 
-		void removeChild(UI_Object* obj, bool decallocate = true);
+		void removeChild(UI_Drawable* obj, bool decallocate = true);
 
 		// clears all children, and by default deallocates them as well.
 		void clearAllChildren(bool deallocate = true);
 
-		const std::vector<UI_Object*>& getChildren();
+		const std::vector<UI_Drawable*>& getChildren();
 
-		std::map<int, std::vector<UI_Object*>>& getZIndexMap();
+		std::map<int, std::vector<UI_Drawable*>>& getZIndexMap();
 
 		inline const int getChildrenCount();
 	
 		// swaps the draw order of two children.
 		// If both objects have a different Z index, then their Z indexes will be swapped.
-		inline void swapChildren(UI_Object* obj1, UI_Object* obj2);
+		inline void swapChildren(UI_Drawable* obj1, UI_Drawable* obj2);
 
 		// moves the child to a target index within it's Z index group.
 		// everything to the right of the target index will be shifted over one to make room for the child.
-		inline void intMoveChildToIndex(UI_Object* obj, const int index);
+		inline void intMoveChildToIndex(UI_Drawable* obj, const int index);
 
 	public:
 		// operator overloads
-		UI_Object* operator[](int index) {
+		UI_Drawable* operator[](int index) {
 			return M_Children[index];
 		}
 
-		std::vector<UI_Object*>& operator[](std::string name) {
+		std::vector<UI_Drawable*>& operator[](std::string name) {
 			return M_NameMap[name];
 		}
 
@@ -123,21 +123,21 @@ namespace chk {
 
 	protected:
 
-		friend UI_Object;
+		friend UI_Drawable;
 
-		void handleChildNameUpdate(UI_Object* obj, std::string& oldname, std::string& newname);
+		void handleChildNameUpdate(UI_Drawable* obj, std::string& oldname, std::string& newname);
 
 		// moves the child into the correct Z Index group.
-		void HandleChildZIndexUpdated(UI_Object* obj, const int ZIndexFrom, const int ZIndexTo);
+		void HandleChildZIndexUpdated(UI_Drawable* obj, const int ZIndexFrom, const int ZIndexTo);
 
 	protected:
 		// key is the Z index, the vector is the objects assigned to that Z index.
 
-		std::map<int, std::vector<UI_Object*>> M_ZIndexDrawMap;
+		std::map<int, std::vector<UI_Drawable*>> M_ZIndexDrawMap;
 
-		std::vector<UI_Object*> M_Children;
+		std::vector<UI_Drawable*> M_Children;
 
-		std::unordered_map<std::string, std::vector<UI_Object*>> M_NameMap;
+		std::unordered_map<std::string, std::vector<UI_Drawable*>> M_NameMap;
 
 		UI_PaddingData M_ContentPadding;
 

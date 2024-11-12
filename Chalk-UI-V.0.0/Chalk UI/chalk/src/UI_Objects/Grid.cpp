@@ -46,13 +46,13 @@ namespace chk {
 			}
 		}
 	}
-	void grid::onChildAdded(UI_Object* obj) {
+	void grid::onChildAdded(UI_Drawable* obj) {
 		updateTransformGrid();
 	}
-	void grid::onChildRemoved(UI_Object* obj) {
+	void grid::onChildRemoved(UI_Drawable* obj) {
 		updateTransformGrid();
 	}
-	void grid::updateTransform(bool callToParent = false) {
+	void grid::updateTransform(bool callToParent) {
 		updateTransformUI_Object(callToParent);
 		updateTransformObjectContainer(callToParent);
 		updateTransformBox();

@@ -1,8 +1,6 @@
-C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmod.dll
-C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmodL.dll
-
-Project must use multi-byte character set.
-
 Set your project to use the ISO C++20 Standard
 
 Ensure that both fmod.dll and fmodL.dll have their item type set to copy files in Visual Studio.
+C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmod.dll
+C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmodL.dll
+

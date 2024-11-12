@@ -6,7 +6,7 @@
 
 namespace chk {
 
-	class UI_Object;
+	class UI_Drawable;
 
 	class instance {
 	public:
@@ -37,7 +37,7 @@ namespace chk {
 			return New<T>(nullptr,"");
 		}
 
-		void Remove(UI_Object* obj) {
+		void Remove(UI_Drawable* obj) {
 			M_objects.erase(std::find(M_objects.begin(), M_objects.end(), obj));
 			delete obj;
 			obj = NULL;
@@ -45,7 +45,7 @@ namespace chk {
 			chk::dirty_render_flag = true; //refresh
 		}
 	private:
-		std::vector<UI_Object*> M_objects;
+		std::vector<UI_Drawable*> M_objects;
 	};
 
 	extern instance Instance;

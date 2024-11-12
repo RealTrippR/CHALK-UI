@@ -11,22 +11,7 @@
 #include <chalk/lib/Universal_Includes.h>
 
 namespace chk {
-	namespace util {
-		// all functions under the util namespace must be marked as inline
-
-		inline std::string to_lower(std::string str) {
-			for (int i = 0; i < str.length(); ++i) {
-				str[i] = std::tolower(str[i]);
-			}
-			return str;
-		}
-
-		inline std::string to_upper(std::string str) {
-			for (int i = 0; i < str.length(); ++i) {
-				str[i] = std::toupper(str[i]);
-			}
-			return str;
-		}
+	namespace util { // all functions under the util namespace should be marked as inline
 
 		inline std::string getAbsoluteFilepath(std::string relativeFilepath) {
 			std::filesystem::path p = relativeFilepath;
@@ -37,15 +22,17 @@ namespace chk {
 			char* buffer = nullptr;
 			size_t bufferSize = 0;
 
-			// Use _dupenv_s to safely get the environment variable
+			// _dupenv_s is a Microsoft function, designed as a more secure form of getenv.
 			if (_dupenv_s(&buffer, &bufferSize, varName.c_str()) == 0 && buffer != nullptr) {
 				std::string result(buffer);
-				free(buffer);  // Free the allocated buffer after use
+				free(buffer);
 				return result;
 			}
 
-			return "";  // Return an empty string if the variable is not found
+			return "";  // env variable not found
 		}
+		
+		// returns User\AppData\Roaming path 
 		inline std::string getAppDataPath() {
 			// Get the user's home directory
 			std::string homePath = (std::filesystem::path(getEnvVar("USERPROFILE"))).string(); // For Windows

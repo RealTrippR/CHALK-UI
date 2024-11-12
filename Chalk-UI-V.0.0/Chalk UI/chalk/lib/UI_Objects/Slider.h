@@ -4,10 +4,10 @@
 #include <chalk/lib/Universal_Includes.h>
 #include <chalk/lib/DirtyRenderFlag.h>
 #include <chalk/lib/Instance.h>
-#include <chalk/lib/UI_Objects/UI_Object.h>
+#include <chalk/lib/UI_Objects/UI_Drawable.h>
 
 namespace chk {
-	class slider : public UI_Object {
+	class slider : public UI_Drawable {
 	public:
 		void draw(sf::RenderTexture& Parent_RT) override;
 

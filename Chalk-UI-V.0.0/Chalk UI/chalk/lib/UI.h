@@ -149,7 +149,7 @@ namespace chk {
 		if (par->getChildren().size() == 0) {
 			return;
 		}
-		for (UI_Object* obj : par->getChildren()) {
+		for (UI_Drawable* obj : par->getChildren()) {
 			objectContainer* con = dynamic_cast<objectContainer*>(obj);
 
 			if (con != NULL) {

@@ -5,8 +5,8 @@ namespace chk {
 	namespace input {
 		//UI_Object* currentObj = NULL; // the current UI_Object that is being hovered over
 		///UI_Object* clickedObj = NULL; // the object that is being held down
-		std::vector<UI_Object*> currentObjects; // the UI objects that are currently being hovered over
-		std::vector<UI_Object*> clickedObjects; // the UI objects that are being held down, but not always hovered over
+		std::vector<UI_Drawable*> currentObjects; // the UI objects that are currently being hovered over
+		std::vector<UI_Drawable*> clickedObjects; // the UI objects that are being held down, but not always hovered over
 
 		// returns as a reference
 		sf::Vector2i& getMouseDeltaAsRef() {
@@ -16,8 +16,8 @@ namespace chk {
 		
 		// To fix this function, take into account Z-index
 
-		std::vector<UI_Object*> getHoveredObjects(sf::Vector2i& mpos, objectContainer* parent) {
-			std::vector<UI_Object*> returnList; // all hovered objects
+		std::vector<UI_Drawable*> getHoveredObjects(sf::Vector2i& mpos, objectContainer* parent) {
+			std::vector<UI_Drawable*> returnList; // all hovered objects
 			if (!parent->getVisibility()) {
 				return {};
 			}
@@ -36,7 +36,7 @@ namespace chk {
 					// the child is an objectContainer
 					if (childAsContainer != NULL) {
 						// the objects list is the all the hovered objects in the childcontainer
-						std::vector<UI_Object*> objects = getHoveredObjects(mpos, childAsContainer);
+						std::vector<UI_Drawable*> objects = getHoveredObjects(mpos, childAsContainer);
 						// if no children of the childcontainer are being hovered, than check the childContainer
 						if (objects.empty()) {
 							if (childAsContainer->getInputHandlingType() == consume
@@ -90,16 +90,16 @@ namespace chk {
 
 		void onMouseMoved(sf::Vector2i &mpos) {
 
-			std::vector<UI_Object*> temp = getHoveredObjects(mpos, workspace);
+			std::vector<UI_Drawable*> temp = getHoveredObjects(mpos, workspace);
 			for (int i = 0; i < currentObjects.size(); ++i) {
-				UI_Object* obj = currentObjects[i];
+				UI_Drawable* obj = currentObjects[i];
 				if (find(temp.begin(), temp.end(), obj) == temp.end()) {
 					obj->onMouseExit(mpos, mouseDelta);
 					currentObjects.erase(currentObjects.begin() + i);
 					--i;
 				}
 			}
-			for (UI_Object* obj : temp) {
+			for (UI_Drawable* obj : temp) {
 				// if obj from temp not found in current objects
 				if (find(currentObjects.begin(), currentObjects.end(), obj) == currentObjects.end()) {
 					obj->onMouseEnter(mpos, mouseDelta);
@@ -143,14 +143,14 @@ namespace chk {
 			onMouseMoved.invoke(NULL);
 		}
 		
-		for (UI_Object* obj : input::clickedObjects) {
+		for (UI_Drawable* obj : input::clickedObjects) {
 			obj->onMouseHold(lastMousePos, mouseDelta);
 		}
 		
 
 		// on mouse hover functionality
 		if (input::clickedObjects.size() == 0 /*will be true if the mouse is not being held down*/) {
-			for (UI_Object* obj : input::currentObjects) {
+			for (UI_Drawable* obj : input::currentObjects) {
 				obj->onMouseHover(lastMousePos, mouseDelta);
 			}
 		}

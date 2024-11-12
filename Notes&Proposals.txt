@@ -9,9 +9,6 @@ Proposals for V1.0:
 [SCRAPPED] Add size to content for boxes. Note that this means that child with percent based sizes will not affect the size of these containers.
     Also, have the minimum size of the container be the default size in pixels - only stretch it if the content extends its bounds.
 
-[ ] In the objectChild class add a vector of pointers to UI_Objects* to hold all visible children,
-	that way invisible children do not have to be iterated through in draw calls, thus rendering time will be decreased.
-
 [✓] make the addChild function private/protected or fix it so that it can be called directly on objectContainers
 
 [ ] Add a includeMarginInAbsoluteBounds propertyrender with the margin accounted for, but can consume input of other objects because their absolute bounds extends beyond whats drawn.
@@ -35,9 +32,9 @@ Proposals for V1.0:
 
 [✓] Fix Bug: HitTestThrough, HitTestConsume, and HitTestThroughAndConsume are not working properly for objects that aren't objectContainers
 
-[ ] All drawables should inherit from the drawable class - not the UI_Object class.
+[~] All drawables should inherit from the drawable class - not the UI_Object class.
 
-[~] As per C++ standards, create the .cpp files for all UI_Objects
+[✓] As per C++ standards, create the .cpp files for all UI_Objects
 
 [ ] Instead of including the audio functionality with chalk/UI.h, make a seperate chalk/Audio.h or chalk/Sound.h file for this purpose.
 
@@ -47,11 +44,14 @@ Proposals for V1.0:
 
 [✓] Fix bug: currently textboxes cannot have the insertion bar before the first character.
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 -----------------------------------------------------------------------------------------------------------------
 Proposals for V1.1:
 -----------------------------------------------------------------------------------------------------------------
+
+[ ] In the objectChild class add a vector of pointers to UI_Objects* to hold all visible children,
+	that way invisible children do not have to be iterated through in draw calls, thus rendering time will be decreased.
 
 [ ] Allow for Instances of UI_Objects to be overwritten with ==, rather than removing the instance and then creating a copy of the object.
 
@@ -70,7 +70,7 @@ Proposals for V1.1:
 
 [ ] Divide the UI_Objects in the instance Class into 64-object chunks for the sake of efficiency and speed
 
-[ ] Performance Target - 2000 FPS w/ 50 boxes (2 cores or less).
+[ ] Performance Target - 1000 FPS w/ 50 boxes (2 cores or less).
 
 
 

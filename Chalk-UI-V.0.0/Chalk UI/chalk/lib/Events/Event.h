@@ -2,7 +2,7 @@
 #define CHK_EVENT_HPP
 
 namespace chk {
-	class UI_Object;
+	class UI_Drawable;
 
 	// the Event class allows for the calling of functions binded upon being invoked.
 	template<class T> class Event {

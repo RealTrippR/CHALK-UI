@@ -6,13 +6,13 @@
 #include <chalk/lib/Universal_Includes.h>
 #include <chalk/lib/DirtyRenderFlag.h>
 #include <chalk/lib/Instance.h>
-#include <chalk/lib/UI_Objects/UI_Object.h>
+#include <chalk/lib/UI_Objects/UI_Drawable.h>
 #include <chalk/lib/UI_Objects/Object_Container.h>
 #include <chalk/lib/FontManager.h>
 
 
 namespace chk {
-	class text : public UI_Object {
+	class text : public UI_Drawable {
 	public:
 		void draw(sf::RenderTexture& Parent_RT) override;
 		void updateTransform(bool callToParent = false) override;

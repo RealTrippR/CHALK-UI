@@ -15,9 +15,9 @@ namespace chk {
 	public:
 		inline void updateTransformGrid();
 
-		void onChildAdded(UI_Object* obj) override;
+		void onChildAdded(UI_Drawable* obj) override;
 
-		void onChildRemoved(UI_Object* obj) override;
+		void onChildRemoved(UI_Drawable* obj) override;
 
 		void updateTransform(bool callToParent = false) override;
 
