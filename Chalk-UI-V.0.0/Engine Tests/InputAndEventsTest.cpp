@@ -11,6 +11,12 @@ void UI_Init() {
 		b.setFillColor(sf::Color(255, 255, 255));
 		b.setFillColorOnHover(sf::Color(75, 255, 75));
 		b.setFillColorOnClick(sf::Color(255, 75, 75));
+
+		value<sf::CircleShape>* v = &Instance.New<value<sf::CircleShape>>("val");
+		v->setParent(&b);
+		b.onMouseClickedEvent.bind([v]() {
+			std::cout << "Typename of v: " << v->getTypeName() << "\n";
+		});
 	}
 	{
 		button& b = Instance.New<button>("Button1");

@@ -1,5 +1,6 @@
 #include <chalk/lib/UI_Objects/UI_Object.h>
 #include <chalk/lib/UI_Objects/UI_Drawable.h>
+#include <chalk/lib/UI_Objects/ValueObject.h>
 
 
 //#include "Object_Group.h";

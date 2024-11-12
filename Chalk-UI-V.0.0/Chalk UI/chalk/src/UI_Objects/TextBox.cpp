@@ -9,12 +9,25 @@ namespace chk {
 	}
 
 	void textBox::onMouseClick(const sf::Vector2i& mPos, const sf::Vector2i& mDelta) {
-		onLeftMouseClickedEvent.invoke(this);
+		onMouseClickedEvent.invoke(this);
+
+		if ( !sf::Mouse::isButtonPressed(sf::Mouse::Left) ) {
+			return;
+		}
+
 		if (M_Enabled) {
 			M_currentlySelectedIndex = getCharacterIndexAtMousePosition();
-
 			select(false);
 			updateTransform();
+
+			// in V1.1 the ability to remove bindings will be added to events,
+			// be sure to update this function once that's changed
+			chk::onMouseClick.bind([this]() {
+				sf::Vector2i mPos = chk::getMousePosition();
+				if (!intersectsAbsoluteBounds(sf::Vector2f(mPos.x,mPos.y))) {
+					deselect();
+				}
+			});
 		}
 	}
 

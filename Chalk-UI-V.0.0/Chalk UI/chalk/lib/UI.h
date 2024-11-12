@@ -149,13 +149,13 @@ namespace chk {
 		if (par->getChildren().size() == 0) {
 			return;
 		}
-		for (UI_Drawable* obj : par->getChildren()) {
-			objectContainer* con = dynamic_cast<objectContainer*>(obj);
-
-			if (con != NULL) {
-				con->setAntiAliasingLevel(5);
-				setGlobalAntiAliasing(level, par);
+		for (int i = 0; i < par->getChildren().size(); ++i) {
+			objectContainer* obj = dynamic_cast<objectContainer*>(par->getChildren()[i]);
+			if (obj == NULL) {
+				continue;
 			}
+			obj->setAntiAliasingLevel(5);
+			setGlobalAntiAliasing(level, par);
 		}
 		dirty_render_flag = true;
 	}

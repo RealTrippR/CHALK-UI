@@ -11,7 +11,7 @@
 #include <chalk/lib/UI_Objects/UI_Object.h>
 
 namespace chk {
-	class Instance; // forward declaration
+	class instance; // forward declaration
 	class objectContainer; // forward declaration
 
 	class UI_Drawable : public UI_Object {
@@ -25,12 +25,7 @@ namespace chk {
 		}*/
 
 		void updateTransformUI_Object(bool callToParent = false);
-
-		inline virtual void updateTransform(bool callToParent = false) {
-
-		}
 		
-		inline void refresh();
 	public:
 		// returns true if it intersects the absolute bounds of this UI_Object, relevant to the left upper corner of the screen.
 		bool intersectsAbsoluteBounds(sf::Vector2f absolutePos, bool returnFalseIfInvisible = true) {
@@ -140,7 +135,7 @@ namespace chk {
 		short getZIndex();
 
 	protected:
-		friend Instance;
+		friend instance;
 		friend objectContainer;
 
 		sf::Vector2f M_AbsolutePositionPixels;

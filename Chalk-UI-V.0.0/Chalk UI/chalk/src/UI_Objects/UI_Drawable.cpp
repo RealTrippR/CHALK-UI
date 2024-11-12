@@ -12,9 +12,7 @@ namespace chk {
         }*/
     }
 
-    void UI_Drawable::refresh() {
-        dirty_render_flag = true;
-    }
+    
 
 
     void UI_Drawable::setPosition(UI_Vector2f pos) {

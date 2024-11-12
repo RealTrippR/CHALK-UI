@@ -64,22 +64,22 @@ namespace chk {
 		//	return xy;
 		//}
 	public:
-		virtual void onChildAdded(UI_Drawable* child);
-		virtual void onChildRemoved(UI_Drawable* child);
+		virtual void onChildAdded(UI_Object* child);
+		virtual void onChildRemoved(UI_Object* child);
 	public:
 
 
-		void addChild(UI_Drawable* obj);
+		void addChild(UI_Object* obj);
 		
 		// This function removes the child from the parent, and by default this function deallocates it as well.
 
 		// there might be a logic error within this function 
-		void removeChild(UI_Drawable* obj, bool decallocate = true);
+		void removeChild(UI_Object* obj, bool decallocate = true);
 
 		// clears all children, and by default deallocates them as well.
 		void clearAllChildren(bool deallocate = true);
 
-		const std::vector<UI_Drawable*>& getChildren();
+		const std::vector<UI_Object*>& getChildren();
 
 		std::map<int, std::vector<UI_Drawable*>>& getZIndexMap();
 
@@ -95,11 +95,11 @@ namespace chk {
 
 	public:
 		// operator overloads
-		UI_Drawable* operator[](int index) {
+		UI_Object* operator[](int index) {
 			return M_Children[index];
 		}
 
-		std::vector<UI_Drawable*>& operator[](std::string name) {
+		std::vector<UI_Object*>& operator[](std::string name) {
 			return M_NameMap[name];
 		}
 
@@ -123,9 +123,10 @@ namespace chk {
 
 	protected:
 
+		friend UI_Object;
 		friend UI_Drawable;
 
-		void handleChildNameUpdate(UI_Drawable* obj, std::string& oldname, std::string& newname);
+		void handleChildNameUpdate(UI_Object* obj, std::string& oldname, std::string& newname);
 
 		// moves the child into the correct Z Index group.
 		void HandleChildZIndexUpdated(UI_Drawable* obj, const int ZIndexFrom, const int ZIndexTo);
@@ -135,9 +136,9 @@ namespace chk {
 
 		std::map<int, std::vector<UI_Drawable*>> M_ZIndexDrawMap;
 
-		std::vector<UI_Drawable*> M_Children;
+		std::vector<UI_Object*> M_Children;
 
-		std::unordered_map<std::string, std::vector<UI_Drawable*>> M_NameMap;
+		std::unordered_map<std::string, std::vector<UI_Object*>> M_NameMap;
 
 		UI_PaddingData M_ContentPadding;
 

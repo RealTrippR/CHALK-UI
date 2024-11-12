@@ -1,6 +1,9 @@
 #include <chalk/lib/UI_Objects/UI_Object.h>
+#include <chalk/lib/UI_Objects/Object_Container.h>
+
 
 namespace chk {
+
 	// SETTERS
 	void UI_Object::setName(std::string name) {
 		if (M_parent) {
@@ -8,7 +11,6 @@ namespace chk {
 		}
 		M_Name = name;
 		refresh();
-
 	}
 
 	std::string UI_Object::getName() {

@@ -17,35 +17,41 @@ namespace chk {
 			}
 		}
 	
-		void objectContainer::onChildAdded(UI_Drawable* child) {
+		void objectContainer::onChildAdded(UI_Object* child) {
 			onChildAddedEvent.invoke(this);
 			return;
 		}
-		void objectContainer::onChildRemoved(UI_Drawable* child) {
+		void objectContainer::onChildRemoved(UI_Object* child) {
 			onChildRemovedEvent.invoke(this);
 			return;
 		}
 
-		void objectContainer::addChild(UI_Drawable* obj) {
+		void objectContainer::addChild(UI_Object* obj) {
 			if (obj->M_parent != this) { // these 3 lines of code allow for addChild to be called from anywhere, not just the setParent function
 				obj->setParent(this);
 			}
 			M_Children.push_back(obj);
 			M_NameMap[obj->getName()].push_back(obj);
-			M_ZIndexDrawMap[obj->getZIndex()].push_back(obj);
+			UI_Drawable* asDrawable = dynamic_cast<UI_Drawable*>(obj);
+			if (asDrawable) {
+				M_ZIndexDrawMap[asDrawable->getZIndex()].push_back(asDrawable);
+			}
 			onChildAdded(obj);
 			refresh();
 		}
 
 		// This function removes the child from the parent, and by default this function deallocates it as well.
-		void objectContainer::removeChild(UI_Drawable* obj, bool decallocate) { 		// there might be a logic error within this function 
+		void objectContainer::removeChild(UI_Object* obj, bool decallocate) { 		// there might be a logic error within this function 
 			auto& vec = M_NameMap[obj->getName()];
 			vec.erase(std::remove(vec.begin(), vec.end(), obj), vec.end());
 
 			M_Children.erase(std::remove(M_Children.begin(), M_Children.end(), obj), M_Children.end());
 
-			auto& vec2 = M_ZIndexDrawMap[obj->getZIndex()];
-			vec2.erase(std::remove(vec2.begin(), vec2.end(), obj), vec2.end());
+			UI_Drawable* asDrawable = dynamic_cast<UI_Drawable*>(obj);
+			if (asDrawable) {
+				auto& vec2 = M_ZIndexDrawMap[asDrawable->getZIndex()];
+				vec2.erase(std::remove(vec2.begin(), vec2.end(), asDrawable), vec2.end());
+			}
 
 			onChildRemoved(obj);
 
@@ -57,7 +63,7 @@ namespace chk {
 
 		// clears all children, and by default deallocates them as well.
 		void objectContainer::clearAllChildren(bool deallocate) {
-			for (UI_Drawable* obj : M_Children) {
+			for (UI_Object* obj : M_Children) {
 				Instance.Remove(obj);
 			}
 
@@ -66,7 +72,7 @@ namespace chk {
 			M_NameMap.clear();
 		}
 
-		const std::vector<UI_Drawable*>& objectContainer::getChildren() {
+		const std::vector<UI_Object*>& objectContainer::getChildren() {
 			return M_Children;
 		}
 
@@ -169,7 +175,7 @@ namespace chk {
 		vec2.push_back(obj);
 	}
 
-	void objectContainer::handleChildNameUpdate(UI_Drawable* obj, std::string& oldname, std::string& newname) {
+	void objectContainer::handleChildNameUpdate(UI_Object* obj, std::string& oldname, std::string& newname) {
 		if (oldname != newname) {
 			auto& vec = M_NameMap[obj->getName()];
 			if (vec.size() == 1) {
