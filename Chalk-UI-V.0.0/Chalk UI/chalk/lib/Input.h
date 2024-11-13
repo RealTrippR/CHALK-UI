@@ -155,9 +155,8 @@ namespace chk {
 			}
 		}
 
-		sf::Event event;
-		sf::View view = window.getDefaultView();
-		std::pair<sf::Keyboard::Key, int> tmp;
+		static sf::Event event;
+		static sf::View view = window.getDefaultView();
 		while (window.pollEvent(event))
 		{
 			switch (event.type)

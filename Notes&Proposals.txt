@@ -42,7 +42,11 @@ Proposals for V1.0:
 [✓] Allow for the absolute bounds (in pixels) of objects to be extended via setInputBoundsExtension() and getInputBoundsExtension().
     This is especially for things like textBoxes, because it can be difficult to select from the beginning and end.
 
+[ ] Add textOffset and textAlignment for the textBox Class.
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+[ ] Is the slider class working properly?
 
 [✓] Fix bug: characters are inserted an index behind the insertion bar if the bar is not at the very end of the text.
 
@@ -144,6 +148,8 @@ Proposals for V1.4:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Proposals for V1.5:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[ ] Create some debugging tools specifically for CHALK UI
 
 [ ] Consider writing CHALK-UI bindings for Rust, Java, Go, and Python.
 

@@ -176,6 +176,7 @@ namespace chk {
 		}
 
 	public:
+		/*
 		void setBackgroundFillColor(const sf::Color color);
 
 		sf::Color getBackgroundFillColor();
@@ -191,6 +192,11 @@ namespace chk {
 		void setBackgroundVisibility(const bool visible);
 
 		bool getBackgroundVisibility();
+
+		void setBackgroundCornerTaper(const int taper);
+
+		int getBackgroundCornerTaper();
+		*/
 
 	private:
 		int getCharacterIndexAtMousePosition();
@@ -214,15 +220,19 @@ namespace chk {
 
 		sf::Text M_txt;
 
-		sf::RectangleShape M_insertionBar;
+		sf::RoundedRectangleShape M_insertionBar;
+
+		//sf::RoundedRectangleShape M_Rect; // background rect
+		//unsigned int M_BackgroundRectCornerTaper = 0;
+
+		//bool M_BackgroundRectVisible = true;
+
 
 		unsigned int M_millisecondsInsertionBarVisible = 500;
 		unsigned int M_millisecondsInsertionBarHidden = 800;
 
 		float M_currentTimerMilli = 0;
 
-		sf::RoundedRectangleShape M_Rect; // background rect
-		bool M_BackgroundRectVisible = true;
 	};
 }
 

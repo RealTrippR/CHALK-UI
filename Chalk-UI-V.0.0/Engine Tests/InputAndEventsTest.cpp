@@ -69,13 +69,23 @@ void UI_Init() {
 	{
 		textBox* t = &Instance.New<textBox>("TextBox");
 		t->setParent(&Workspace);
-		//t->setFont("C:\\Users\\user\\OneDrive\\Documents\\Downloaded-Fonts\\RobotoRegular-3m4L.ttf");
+		//t->setFont("C:\\Users\\user\\Documents\\Downloaded-Fonts\\RobotoRegular-3m4L.ttf");
+		// or
+		//t->setFont("arial.ttf"); (assuming that arial.tff is in the static\fonts folder)
 		t->setPosition({ 50,350 });
-		t->setSize({ 30,200 });
+		t->setSize({ 200,30 });
 		t->setCharacterSize(25);
 		t->setString("Enter Text!");
 		t->setBackgroundOutlineThickness(2);
 		t->setBackgroundOutlineColor(sf::Color::White);
+		t->setBackgroundFillColor(sf::Color(20,20,20));
+	}
+	{
+		/*
+		slider* s = &Instance.New<slider>("slider");
+		s->setParent(&Workspace);
+		s->setPosition({400,400});
+		*/
 	}
 }
 

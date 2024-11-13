@@ -37,6 +37,7 @@ namespace chk {
 
 		unsigned int smallestSidePixels = std::min(getSizePixels().x, getSizePixels().y);
 		M_rect.setCornersRadius(std::clamp(M_cornerTaper, 0u, smallestSidePixels / 2u));
+
 		switch (M_cornerTaper) {
 		case 0:
 			M_rect.setCornerPointCount(1);

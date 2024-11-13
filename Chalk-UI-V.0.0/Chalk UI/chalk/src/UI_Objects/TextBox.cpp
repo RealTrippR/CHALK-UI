@@ -2,6 +2,9 @@
 
 namespace chk {
 	void textBox::draw(sf::RenderTexture& Parent_RT) {
+		/*if (M_BackgroundRectVisible) {
+			Parent_RT.draw(M_Rect);
+		}*/
 		Parent_RT.draw(M_txt);
 		if (!M_InsertionBarHidden) {
 			Parent_RT.draw(M_insertionBar);
@@ -34,12 +37,21 @@ namespace chk {
 	void textBox::updateTransform(bool callToParent) {
 		updateTransformUI_Object();
 
+		/*
+		M_Rect.setSize(getSizePixels());
+		M_Rect.setPosition(getPositionPixels());
+
+		unsigned int smallestSidePixels = std::min(M_Rect.getSize().x, M_Rect.getSize().y);
+		M_Rect.setCornersRadius(std::clamp(M_BackgroundRectCornerTaper,0U,smallestSidePixels/2));
+		M_Rect.setCornerPointCount(1 + (M_Rect.getCornersRadius() / 8));
+		*/
+
 		sf::Text tmp = M_txt; // gets height of standard character, in this case 'A'
 		tmp.setString("A");
 		int yOffset = -tmp.getLocalBounds().top;
 		int charHeight = tmp.getLocalBounds().height;
 
-		M_Size = UI_Vector2f(M_txt.getGlobalBounds().width, charHeight, absolute);
+		//M_Size = UI_Vector2f(M_txt.getGlobalBounds().width, charHeight, absolute);
 
 		M_pixelOffset.y = yOffset; // consider adding a M_privatePixelOffset for situations like these
 		M_txt.setPosition(getPositionPixels());
@@ -147,9 +159,11 @@ namespace chk {
 
 	void textBox::setCurrentSelectedIndex(const int index) {
 		M_currentlySelectedIndex = index;
+		refresh();
 	}
 	void textBox::setInsertionBarColor(const sf::Color color) {
 		M_insertionBar.setFillColor(color);
+		refresh();
 	}
 
 	bool textBox::getEnabled() {
@@ -202,8 +216,10 @@ namespace chk {
 
 
 
+	/*
 	void textBox::setBackgroundFillColor(const sf::Color color) {
 		M_Rect.setFillColor(color);
+		refresh();
 	}
 
 	sf::Color textBox::getBackgroundFillColor() {
@@ -212,6 +228,7 @@ namespace chk {
 
 	void textBox::setBackgroundOutlineColor(const sf::Color outlineColor) {
 		M_Rect.setOutlineColor(outlineColor);
+		refresh();
 	}
 
 	sf::Color textBox::getBackgroundOutlineColor() {
@@ -220,6 +237,7 @@ namespace chk {
 
 	void textBox::setBackgroundOutlineThickness(const int thickness) {
 		M_Rect.setOutlineThickness(thickness);
+		refresh();
 	}
 
 	int textBox::getBackgroundOutlineThickness() {
@@ -228,11 +246,25 @@ namespace chk {
 
 	void textBox::setBackgroundVisibility(const bool visible) {
 		M_BackgroundRectVisible = visible;
+		refresh();
 	}
 
 	bool textBox::getBackgroundVisibility() {
 		return M_BackgroundRectVisible;
 	}
+
+	void textBox::setBackgroundCornerTaper(const int taper) {
+		M_BackgroundRectCornerTaper = taper;
+		updateTransform();
+		refresh();
+	}
+
+	int textBox::getBackgroundCornerTaper() {
+		return M_BackgroundRectCornerTaper;
+	}
+	*/
+
+
 
 	int textBox::getCharacterIndexAtMousePosition() {
 		sf::Vector2i pos = getMousePosition();
