@@ -37,9 +37,7 @@ namespace chk {
 #include "Events/Keybind.h"
 #include "Events/KeybindManager.h"
 #include "UI_Headers.h"
-#include "Audio/AudioManager.h"
-#include "Audio/Sound.h"
-#include "Audio/InstancedSoundManager.h"
+
 
 //#include "Audio/InstancedSound.h"
 
@@ -96,7 +94,9 @@ namespace chk {
 
 		window_RT->create(window.getSize().x, window.getSize().y);
 
+#ifdef CHK_AUDIO_H
 		audioManager::init();
+#endif // CHK_AUDIO_H
 
 		r.setFillColor(sf::Color::White);
 		r.setOutlineThickness(0);
@@ -105,7 +105,9 @@ namespace chk {
 	}
 
 	void cleanup() {
+#ifdef CHK_AUDIO_H
 		audioManager::cleanup();
+#endif // CHK_AUDIO_H
 	}
 
 	void render(sf::RenderWindow& window) {
@@ -136,7 +138,7 @@ namespace chk {
 
 
 
-	// window control
+	// window control //
 	
 	// anti ailising control
 	void setGlobalAntiAliasing(const int level, objectContainer* par = &Workspace) {
@@ -210,8 +212,6 @@ namespace chk {
 	sf::Vector2f getWindowSize() {
 		return sf::Vector2f(windowPtr->getSize().x, windowPtr->getSize().y);
 	}
-
-
 }
 
 #endif

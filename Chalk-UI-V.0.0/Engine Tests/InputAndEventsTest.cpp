@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chalk/lib/UI.h>
 #include <chalk/lib/Input.h>
-
+#include <chalk/lib/Audio.h>
 
 void UI_Init() {
 	using namespace chk;
@@ -11,6 +11,9 @@ void UI_Init() {
 		b.setFillColor(sf::Color(255, 255, 255));
 		b.setFillColorOnHover(sf::Color(75, 255, 75));
 		b.setFillColorOnClick(sf::Color(255, 75, 75));
+
+		b.setMargin({ 25,25,25,25 });
+		b.setInputBoundsExtension({ 10, 10, 10, 10 });
 
 		value<sf::CircleShape>* v = &Instance.New<value<sf::CircleShape>>("val");
 		v->setParent(&b);
@@ -40,10 +43,14 @@ void UI_Init() {
 		image* img = &Instance.New<image>("Img1");
 		img->setParent(&Workspace);
 		img->setZIndex(1);
-		img->setInputHandlingType(consumeAndPassThrough);
+		img->setInputHandlingType(consume);
 		img->setPosition({ 200,200 });
 		img->onMouseEnterEvent.bind([img] {
 			std::cout << img->getName() << "\n";
+			img->setFillColor(sf::Color::Red);
+		});
+		img->onMouseExitEvent.bind([img]() {
+			img->setFillColor(sf::Color::White);
 		});
 	}
 	{
@@ -53,6 +60,10 @@ void UI_Init() {
 		img->setPosition({ 240,240 });
 		img->onMouseEnterEvent.bind([img] {
 			std::cout << img->getName() << "\n";
+			img->setFillColor(sf::Color::Red);
+		});
+		img->onMouseExitEvent.bind([img]() {
+			img->setFillColor(sf::Color::Blue);
 		});
 	}
 	{

@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef CHK_UI_OBJECT_H
-#define CHK_UI_OBJECT_H
+#ifndef CHK_UI_DRAWABLE_H
+#define CHK_UI_DRAWABLE_H
 
 
 #include <chalk/lib/Universal_Includes.h>
@@ -28,11 +28,17 @@ namespace chk {
 		
 	public:
 		// returns true if it intersects the absolute bounds of this UI_Object, relevant to the left upper corner of the screen.
-		bool intersectsAbsoluteBounds(sf::Vector2f absolutePos, bool returnFalseIfInvisible = true) {
+		inline bool intersectsAbsoluteBounds(sf::Vector2f absolutePos, bool returnFalseIfInvisible = true, bool includeInputBoundsExtension = true) {
 			if (returnFalseIfInvisible && !M_visible) {
 				return false;
 			}
 			sf::FloatRect bounds = getAbsoluteBoundsPixels();
+			if (includeInputBoundsExtension) {
+				bounds.left -= M_InputBoundsExtension.left;
+				bounds.width += M_InputBoundsExtension.right + M_InputBoundsExtension.left;
+				bounds.top -= M_InputBoundsExtension.top;
+				bounds.height += M_InputBoundsExtension.bottom + M_InputBoundsExtension.top;
+			}
 			return
 			(
 					absolutePos.x >= bounds.left &&
@@ -93,6 +99,8 @@ namespace chk {
 
 		void setMargin(UI_PaddingData margin);
 
+		void setInputBoundsExtension(const UI_PaddingData boundsExtension);
+
 		// sets rotation, in degrees
 		void setRotation(float degrees);
 
@@ -108,7 +116,11 @@ namespace chk {
 		UI_Vector2f getPosition();
 
 		UI_Vector2f getSize();
+
 		UI_PaddingData getMargin();
+
+		UI_PaddingData getInputBoundsExtension();
+
 		// returns rotation, in degrees
 		float getRotation();
 
@@ -149,6 +161,7 @@ namespace chk {
 		UI_Vector2f M_Origin;
 		//UI_PaddingData M_Padding;
 		UI_PaddingData M_Margin;
+		UI_PaddingData M_InputBoundsExtension;
 
 
 		float M_Rotation = 0;

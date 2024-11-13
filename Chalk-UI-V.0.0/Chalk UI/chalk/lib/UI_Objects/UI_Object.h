@@ -1,5 +1,5 @@
-#ifndef CHK_UI_DRAWABLE_H
-#define CHK_UI_DRAWABLE_H
+#ifndef CHK_UI_OBJECT_H
+#define CHK_UI_OBJECT_H
 
 #include <chalk/lib/Universal_Includes.h>
 #include <chalk/lib/Instance.h>

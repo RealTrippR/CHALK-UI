@@ -61,6 +61,14 @@ namespace chk {
         return M_Margin;
     }
 
+    UI_PaddingData UI_Drawable::getInputBoundsExtension() {
+        return M_InputBoundsExtension;
+    }
+
+    void UI_Drawable::setInputBoundsExtension(const UI_PaddingData boundsExtension) {
+        M_InputBoundsExtension = boundsExtension;
+    }
+
     float UI_Drawable::getRotation() {
         return M_Rotation;
     }

@@ -239,6 +239,16 @@ namespace chk {
 		pos -= sf::Vector2i(getAbsolutePositionPixels().x, getAbsolutePositionPixels().y); // converts the mouse pos to local space.
 		pos += sf::Vector2i(M_txt.getPosition());
 
+		// edge case, handle selection in front of the first character
+		M_txt.getCharacterSize();
+		const sf::FloatRect textBounds = M_txt.getGlobalBounds();
+		const float fac = 5 + (M_txt.getCharacterSize() * .05);
+		const sf::FloatRect bounds = sf::FloatRect(textBounds.left - fac, textBounds.top, fac, M_txt.getCharacterSize());
+		if (bounds.contains(sf::Vector2f(pos))) {
+			return -1;
+		}
+
+		// cycle through the all the characters to test for intersection with mPos
 		for (int i = 0; i < M_txt.getString().getSize(); ++i) {
 			sf::Vector2f charPosition = M_txt.findCharacterPos(i);
 			const sf::FloatRect textBounds = M_txt.getGlobalBounds();
@@ -251,7 +261,8 @@ namespace chk {
 				return i;
 			}
 		}
-		return (M_txt.getString().getSize() == 0) ? 0 : M_txt.getString().getSize() - 1;
+		//return (M_txt.getString().getSize() == 0) ? 0 : M_txt.getString().getSize() - 1;
+		return (M_txt.getString().getSize() == 0) ? 0 : -2;
 	}
 
 	int textBox::getCharacterWidthAtIndex(int i) {
@@ -266,10 +277,17 @@ namespace chk {
 	void textBox::handleCharPress(char k) {
 		int& i = M_currentlySelectedIndex;
 		std::string str = M_txt.getString().toAnsiString();
-		if (i >= str.length() - 1)
+		if (i >= str.length() - 1) {
 			str.push_back(k);
-		else
-			str.insert(str.begin() + i, k);
+		}
+		else if (str.length() != 0)
+		{
+			str.insert(str.begin() + i + 1, k);
+		}
+		else {
+			str = k;
+		}
+			
 		M_txt.setString(str);
 		(M_txt.getString().getSize() == 1) ? i = 0 : ++i;
 
@@ -288,9 +306,10 @@ namespace chk {
 		str.erase(str.begin() + i);
 		M_txt.setString(str);
 
-		if (i > 0) {
+		if (i > -1) {
 			--i;
 		}
+
 		onStringUpdated.invoke(this);
 	}
 }

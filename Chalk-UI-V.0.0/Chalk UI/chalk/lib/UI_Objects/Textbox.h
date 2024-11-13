@@ -19,7 +19,6 @@ namespace chk {
 	public:
 		void onMouseClick(const sf::Vector2i& mPos, const sf::Vector2i& mDelta) override;
 
-
 		inline void updateInsertionBar();
 
 		void updateTransform(bool callToParent = false) override;
@@ -86,13 +85,14 @@ namespace chk {
 	public:
 		// default Constructor
 		textBox() : UI_Drawable() {
+
 			setFont("arial.ttf");
-			//setCharacterSize(11);
+			setInputBoundsExtension({ 10,5,10,5 });
 			setLetterSpacing(2);
 			setInsertionBarThickness(2);
 
+			// omptimize this function once the lambdas in events are made comparable.
 			onTick.bind([this](float* DT) {
-
 				if (M_currentlySelectedIndex != -2) {
 					M_currentTimerMilli += *DT;
 					if (M_InsertionBarHidden && M_currentTimerMilli > M_millisecondsInsertionBarHidden) {
@@ -108,6 +108,7 @@ namespace chk {
 				}
 				});
 
+			// omptimize this function once the lambdas in events are made comparable.
 			onKeyPress.bind([this](sf::Keyboard::Key *k, int &consumedIndex) {
 				if (M_currentlySelectedIndex != -2) {
 
@@ -138,7 +139,6 @@ namespace chk {
 					}
 					else if (util::isValidKey(*k)) {
 						handleCharPress(util::sfKeyToAscii(*k, util::isShiftPressed()));
-						//updateTransform(); // do not call updateTranform outside this block, or it will cause the program to believe that the character at the current index is 0 pixels wide
 					}
 					updateTransform();
 					refresh();

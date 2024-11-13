@@ -1,3 +1,6 @@
+#ifndef CHK_VALUE_OBJECT_H
+#define CHK_VALUE_OBJECT_H
+
 #include <chalk/lib/Universal_Includes.h>
 #include <chalk/lib/DirtyRenderFlag.h>
 #include <chalk/lib/Instance.h>
@@ -16,3 +19,5 @@ namespace chk {
 		}
 	};
 }
+
+#endif // !CHK_VALUE_OBJECT_H
