@@ -100,8 +100,6 @@ namespace chk {
 			//clickedObj = getHoveredObject(mpos, workspace);
 			clickedObjects = getHoveredObjects(mpos, workspace);
 			for (auto& clickedObj : clickedObjects) {
-				std::cout << clickedObj->getName() << " - OBJ!\n";
-				
 				clickedObj->onMouseClick(mpos, mouseDelta);
 				clickedObj->onMouseClickedEvent.invoke(clickedObj);
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {

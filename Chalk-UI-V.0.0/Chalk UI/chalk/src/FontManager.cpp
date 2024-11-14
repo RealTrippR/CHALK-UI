@@ -13,7 +13,7 @@ namespace chk {
 				sf::Font* font = new sf::Font;
 				std::filesystem::path p = filePath;
 				if (!p.is_absolute()) {
-					p = "..\\..\\chalk\\static\\Fonts\\" + filePath;
+					p = CHK_DEFAULT_FONTS_FOLDER + filePath;
 				}
 				if (!font->loadFromFile(fs::absolute(p).string())) {
 					delete font; // Clean up

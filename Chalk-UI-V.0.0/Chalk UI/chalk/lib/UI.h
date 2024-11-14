@@ -146,6 +146,8 @@ namespace chk {
 			recreateWindow();
 			refreshWindowRT();
 			workspace->setAntiAliasingLevel(level);
+
+			globalAntiAliasing = level;
 		}
 
 		if (par->getChildren().size() == 0) {

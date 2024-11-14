@@ -100,6 +100,7 @@ void UI_Init() {
 		slider* s = &Instance.New<slider>("slider");
 		s->setParent(&Workspace);
 		s->setPosition({400,400});
+		s->setSize({ 300,50 });
 	}
 }
 
@@ -108,6 +109,8 @@ int main() {
 	using namespace chk;
 	sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML window", sf::Style::Default); // I should move this to init, bc there is no default function in SFML to retrieve the name of a window
 	init(window);
+	chk::setGlobalAntiAliasing(16);
+
 
 	UI_Init();
 

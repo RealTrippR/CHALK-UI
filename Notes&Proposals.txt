@@ -44,7 +44,7 @@ Proposals for V1.0:
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-[ ] Is the slider class working properly?
+[✓] Fix bug: anti-aliasing does not apply to the imageButton of sliders
 
 [✓] Fix bug: characters are inserted an index behind the insertion bar if the bar is not at the very end of the text.
 
@@ -135,10 +135,16 @@ Proposals for V1.3:
 [ ] Implement a polygon class - that is, a simple, convex polygon that behaves similar to a box, or object container, but has a customizable shape.
     Implement a advanced polygon class - like the polygon class, but allows for convave shapes and holes.
 
+[ ] Add lineGraph, pointGraph, bar graph, and pieChart classes, all of which inherit from a graph base class.
+
+[ ] Add a grid class
+
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Proposals for V1.4:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 [ ] Implement an animation library that adheres to css standards.
 
@@ -167,3 +173,5 @@ Proposals for V2.0:
 [ ] Add scripts (support both C++ and Go)
 
 [ ] If I do ever end up rewriting SFML's code, then I should omptimize the resizing of the RenderTexture with realloc(), if it isn't already.
+
+[ ] Rewrite the sf::Texture to support anti-aliasing
