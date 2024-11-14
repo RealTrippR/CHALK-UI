@@ -9,5 +9,6 @@ Once you have installed SFML, some of the properties of your solution will need 
 # Notes
 - Chalk UI has basic audio functionality provided by FMOD Engine 2.02 - a propertiary software.
 - If you include Audio.h in your project, you will need to purchase a license from FMOD (https://www.fmod.com/) before it is published.
+- This project is still in it's infancy, some features are unpolished and there is much planned for future versions.
 # Documentation
 Proper Documentation is not available because Chalk UI was just released, but it is in the works.
