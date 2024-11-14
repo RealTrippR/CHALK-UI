@@ -39,10 +39,8 @@ namespace chk {
 
 						// if no children of the childcontainer are being hovered, than check the childContainer
 						if (objects.empty()) {
-							std::cout << "NAME: " << childAsContainer->getName() << "\n";
 							if (childAsContainer->getInputHandlingType() == consume
 								&& childAsContainer->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
-								std::cout << "Intersects!: " << childAsContainer->getName() << "\n";
 								returnList.push_back(childAsContainer);
 								return returnList;
 							}
@@ -62,10 +60,6 @@ namespace chk {
 					else {
 						if (child->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y)))
 						{
-							if (childAsContainer != &Workspace) {
-								std::cout << child->getName() << " - CHILD-PASSED!\n";
-							}
-
 							if (child->getInputHandlingType() == consume)
 							{
 								returnList.push_back(child);
