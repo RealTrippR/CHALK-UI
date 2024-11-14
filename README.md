@@ -1,6 +1,6 @@
 # Chalk UI
-Chalk UI is a lightweight UI Engine built atop SFML. It is written entirely C++, and is in active development.
-It uses a 
+Chalk UI is a lightweight UI Engine built atop SFML. It is wrin entirely C++, and is in active development.
+It uses a system of inheritence in which every object has a parent, object containers can hold children, and the Workspace is the root of all children.
 # Project Setup
 Because the Chalk UI relies on SFML for graphics functionality, you will have to install SFML 2.6 or later.
 Once you have installed SFML, some of the properties of your solution will need to modified:
