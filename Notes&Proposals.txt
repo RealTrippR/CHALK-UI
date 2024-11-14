@@ -42,8 +42,6 @@ Proposals for V1.0:
 [✓] Allow for the absolute bounds (in pixels) of objects to be extended via setInputBoundsExtension() and getInputBoundsExtension().
     This is especially for things like textBoxes, because it can be difficult to select from the beginning and end.
 
-[ ] Add textOffset and textAlignment for the textBox Class.
-
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 [ ] Is the slider class working properly?
@@ -66,6 +64,10 @@ Proposals for V1.0:
 Proposals for V1.1:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+[ ] Add a text alignment option for textBoxes
+
+[ ] Add proper support for multiline textboxes, as well as clipping for text and textboxes that extend beyond their maximum size
+
 [ ] Complete tests/StressTest and tests/HolisticTest
 
 [ ] Make a function to compare lambdas in the event class - this should be possible by comparing the memory addresses of the lambdas.
@@ -80,10 +82,6 @@ Proposals for V1.1:
 
 [ ] Add an instancedImage class, indentical to image, but uses less memory because rather than storing a image for every image object,
     it holds a reference to an image that can be shared across multiple instancedImage objects
-
-[ ] Add proper support for multiline textboxes, as well as clipping for text and textboxes
-
-[ ] Add a disabled option for the input handling mode
 
 [ ] The events within the UI_Object class take up lots of memory - about 900 bytes per UI_Object. Consider rewriting the code to use less RAM.
 
@@ -109,6 +107,9 @@ Proposals for V1.2:
 
 [ ] Implement shaders
 
+[ ] Divide the sf::Text in textboxes and text into 256-byte chunks for the sake of efficiency, or create a largeText and largeTextbox class for this purpose.
+
+[ ] Add formatted textboxes
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Proposals for V1.3:
@@ -130,10 +131,6 @@ Proposals for V1.3:
 [ ] Add Inches and CM as unit sizes to align with CSS
 
 [ ] Add relative and absolute poisitons
-
-[ ] Divide the sf::Text in textboxes and text into 256-byte chunks for the sake of efficiency, or create a largeText and largeTextbox class for this purpose.
-
-[ ] Add formatted textboxes
 
 [ ] Implement a polygon class - that is, a simple, convex polygon that behaves similar to a box, or object container, but has a customizable shape.
     Implement a advanced polygon class - like the polygon class, but allows for convave shapes and holes.

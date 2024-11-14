@@ -22,10 +22,9 @@
 #include "Enums.h"
 #include "Util.h"
 #include "chalk/lib/SFML_Extensions/RoundedRectangle.h"
-
 namespace chk {
 	namespace fs = std::filesystem;
-	#define CHK_DEFAULT_ASSETS_DIR std::string("..\\Chalk UI\\default assets\\")
+	#define CHK_DEFAULT_ASSETS_DIR std::string("..\\chalk\\Chalk UI\\default assets\\")
 	#define CHK_DEFAULT_OUTLINE_THICKNESS 2
 }
 

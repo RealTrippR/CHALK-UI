@@ -13,9 +13,8 @@ namespace chk {
 			return mouseDelta;
 		}
 
-		
-		// To fix this function, take into account Z-index
 
+		
 		std::vector<UI_Drawable*> getHoveredObjects(sf::Vector2i& mpos, objectContainer* parent) {
 			std::vector<UI_Drawable*> returnList; // all hovered objects
 			if (!parent->getVisibility()) {
@@ -37,10 +36,13 @@ namespace chk {
 					if (childAsContainer != NULL) {
 						// the objects list is the all the hovered objects in the childcontainer
 						std::vector<UI_Drawable*> objects = getHoveredObjects(mpos, childAsContainer);
+
 						// if no children of the childcontainer are being hovered, than check the childContainer
 						if (objects.empty()) {
+							std::cout << "NAME: " << childAsContainer->getName() << "\n";
 							if (childAsContainer->getInputHandlingType() == consume
 								&& childAsContainer->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
+								std::cout << "Intersects!: " << childAsContainer->getName() << "\n";
 								returnList.push_back(childAsContainer);
 								return returnList;
 							}
@@ -50,28 +52,20 @@ namespace chk {
 							}
 						}
 						else {
-							// iterates through childAsContainer's children that are being hovered over
-							for (auto& obj : objects) {
-								if ((obj->getInputHandlingType() == consume)
-									&& obj->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
-									returnList.push_back(childAsContainer);
-									return returnList;
-								}
-								if ((obj->getInputHandlingType() == consumeAndPassThrough)
-									&& obj->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y))) {
-									returnList.push_back(childAsContainer);
-								}
-							}
-
 							// adds the objects from the recursive calls to the return list
 							returnList.insert(returnList.end(), objects.begin(), objects.end());
 							return returnList;
 						}
 					}
+
 					// the child is not an objectContainer
 					else {
 						if (child->intersectsAbsoluteBounds(sf::Vector2f(mpos.x, mpos.y)))
 						{
+							if (childAsContainer != &Workspace) {
+								std::cout << child->getName() << " - CHILD-PASSED!\n";
+							}
+
 							if (child->getInputHandlingType() == consume)
 							{
 								returnList.push_back(child);
@@ -112,6 +106,8 @@ namespace chk {
 			//clickedObj = getHoveredObject(mpos, workspace);
 			clickedObjects = getHoveredObjects(mpos, workspace);
 			for (auto& clickedObj : clickedObjects) {
+				std::cout << clickedObj->getName() << " - OBJ!\n";
+				
 				clickedObj->onMouseClick(mpos, mouseDelta);
 				clickedObj->onMouseClickedEvent.invoke(clickedObj);
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {

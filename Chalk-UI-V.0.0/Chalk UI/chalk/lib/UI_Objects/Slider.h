@@ -33,32 +33,32 @@ namespace chk {
 	public:
 	// SETTERS:
 		// sets the position in percent, ranging from 0-1;
-		inline float setSliderPercent(const float percent);
+		void setSliderPercent(const float percent);
 
-		inline void setSliderButtonTexture(std::string path);
+		void setSliderButtonTexture(std::string path);
 		
-		inline void setSliderButtonSize(UI_Vector2f size);
+		void setSliderButtonSize(UI_Vector2f size);
 
-		inline void setSliderLineFillColor(sf::Color color);
+		void setSliderLineFillColor(sf::Color color);
 
-		inline void setSliderLineOutlineColor(sf::Color color);
+		void setSliderLineOutlineColor(sf::Color color);
 
-		inline void setSliderLineOutlineThickness(int thickness);
+		void setSliderLineOutlineThickness(int thickness);
 
 		void setSize(UI_Vector2f size);
 
 		void setPosition(UI_Vector2f pos);
 
 	// GETTERS:
-		inline float getSliderPercent();
+		float getSliderPercent();
 
-		inline sf::Texture* getSliderButtonTexture();
+		sf::Texture* getSliderButtonTexture();
 
-		inline sf::Color getSliderLineFillColor();
+		sf::Color getSliderLineFillColor();
 
-		inline sf::Color getSliderLineOutlineColor();
+		sf::Color getSliderLineOutlineColor();
 
-		inline int getSliderLineOutlineThickness();
+		int getSliderLineOutlineThickness();
 
 	private:
 		void updateSlider();

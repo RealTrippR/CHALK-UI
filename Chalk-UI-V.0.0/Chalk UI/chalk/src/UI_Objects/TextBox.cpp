@@ -2,9 +2,12 @@
 
 namespace chk {
 	void textBox::draw(sf::RenderTexture& Parent_RT) {
-		/*if (M_BackgroundRectVisible) {
-			Parent_RT.draw(M_Rect);
-		}*/
+		sf::RectangleShape s; // debug rect
+		s.setFillColor(sf::Color::Green);
+		s.setPosition(getPositionPixels());
+		s.setSize(getSizePixels());
+		Parent_RT.draw(s);
+
 		Parent_RT.draw(M_txt);
 		if (!M_InsertionBarHidden) {
 			Parent_RT.draw(M_insertionBar);
@@ -18,7 +21,9 @@ namespace chk {
 			return;
 		}
 
+
 		if (M_Enabled) {
+
 			M_currentlySelectedIndex = getCharacterIndexAtMousePosition();
 			select(false);
 			updateTransform();
@@ -37,15 +42,6 @@ namespace chk {
 	void textBox::updateTransform(bool callToParent) {
 		updateTransformUI_Object();
 
-		/*
-		M_Rect.setSize(getSizePixels());
-		M_Rect.setPosition(getPositionPixels());
-
-		unsigned int smallestSidePixels = std::min(M_Rect.getSize().x, M_Rect.getSize().y);
-		M_Rect.setCornersRadius(std::clamp(M_BackgroundRectCornerTaper,0U,smallestSidePixels/2));
-		M_Rect.setCornerPointCount(1 + (M_Rect.getCornersRadius() / 8));
-		*/
-
 		sf::Text tmp = M_txt; // gets height of standard character, in this case 'A'
 		tmp.setString("A");
 		int yOffset = -tmp.getLocalBounds().top;
@@ -54,7 +50,7 @@ namespace chk {
 		//M_Size = UI_Vector2f(M_txt.getGlobalBounds().width, charHeight, absolute);
 
 		M_pixelOffset.y = yOffset; // consider adding a M_privatePixelOffset for situations like these
-		M_txt.setPosition(getPositionPixels());
+		M_txt.setPosition(getPositionPixels()+sf::Vector2f(0,yOffset));
 		updateInsertionBar();
 	}
 
@@ -215,57 +211,6 @@ namespace chk {
 	}
 
 
-
-	/*
-	void textBox::setBackgroundFillColor(const sf::Color color) {
-		M_Rect.setFillColor(color);
-		refresh();
-	}
-
-	sf::Color textBox::getBackgroundFillColor() {
-		return M_Rect.getFillColor();
-	}
-
-	void textBox::setBackgroundOutlineColor(const sf::Color outlineColor) {
-		M_Rect.setOutlineColor(outlineColor);
-		refresh();
-	}
-
-	sf::Color textBox::getBackgroundOutlineColor() {
-		return M_Rect.getOutlineColor();
-	}
-
-	void textBox::setBackgroundOutlineThickness(const int thickness) {
-		M_Rect.setOutlineThickness(thickness);
-		refresh();
-	}
-
-	int textBox::getBackgroundOutlineThickness() {
-		return M_Rect.getOutlineThickness();
-	}
-
-	void textBox::setBackgroundVisibility(const bool visible) {
-		M_BackgroundRectVisible = visible;
-		refresh();
-	}
-
-	bool textBox::getBackgroundVisibility() {
-		return M_BackgroundRectVisible;
-	}
-
-	void textBox::setBackgroundCornerTaper(const int taper) {
-		M_BackgroundRectCornerTaper = taper;
-		updateTransform();
-		refresh();
-	}
-
-	int textBox::getBackgroundCornerTaper() {
-		return M_BackgroundRectCornerTaper;
-	}
-	*/
-
-
-
 	int textBox::getCharacterIndexAtMousePosition() {
 		sf::Vector2i pos = getMousePosition();
 		pos -= sf::Vector2i(getAbsolutePositionPixels().x, getAbsolutePositionPixels().y); // converts the mouse pos to local space.
@@ -293,7 +238,12 @@ namespace chk {
 				return i;
 			}
 		}
-		//return (M_txt.getString().getSize() == 0) ? 0 : M_txt.getString().getSize() - 1;
+		if (pos.x > M_txt.getPosition().x) {
+			return M_txt.getString().getSize() - 1;
+		}
+		else {
+			return -1;
+		}
 		return (M_txt.getString().getSize() == 0) ? 0 : -2;
 	}
 

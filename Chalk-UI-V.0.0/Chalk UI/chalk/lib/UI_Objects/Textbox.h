@@ -106,7 +106,7 @@ namespace chk {
 						refresh();
 					}
 				}
-				});
+			});
 
 			// omptimize this function once the lambdas in events are made comparable.
 			onKeyPress.bind([this](sf::Keyboard::Key *k, int &consumedIndex) {
@@ -175,29 +175,6 @@ namespace chk {
 			refresh();
 		}
 
-	public:
-		/*
-		void setBackgroundFillColor(const sf::Color color);
-
-		sf::Color getBackgroundFillColor();
-
-		void setBackgroundOutlineColor(const sf::Color outlineColor);
-
-		sf::Color getBackgroundOutlineColor();
-
-		void setBackgroundOutlineThickness(const int thickness);
-
-		int getBackgroundOutlineThickness();
-
-		void setBackgroundVisibility(const bool visible);
-
-		bool getBackgroundVisibility();
-
-		void setBackgroundCornerTaper(const int taper);
-
-		int getBackgroundCornerTaper();
-		*/
-
 	private:
 		int getCharacterIndexAtMousePosition();
 
@@ -220,19 +197,12 @@ namespace chk {
 
 		sf::Text M_txt;
 
-		sf::RoundedRectangleShape M_insertionBar;
-
-		//sf::RoundedRectangleShape M_Rect; // background rect
-		//unsigned int M_BackgroundRectCornerTaper = 0;
-
-		//bool M_BackgroundRectVisible = true;
-
+		sf::RectangleShape M_insertionBar;
 
 		unsigned int M_millisecondsInsertionBarVisible = 500;
 		unsigned int M_millisecondsInsertionBarHidden = 800;
 
 		float M_currentTimerMilli = 0;
-
 	};
 }
 

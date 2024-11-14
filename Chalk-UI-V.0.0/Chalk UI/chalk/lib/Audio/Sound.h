@@ -119,7 +119,7 @@ namespace chk {
         
         // returns the volume multiplier
         inline bool getVolume() {
-            register float volume = 0;
+            float volume = 0;
             if (channel) {
                 channel->getVolume(&volume);
             }
@@ -143,7 +143,7 @@ namespace chk {
 
         // returns the length of the audio in milliseconds
         inline unsigned int getLength() {
-            register unsigned int length = 0;
+            unsigned int length = 0;
             if (soundData) {
                 soundData->getLength(&length, FMOD_TIMEUNIT_MS);
             }

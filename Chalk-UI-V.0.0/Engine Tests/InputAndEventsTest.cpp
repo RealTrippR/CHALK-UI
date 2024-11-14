@@ -67,25 +67,39 @@ void UI_Init() {
 		});
 	}
 	{
+		box* b = &Instance.New<box>("TextboxHolder");
+		b->setParent(&Workspace);
+		b->setFillColor(sf::Color::Transparent);
+		b->setOutlineThickness(2);
+		b->setPosition({ 50,350 });
+		b->setSize({ 200,30 });
+
 		textBox* t = &Instance.New<textBox>("TextBox");
 		t->setParent(&Workspace);
 		//t->setFont("C:\\Users\\user\\Documents\\Downloaded-Fonts\\RobotoRegular-3m4L.ttf");
 		// or
 		//t->setFont("arial.ttf"); (assuming that arial.tff is in the static\fonts folder)
-		t->setPosition({ 50,350 });
-		t->setSize({ 200,30 });
+		t->setSize({ 200,float(t->getCharacterSize()) });
 		t->setCharacterSize(25);
 		t->setString("Enter Text!");
-		t->setBackgroundOutlineThickness(2);
-		t->setBackgroundOutlineColor(sf::Color::White);
-		t->setBackgroundFillColor(sf::Color(20,20,20));
+		t->setPosition({ 5,.5,absolute,percent });
+		t->setOrigin({ 0,2,absolute });
+
+		button& test = Instance.New<button>("testButton");
+		test.setParent(b);
+		//test.setZIndex(0);
+		test.setFillColor(sf::Color(255, 20, 255));
+		test.setFillColorOnHover(sf::Color(75, 255, 75));
+		test.setFillColorOnClick(sf::Color(255, 75, 75));
+
+		test.onLeftMouseClickedEvent.bind([]() {
+			std::cout << "CLICKED!";
+		});
 	}
 	{
-		/*
 		slider* s = &Instance.New<slider>("slider");
 		s->setParent(&Workspace);
 		s->setPosition({400,400});
-		*/
 	}
 }
 

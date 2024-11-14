@@ -15,13 +15,13 @@ namespace chk {
 		
 	// SETTERS:
 		// sets the position in percent, ranging from 0-1;
-	inline float slider::setSliderPercent(const float percent) {
+	void slider::setSliderPercent(const float percent) {
 		M_Percent = percent;
 		updateSlider();
 		refresh();
 	}
 
-	inline void slider::setSliderButtonTexture(std::string path) {
+	void slider::setSliderButtonTexture(std::string path) {
 		path = util::getAbsoluteFilepath(path);
 		M_sliderTexture = new sf::Texture;
 		M_sliderTexture->create(M_sliderButtonSize.x, M_sliderButtonSize.y);
@@ -30,23 +30,23 @@ namespace chk {
 		refresh();
 	}
 
-	inline void slider::setSliderButtonSize(UI_Vector2f size) {
+	void slider::setSliderButtonSize(UI_Vector2f size) {
 		M_sliderButtonSize = size;
 		M_sliderButton.setSize(sf::Vector2f(M_sliderButtonSize.x, M_sliderButtonSize.y));
 		refresh();
 	}
 
-	inline void slider::setSliderLineFillColor(sf::Color color) {
+	void slider::setSliderLineFillColor(sf::Color color) {
 		M_sliderLine.setFillColor(color);
 		refresh();
 	}
 
-	inline void slider::setSliderLineOutlineColor(sf::Color color) {
+	void slider::setSliderLineOutlineColor(sf::Color color) {
 		M_sliderLine.setOutlineColor(color);
 		refresh();
 	}
 
-	inline void slider::setSliderLineOutlineThickness(int thickness) {
+	void slider::setSliderLineOutlineThickness(int thickness) {
 		M_sliderLine.setOutlineThickness(thickness);
 		refresh();
 	}
@@ -64,23 +64,23 @@ namespace chk {
 	}
 
 	// GETTERS:
-	inline float slider::getSliderPercent() {
+	float slider::getSliderPercent() {
 		return M_Percent;
 	}
 
-	inline sf::Texture* slider::getSliderButtonTexture() {
+	sf::Texture* slider::getSliderButtonTexture() {
 		return M_sliderTexture;
 	}
 
-	inline sf::Color slider::getSliderLineFillColor() {
+	sf::Color slider::getSliderLineFillColor() {
 		return M_sliderLine.getFillColor();
 	}
 
-	inline sf::Color slider::getSliderLineOutlineColor() {
+	sf::Color slider::getSliderLineOutlineColor() {
 		return M_sliderLine.getOutlineColor();
 	}
 
-	inline int slider::getSliderLineOutlineThickness() {
+	int slider::getSliderLineOutlineThickness() {
 		return M_sliderLine.getOutlineThickness();
 	}
 	void slider::updateSlider() {
