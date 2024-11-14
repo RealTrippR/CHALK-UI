@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="lib\UI_Objects">
+      <UniqueIdentifier>{d11b4535-92f1-444a-89fc-a8003b1860d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Audio">
+      <UniqueIdentifier>{35b99f53-aa1a-4251-9b3a-5a2a21d50dc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="static">
+      <UniqueIdentifier>{c9485a52-cc35-402f-9c87-7f5d336a25a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Events">
+      <UniqueIdentifier>{4edf88da-8d18-4498-9fb1-cf287a7dd8ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="static\DefaultAssets">
+      <UniqueIdentifier>{2faee586-653a-49fb-aa00-22485568aca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="static\DefaultAssets\Images">
+      <UniqueIdentifier>{eb35ddf0-edde-41eb-bc89-782f53914b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests">
+      <UniqueIdentifier>{edad2cf8-299a-4478-b4b6-57d6b92bc040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="notes">
+      <UniqueIdentifier>{9d1af5f7-abcd-4579-bc33-043eb9c7dbf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI_Objects">
+      <UniqueIdentifier>{0d1338b9-dc27-4bb2-809a-d3cbf6a166fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\UI_Vectors&amp;Paddings">
+      <UniqueIdentifier>{46fa26a8-38fb-4a50-8b6f-ba3739beda79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DLL">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="static\Fonts">
+      <UniqueIdentifier>{a3c99213-e309-4c5b-ab49-d4aa627b20ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\SFML_Extensions">
+      <UniqueIdentifier>{401aa85d-8169-41ac-bd31-3206542692e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\SFML_Extensions">
+      <UniqueIdentifier>{d2f872b4-0467-4954-9047-d9dc59504c26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\chalk\lib\UI_PaddingData.h">
+      <Filter>lib\UI_Vectors&amp;Paddings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Headers.h">
+      <Filter>lib\UI_Vectors&amp;Paddings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Vector2f.h">
+      <Filter>lib\UI_Vectors&amp;Paddings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Audio.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Config.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\DirtyRenderFlag.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Engine.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Enums.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\FontHandle.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\FontManager.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Input.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Instance.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\StandardEvents.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\StandardFunctions.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_FloatRect.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Universal_Includes.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Util.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Box.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Button.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Grid.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Image.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Object_Container.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\ScrollBox.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Slider.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Text.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Textbox.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\UI_Drawable.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\UI_Object.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\ValueObject.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\SFML_Extensions\RoundedRectangle.h">
+      <Filter>lib\SFML_Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Events\Event.h">
+      <Filter>lib\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Audio\AudioManager.h">
+      <Filter>lib\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Audio\Sound.h">
+      <Filter>lib\Audio</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Box.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Button.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Grid.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Image.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Object_Container.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\ScrollBox.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Slider.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Text.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\TextBox.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\UI_Drawable.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\UI_Object.cpp">
+      <Filter>src\UI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\FontManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\SFML_Extensions\RoundedRectangle.cpp">
+      <Filter>src\SFML_Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Engine Tests\GraphicsTest.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Engine Tests\HolisticTest.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Engine Tests\InputAndEventsTest.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Engine Tests\StressTest.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Engine Tests\WindowTest.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Engine Tests\Z_IndexTest.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmod.dll">
+      <Filter>DLL</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmodL.dll">
+      <Filter>DLL</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\chalk\static\Fonts\arial.ttf">
+      <Filter>static\Fonts</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\chalk\static\DefaultAssets\Images\Default_Image.png">
+      <Filter>static\DefaultAssets\Images</Filter>
+    </Image>
+    <Image Include="..\..\chalk\static\DefaultAssets\Images\defaultSliderButton.png">
+      <Filter>static\DefaultAssets\Images</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\Notes&amp;Proposals.txt">
+      <Filter>notes</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

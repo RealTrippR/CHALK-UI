@@ -52,7 +52,6 @@ namespace chk {
 			std::cout << "CHK::SLIDER - FAILED TO LOAD TEXTURE: " << M_sliderButtonTexturePath << "\n";
 		}
 		else {
-			std::cout << "SLIDER: " << M_sliderButtonTexturePath << "\n";
 			r.setTexture(&t);
 
 			M_sliderTexture->clear(sf::Color::Transparent);

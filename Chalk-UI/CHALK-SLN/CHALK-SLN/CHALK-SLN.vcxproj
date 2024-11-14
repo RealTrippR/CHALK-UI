@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{3aad85b6-29d3-456e-ac28-f09b0a1d8d4d}</ProjectGuid>
+    <RootNamespace>CHALKSLN</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\SFML-2.6.0\include;C:\Program Files\boost_1_84_0;C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\inc;C:\Users\tripp\source\repos\CHALK_UI\Chalk-UI\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\SFML-2.6.0\lib;C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64;C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;sfml-main.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;fmodL_vc.lib;fmodstudioL_vc.lib;comdlg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\chalk\lib\Audio.h" />
+    <ClInclude Include="..\..\chalk\lib\Audio\AudioManager.h" />
+    <ClInclude Include="..\..\chalk\lib\Audio\Sound.h" />
+    <ClInclude Include="..\..\chalk\lib\Config.h" />
+    <ClInclude Include="..\..\chalk\lib\DirtyRenderFlag.h" />
+    <ClInclude Include="..\..\chalk\lib\Engine.h" />
+    <ClInclude Include="..\..\chalk\lib\Enums.h" />
+    <ClInclude Include="..\..\chalk\lib\Events\Event.h" />
+    <ClInclude Include="..\..\chalk\lib\FontHandle.h" />
+    <ClInclude Include="..\..\chalk\lib\FontManager.h" />
+    <ClInclude Include="..\..\chalk\lib\Input.h" />
+    <ClInclude Include="..\..\chalk\lib\Instance.h" />
+    <ClInclude Include="..\..\chalk\lib\SFML_Extensions\RoundedRectangle.h" />
+    <ClInclude Include="..\..\chalk\lib\StandardEvents.h" />
+    <ClInclude Include="..\..\chalk\lib\StandardFunctions.h" />
+    <ClInclude Include="..\..\chalk\lib\UI.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_FloatRect.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Headers.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Box.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Button.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Grid.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Image.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Object_Container.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\ScrollBox.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Slider.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Text.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Textbox.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\UI_Drawable.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\UI_Object.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\ValueObject.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_PaddingData.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Vector2f.h" />
+    <ClInclude Include="..\..\chalk\lib\Universal_Includes.h" />
+    <ClInclude Include="..\..\chalk\lib\Util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Engine Tests\GraphicsTest.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Engine Tests\HolisticTest.cpp" />
+    <ClCompile Include="..\..\..\Engine Tests\InputAndEventsTest.cpp" />
+    <ClCompile Include="..\..\..\Engine Tests\StressTest.cpp" />
+    <ClCompile Include="..\..\..\Engine Tests\WindowTest.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Engine Tests\Z_IndexTest.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\FontManager.cpp" />
+    <ClCompile Include="..\..\chalk\src\SFML_Extensions\RoundedRectangle.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Box.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Button.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Grid.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Image.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Object_Container.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\ScrollBox.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Slider.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\Text.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\TextBox.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\UI_Drawable.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\UI_Object.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmod.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmodL.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\chalk\static\Fonts\arial.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\chalk\static\DefaultAssets\Images\defaultSliderButton.png" />
+    <Image Include="..\..\chalk\static\DefaultAssets\Images\Default_Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\Notes&amp;Proposals.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

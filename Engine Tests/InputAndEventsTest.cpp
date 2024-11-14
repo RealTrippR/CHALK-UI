@@ -18,7 +18,7 @@ void UI_Init() {
 		value<sf::CircleShape>* v = &Instance.New<value<sf::CircleShape>>("val");
 		v->setParent(&b);
 		b.onMouseClickedEvent.bind([v]() {
-			std::cout << "Typename of v: " << v->getTypeName() << "\n";
+			std::cout << "Typename of value v: " << v->getTypeName() << "\n";
 		});
 	}
 	{
