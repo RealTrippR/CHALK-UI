@@ -7,7 +7,7 @@
 - 'contributor' - a developer of the original work.
 
 2) Scope of Rights
-- This license grants permission, free of charge and tax, to reproduce, modify, distribute, commercialize, lend, and license derivatives of this work.
+- This license grants permission, free of charge, to reproduce, modify, distribute, commercialize, lend, and license derivatives of this work.
 
 3) Chain of Authorship
 - All open-source derivatives of this software must clearly state the names of the original author(s) and origin of the original software.
@@ -18,4 +18,4 @@
 - In no event shall the Licensor, or contributors to this work, be held responsible for any damages and liabilities caused by this software or derivatives of it.
 
 5) Termination of License
-- This License and the rights granted will be terminated upon any breach by the Licensee of the terms of the Licence.
+- This License and the rights granted will be terminated upon any breach by the Licensee of the terms of the License.
