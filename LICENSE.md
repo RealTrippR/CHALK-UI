@@ -17,5 +17,8 @@
 - The Work is a work in progress and is continuously being improved upon by contributors. In no circumstance shall the Licensor, or contributors to this work, be held responsible for bugs or errors  within the code, unless these errors have been placed with malicious intent.
 - In no event shall the Licensor, or contributors to this work, be held responsible for any damages and liabilities caused by this software or derivatives of it.
 
-5) Termination of License
-- This license and the rights granted will be terminated upon any signifigant breach of the terms of the license by the licensee.
+5) Patent Clause
+- The Licensor hereby grants to the Licensee a perpetual, worldwide, royalty-free, non-exclusive license under the Licensor's patent claims that are necessary to use, modify, distribute, or reproduce the software.
+
+6) Termination of License
+- This license and the rights granted under it shall be automatically terminated upon any signifigant breach of the terms of the license by the licensee.
