@@ -8,7 +8,7 @@
 
 2) Scope of Rights
 - This license grants permission, free of charge, to reproduce, modify, distribute, commercialize, lend, and license derivatives of this work.
-- 
+
 3) Chain of Authorship
 - Open-source derivatives of this software must clearly state the names of the original author(s) and origin of the original software.
 - Open-source derivatives of this work must inherit the original license.
