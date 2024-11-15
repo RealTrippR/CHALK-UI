@@ -21,4 +21,4 @@
 - The Licensor hereby grants to the Licensee a perpetual, worldwide, royalty-free, non-exclusive license under the Licensor's patent claims that are necessary to use, modify, distribute, or reproduce the software.
 
 6) Termination of License
-- This license and the rights granted under it shall be automatically terminated upon any signifigant breach of the terms of the license by the licensee.
+- This license and the rights granted under it shall be automatically terminated upon any material breach of the terms of the license by the licensee.
