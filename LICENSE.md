@@ -1,7 +1,5 @@
 CHALK UI License V1.0 (C) - 2024, Tripp Robins
 
-This license grants permission, free of charge and tax, to reproduce, modify, distribut
-
 1) Definitions
 - 'work', 'software' - the original work, available as source code and/or executable files.
 - 'derivitve(s)' - modified version, whether open or closed source, of this software.
