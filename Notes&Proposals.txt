@@ -64,27 +64,6 @@ Proposals for V1.0:
 Proposals for V1.1:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[ ] Add a text alignment option for textBoxes
-
-[ ] Add proper support for multiline textboxes, as well as clipping for text and textboxes that extend beyond their maximum size
-
-[ ] Complete tests/StressTest and tests/HolisticTest
-
-[ ] Make a function to compare lambdas in the event class - this should be possible by comparing the memory addresses of the lambdas.
-    Don't forgot to optimize the onMouseClickFunction of the textBox class.
-
-[ ] In the objectChild class add a vector of pointers to UI_Objects* to hold all visible children,
-	that way invisible children do not have to be iterated through in draw calls, thus rendering time will be decreased.
-
-[ ] Allow for Instances of UI_Objects to be overwritten with ==, rather than removing the instance and then creating a copy of the object.
-
-[ ] optimize the updateTransformGrid function of the grid class.
-
-[ ] Add an instancedImage class, indentical to image, but uses less memory because rather than storing a image for every image object,
-    it holds a reference to an image that can be shared across multiple instancedImage objects
-
-[ ] The events within the UI_Object class take up lots of memory - about 900 bytes per UI_Object. Consider rewriting the code to use less RAM.
-
 [ ] Implement multithreading of rendering to increase FPS and utilize more of CPU. Consider using SIMD along side multithreading, and be sure to add a Max Cores option.
 
 [ ] Optimize the refresh function, there is no need to redraw the children of ObjectContainers if none of the children have a percent based sizing.
@@ -92,6 +71,27 @@ Proposals for V1.1:
 [ ] Divide the UI_Objects in the instance Class into 64-object chunks for the sake of efficiency and speed
 
 [ ] Performance Target - 1000 FPS w/ 50 boxes (2 cores or less).
+
+[ ] The events within the UI_Object class take up lots of memory - about 900 bytes per UI_Object. Consider rewriting the code to use less RAM.
+
+[ ] In the objectChild class add a vector of pointers to UI_Objects* to hold all visible children,
+	that way invisible children do not have to be iterated through in draw calls, thus rendering time will be decreased.
+
+[ ] Complete tests/StressTest and tests/HolisticTest
+
+[ ] Add a text alignment option for textBoxes
+
+[ ] Add proper support for multiline textboxes, as well as clipping for text and textboxes that extend beyond their maximum size
+
+[ ] Make a function to compare lambdas in the event class - this should be possible by comparing the memory addresses of the lambdas.
+    Don't forgot to optimize the onMouseClickFunction of the textBox class.
+
+[ ] Allow for Instances of UI_Objects to be overwritten with ==, rather than removing the instance and then creating a copy of the object.
+
+[ ] optimize the updateTransformGrid function of the grid class.
+
+[ ] Add an instancedImage class, indentical to image, but uses less memory because rather than storing a image for every image object,
+    it holds a reference to an image that can be shared across multiple instancedImage objects
 
 
 
