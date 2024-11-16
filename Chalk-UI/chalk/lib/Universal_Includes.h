@@ -7,14 +7,13 @@
 #include <unordered_map>
 #include <vector>
 #include <utility>
-#include <functional>
 #include <set>
 #include <unordered_set>
 #include <memory>
 #include <filesystem>
 #include <fstream>
 #include <chrono>
-#include <fstream>
+#include <thread>
 
 #include "UI_Vector2f.h"
 #include "UI_FloatRect.h"

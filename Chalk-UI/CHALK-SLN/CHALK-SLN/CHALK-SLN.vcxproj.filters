@@ -215,6 +215,9 @@
     <ClCompile Include="..\..\..\Engine Tests\Z_IndexTest.cpp">
       <Filter>tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\chalk\src\Config.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmod.dll">

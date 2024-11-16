@@ -179,6 +179,7 @@
     <ClCompile Include="..\..\..\Engine Tests\Z_IndexTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\chalk\src\Config.cpp" />
     <ClCompile Include="..\..\chalk\src\FontManager.cpp" />
     <ClCompile Include="..\..\chalk\src\SFML_Extensions\RoundedRectangle.cpp" />
     <ClCompile Include="..\..\chalk\src\UI_Objects\Box.cpp" />

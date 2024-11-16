@@ -6,6 +6,7 @@
 #include <chalk/lib/DirtyRenderFlag.h>
 #include <chalk/lib/Instance.h>
 #include <chalk/lib/UI_Objects/UI_Drawable.h>
+#include <chalk/lib/Config.h>
 
 namespace chk {
 	// keep this virtual - a compilation error will occur elsewise

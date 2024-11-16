@@ -8,6 +8,7 @@
 #include "Universal_Includes.h"
 #include "DirtyRenderFlag.h"
 #include "Instance.h"
+#include "Config.h"
 
 bool chk::dirty_render_flag = true; // declared as an extern var in DirtyRenderFlag.h
 chk::instance chk::Instance; //definition of extern var, declared in Instance.h
@@ -19,6 +20,9 @@ chk::instance chk::Instance; //definition of extern var, declared in Instance.h
 namespace chk {
 	// declared as extern in StandardFunctions.h
 	sf::Vector2i getMousePosition();
+
+	// declared as extern in Config.h
+	engine_configuration config;
 
 	// declared as extern in StandardEvents.h
 	Event<sf::Window> onWindowResize;
