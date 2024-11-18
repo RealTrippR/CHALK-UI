@@ -136,7 +136,6 @@
     <ClInclude Include="..\..\chalk\lib\Audio\Sound.h" />
     <ClInclude Include="..\..\chalk\lib\Config.h" />
     <ClInclude Include="..\..\chalk\lib\DirtyRenderFlag.h" />
-    <ClInclude Include="..\..\chalk\lib\Engine.h" />
     <ClInclude Include="..\..\chalk\lib\Enums.h" />
     <ClInclude Include="..\..\chalk\lib\Events\Event.h" />
     <ClInclude Include="..\..\chalk\lib\FontHandle.h" />
@@ -154,6 +153,9 @@
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Grid.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Image.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Object_Container.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\RenderableObjectContainer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\chalk\lib\UI_Objects\ScrollBox.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Slider.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Text.h" />
@@ -171,7 +173,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Engine Tests\HolisticTest.cpp" />
-    <ClCompile Include="..\..\..\Engine Tests\InputAndEventsTest.cpp" />
+    <ClCompile Include="..\..\..\Engine Tests\InputAndEventsTest.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Engine Tests\StressTest.cpp" />
     <ClCompile Include="..\..\..\Engine Tests\WindowTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -187,6 +191,9 @@
     <ClCompile Include="..\..\chalk\src\UI_Objects\Grid.cpp" />
     <ClCompile Include="..\..\chalk\src\UI_Objects\Image.cpp" />
     <ClCompile Include="..\..\chalk\src\UI_Objects\Object_Container.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\RenderableObjectContainer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\chalk\src\UI_Objects\ScrollBox.cpp" />
     <ClCompile Include="..\..\chalk\src\UI_Objects\Slider.cpp" />
     <ClCompile Include="..\..\chalk\src\UI_Objects\Text.cpp" />

@@ -64,7 +64,13 @@ Proposals for V1.0:
 Proposals for V1.1:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[ ] Implement multithreading of rendering to increase FPS and utilize more of CPU. Consider using SIMD along side multithreading, and be sure to add a Max Cores option.
+[~] Implement multithreading of rendering to increase FPS and utilize more of CPU. Consider using SIMD along side multithreading, and be sure to add a Max Cores option.
+
+[ ] Make the objectContainer class inherit from UI_Object, and then create a renderableObjectContainer class that inherits from both the objectContainer and drawable.
+    Classes such as box, scrollBox, button, etc should all be descendents of the renderableObjectContainer class.
+    The class should have a drawChildren function.
+
+[ ] Add frustum culling
 
 [ ] Optimize the refresh function, there is no need to redraw the children of ObjectContainers if none of the children have a percent based sizing.
 
@@ -93,6 +99,7 @@ Proposals for V1.1:
 [ ] Add an instancedImage class, indentical to image, but uses less memory because rather than storing a image for every image object,
     it holds a reference to an image that can be shared across multiple instancedImage objects
 
+[ ] Remove the useless Engine.h header
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

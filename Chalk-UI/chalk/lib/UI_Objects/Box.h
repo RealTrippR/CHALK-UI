@@ -8,8 +8,6 @@
 
 namespace chk {
 	class box : public objectContainer {
-	protected:
-		 void drawChildren(sf::RenderTexture& RT);
 	public:
 		 void draw(sf::RenderTexture& Parent_RT) override;
 

@@ -1,30 +1,6 @@
 #include <chalk/lib/UI_Objects/Box.h>
 
 namespace chk {
-	void box::drawChildren(sf::RenderTexture& RT) {
-		// single threaded rendering
-		if (config.getMaxCores() == unsigned short (1)) {
-			for (auto& Z_Level : M_ZIndexDrawMap) {
-				for (auto& obj : Z_Level.second) {
-					if (obj->getVisibility()) {
-						obj->draw(*M_RT);
-					}
-				}
-			}
-		}
-		// multi-threaded rendering
-		else {
-			using std::thread;
-			const unsigned short maxThreads = config.getMaxCores();
-			const int objectsPerThread = 32;
-
-			for (auto& Z_Level : M_ZIndexDrawMap) {
-				auto v = Z_Level.second;
-
-
-			}
-		}
-	}
 	void box::draw(sf::RenderTexture& Parent_RT) {
 		M_RT->clear(M_FillColor);
 		drawChildren(*M_RT);

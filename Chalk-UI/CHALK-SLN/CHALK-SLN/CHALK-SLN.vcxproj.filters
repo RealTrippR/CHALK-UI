@@ -5,21 +5,8 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="lib">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="lib\UI_Objects">
-      <UniqueIdentifier>{d11b4535-92f1-444a-89fc-a8003b1860d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="lib\Audio">
-      <UniqueIdentifier>{35b99f53-aa1a-4251-9b3a-5a2a21d50dc6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="static">
       <UniqueIdentifier>{c9485a52-cc35-402f-9c87-7f5d336a25a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="lib\Events">
-      <UniqueIdentifier>{4edf88da-8d18-4498-9fb1-cf287a7dd8ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="static\DefaultAssets">
       <UniqueIdentifier>{2faee586-653a-49fb-aa00-22485568aca1}</UniqueIdentifier>
@@ -36,9 +23,6 @@
     <Filter Include="src\UI_Objects">
       <UniqueIdentifier>{0d1338b9-dc27-4bb2-809a-d3cbf6a166fc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lib\UI_Vectors&amp;Paddings">
-      <UniqueIdentifier>{46fa26a8-38fb-4a50-8b6f-ba3739beda79}</UniqueIdentifier>
-    </Filter>
     <Filter Include="DLL">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -48,6 +32,22 @@
     </Filter>
     <Filter Include="src\SFML_Extensions">
       <UniqueIdentifier>{401aa85d-8169-41ac-bd31-3206542692e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="lib\UI_Objects">
+      <UniqueIdentifier>{d11b4535-92f1-444a-89fc-a8003b1860d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Audio">
+      <UniqueIdentifier>{35b99f53-aa1a-4251-9b3a-5a2a21d50dc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Events">
+      <UniqueIdentifier>{4edf88da-8d18-4498-9fb1-cf287a7dd8ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\UI_Vectors&amp;Paddings">
+      <UniqueIdentifier>{46fa26a8-38fb-4a50-8b6f-ba3739beda79}</UniqueIdentifier>
     </Filter>
     <Filter Include="lib\SFML_Extensions">
       <UniqueIdentifier>{d2f872b4-0467-4954-9047-d9dc59504c26}</UniqueIdentifier>
@@ -70,9 +70,6 @@
       <Filter>lib</Filter>
     </ClInclude>
     <ClInclude Include="..\..\chalk\lib\DirtyRenderFlag.h">
-      <Filter>lib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\chalk\lib\Engine.h">
       <Filter>lib</Filter>
     </ClInclude>
     <ClInclude Include="..\..\chalk\lib\Enums.h">
@@ -155,6 +152,12 @@
     </ClInclude>
     <ClInclude Include="..\..\chalk\lib\Audio\Sound.h">
       <Filter>lib\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\RenderableObjectContainer.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\src\UI_Objects\RenderableObjectContainer.cpp">
+      <Filter>src\UI_Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

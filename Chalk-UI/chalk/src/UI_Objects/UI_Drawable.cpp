@@ -41,7 +41,7 @@ namespace chk {
     
     void UI_Drawable::setZIndex(int index) {
         if (M_parent) {
-            M_parent->HandleChildZIndexUpdated(this, M_ZIndex, index);
+            M_parent->handleChildZIndexUpdated(this, M_ZIndex, index);
         }
         M_ZIndex = index;
         refresh();
