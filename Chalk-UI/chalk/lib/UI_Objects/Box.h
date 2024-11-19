@@ -9,7 +9,7 @@
 namespace chk {
 	class box : public objectContainer {
 	public:
-		 void draw(sf::RenderTexture& Parent_RT) override;
+		void draw(sf::RenderTexture& Parent_RT, const bool& drawChdrn = true) override;
 
 	protected:
 		 void updateRenderTexture();
@@ -23,11 +23,6 @@ namespace chk {
 		//}
 		
 		box() : objectContainer() {
-			if (!M_RT) {
-				M_RT = new sf::RenderTexture;
-				updateRenderTexture();
-			}
-
 			// rectangle defaults
 			//M_rect.setOutlineThickness(CHK_DEFAULT_OUTLINE_THICKNESS);
 			//M_rect.setOutlineColor(sf::Color::Black);
@@ -37,9 +32,6 @@ namespace chk {
 
 		// deep copy
 		box(const box& other) : objectContainer(other) {
-			if (!M_RT) {
-				M_RT = new sf::RenderTexture;
-			}
 			setFillColor(other.M_FillColor);
 			setOutlineColor(other.M_rect.getOutlineColor());
 			setOutlineThickness(other.M_rect.getOutlineThickness());
@@ -62,9 +54,9 @@ namespace chk {
 		sf::RenderTexture* getRenderTexture();
 
 	public:
-		 void setFillColor(sf::Color fillColor);
+		 void setFillColor(const sf::Color fillColor);
 
-		 sf::Color getFillColor();
+		 const sf::Color getFillColor();
 
 		virtual  void setOutlineColor(sf::Color outlineColor);
 
@@ -81,11 +73,7 @@ namespace chk {
 
 		unsigned int M_cornerTaper = 0;
 
-		sf::RenderTexture* M_RT = nullptr;
-
 		sf::RoundedRectangleShape M_rect;
-
-		sf::Color M_FillColor = sf::Color::White;
 
 		//box operator[](int index) {
 		//return *M_Children.at(index);

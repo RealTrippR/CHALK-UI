@@ -10,7 +10,7 @@ namespace chk {
 
 	class grid : public box {
 	public:
-		void draw(sf::RenderTexture& Parent_RT) override;
+		void draw(sf::RenderTexture& Parent_RT, const bool& drawChdrn = true) override;
 
 	public:
 		inline void updateTransformGrid();

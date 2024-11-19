@@ -2,7 +2,7 @@
 
 namespace chk {
 
-	void slider::draw(sf::RenderTexture& Parent_RT) {
+	void slider::draw(sf::RenderTexture& Parent_RT, const bool& b) {
 		Parent_RT.draw(M_sliderLine);
 		Parent_RT.draw(M_sliderButton);
 	}

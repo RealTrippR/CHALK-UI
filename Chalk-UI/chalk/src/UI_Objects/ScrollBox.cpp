@@ -9,9 +9,11 @@ namespace chk {
 		return r;
 	}
 
-	void scrollBox::draw(sf::RenderTexture& Parent_RT) {
-		M_RT->clear(M_FillColor);
-		drawChildren(*M_RT);
+	void scrollBox::draw(sf::RenderTexture& Parent_RT, bool const& drawChdrn) {
+		if (drawChdrn) {
+			M_RT->clear(M_FillColor);
+			drawChildren(*M_RT);
+		}
 
 		M_RT->setView(M_RT->getDefaultView());
 		//M_RT.draw(M_ScrollBarBackground);

@@ -1,7 +1,7 @@
 #include <chalk/lib/UI_Objects/Text.h>
 
 namespace chk {
-	void text::draw(sf::RenderTexture& Parent_RT) {
+	void text::draw(sf::RenderTexture& Parent_RT, const bool&b) {
 		Parent_RT.draw(M_txt);
 	}
 	void text::updateTransform(bool callToParent) {

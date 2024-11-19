@@ -1,15 +1,10 @@
 #include <chalk/lib/UI_Objects/Grid.h>
 namespace chk {
-	void grid::draw(sf::RenderTexture& Parent_RT) {
-		M_RT->clear(M_FillColor);
-		for (auto& Z_Level : M_ZIndexDrawMap) {
-			for (auto& obj : Z_Level.second) {
-				if (obj->getVisibility()) {
-					obj->draw(*M_RT);
-				}
-			}
+	void grid::draw(sf::RenderTexture& Parent_RT, const bool& drawChdrn) {
+		if (drawChdrn) {
+			M_RT->clear(M_FillColor);
+			M_RT->display();
 		}
-		M_RT->display();
 		M_rect.setTexture(&M_RT->getTexture());
 		Parent_RT.draw(M_rect);
 	}

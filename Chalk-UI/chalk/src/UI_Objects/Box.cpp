@@ -1,9 +1,11 @@
 #include <chalk/lib/UI_Objects/Box.h>
 
 namespace chk {
-	void box::draw(sf::RenderTexture& Parent_RT) {
-		M_RT->clear(M_FillColor);
-		drawChildren(*M_RT);
+	void box::draw(sf::RenderTexture& Parent_RT, const bool& drawChdrn) {
+		if (drawChdrn) {
+			M_RT->clear(M_FillColor);
+			drawChildren(*M_RT);
+		}
 		M_RT->display();
 		M_rect.setTexture(&M_RT->getTexture());
 		Parent_RT.draw(M_rect);
@@ -48,13 +50,13 @@ namespace chk {
 		return M_RT;
 	}
 
-	void box::setFillColor(sf::Color fillColor) {
+	void box::setFillColor(const sf::Color fillColor) {
 		// DO NNOOOTT SET THE FILL COLOR OF M_RECT!! e.g. M_rect.setFillColor(fillColor)
 		M_FillColor = fillColor;
 		refresh();
 	}
 
-	sf::Color box::getFillColor() {
+	const sf::Color box::getFillColor() {
 		return M_FillColor;
 	}
 

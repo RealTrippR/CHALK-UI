@@ -1,7 +1,7 @@
 #include <chalk/lib/UI_Objects/Textbox.h>
 
 namespace chk {
-	void textBox::draw(sf::RenderTexture& Parent_RT) {
+	void textBox::draw(sf::RenderTexture& Parent_RT, const bool&b) {
 		sf::RectangleShape s; // debug rect
 		s.setFillColor(sf::Color::Green);
 		s.setPosition(getPositionPixels());

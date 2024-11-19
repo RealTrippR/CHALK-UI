@@ -14,7 +14,7 @@
 namespace chk {
 	class text : public UI_Drawable {
 	public:
-		void draw(sf::RenderTexture& Parent_RT) override;
+		void draw(sf::RenderTexture& Parent_RT,const bool& =false) override;
 		void updateTransform(bool callToParent = false) override;
 
 	public:

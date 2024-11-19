@@ -16,7 +16,7 @@ namespace chk {
 
 	class UI_Drawable : public UI_Object {
 	public:
-		inline virtual void draw(sf::RenderTexture& RT) {
+		inline virtual void draw(sf::RenderTexture& RT, const bool& = true) {
 			std::cout << "UI_DRAWABLE DRAW CALLED - THIS FUNCTION SHOULD NOT BE CALLED\n";
 		}
 

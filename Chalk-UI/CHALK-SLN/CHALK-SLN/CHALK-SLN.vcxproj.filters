@@ -153,11 +153,8 @@
     <ClInclude Include="..\..\chalk\lib\Audio\Sound.h">
       <Filter>lib\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\chalk\lib\UI_Objects\RenderableObjectContainer.h">
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\formattedText.h">
       <Filter>lib\UI_Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\chalk\src\UI_Objects\RenderableObjectContainer.cpp">
-      <Filter>src\UI_Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +217,12 @@
     </ClCompile>
     <ClCompile Include="..\..\chalk\src\Config.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\RenderableObjectContainer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\chalk\src\UI_Objects\formattedText.cpp">
+      <Filter>src\UI_Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

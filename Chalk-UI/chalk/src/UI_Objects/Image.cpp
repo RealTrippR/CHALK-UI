@@ -1,7 +1,7 @@
 #include <chalk/lib/UI_Objects/Image.h>
 
 namespace chk {
-	void image::draw(sf::RenderTexture& Parent_RT) {
+	void image::draw(sf::RenderTexture& Parent_RT, const bool&b) {
 		Parent_RT.draw(M_Rect);
 	}
 

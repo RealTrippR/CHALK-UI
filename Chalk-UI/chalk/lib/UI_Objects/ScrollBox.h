@@ -31,7 +31,7 @@ namespace chk {
 	public:
 		sf::Vector2f getContentBoundsPixels() override;
 
-		void draw(sf::RenderTexture& Parent_RT) override;
+		void draw(sf::RenderTexture& Parent_RT, const bool& drawChdrn = true) override;
 
 		void updateTransform(bool callToParent = false) override;
 

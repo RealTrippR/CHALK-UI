@@ -14,19 +14,35 @@ namespace chk {
 	public:
 		void updateTransform(bool callToParent = false) override;
 		void updateTransformObjectContainer(bool callToParent = false);
+
+		void draw(sf::RenderTexture& RT, const bool& drawChildren = true) override {
+
+		}
 	protected:
 
 		void drawChildren(sf::RenderTexture& RT);
+
+		virtual void updateRenderTexture() {};
 	public:
 		// when the object is destroyed, all of it's children will be deallocated
 		~objectContainer() {
 			clearAllChildren();
 		}
 
-		objectContainer() = default;
+		objectContainer() : UI_Drawable() {
+			if (!M_RT) {
+				M_RT = new sf::RenderTexture;
+				updateRenderTexture();
+			}
+		}
+
+
 
 		// deep copy
 		objectContainer(const objectContainer& other) : UI_Drawable(other) {
+			if (!M_RT) {
+				M_RT = new sf::RenderTexture;
+			}
 		}
 
 	public:
@@ -71,6 +87,9 @@ namespace chk {
 		virtual void onChildRemoved(UI_Object* child);
 	public:
 
+		inline void clearRenderTexture() {
+			M_RT->clear(M_FillColor);
+		}
 
 		void addChild(UI_Object* obj);
 		
@@ -136,7 +155,7 @@ namespace chk {
 	protected:
 		// key is the Z index, the vector is the objects assigned to that Z index.
 		std::map<int, std::vector<UI_Drawable*>> M_ZIndexDrawMap;
-		//std::map<int, std::vector<sf::RenderTexture>> M_ZIndexDrawMapOnlyObjectContainers;
+		std::map<int, std::vector<objectContainer*>> M_ZIndexDrawMapOnlyObjectContainers;
 		// key is the Z index, the vector of renderTextures is for multithreading
 		//std::map<int, std::vector<sf::RenderTexture>> M_renderTexturesMultithreadMap;
 
@@ -150,7 +169,10 @@ namespace chk {
 
 		int M_antiAliasingLevel = 0;
 		
-		bool M_childrenDrawn = false;
+		sf::RenderTexture* M_RT = nullptr;
+
+		sf::Color M_FillColor = sf::Color::White;
+
 		//bool M_SizeToContent = false;
 
 		// for size to content //

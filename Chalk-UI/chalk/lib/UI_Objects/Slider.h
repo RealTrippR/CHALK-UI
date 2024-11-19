@@ -9,7 +9,7 @@
 namespace chk {
 	class slider : public UI_Drawable {
 	public:
-		void draw(sf::RenderTexture& Parent_RT) override;
+		void draw(sf::RenderTexture& Parent_RT, const bool& =false) override;
 
 		void onMouseHold(const sf::Vector2i& mPos, const sf::Vector2i& mDelta) override;
 

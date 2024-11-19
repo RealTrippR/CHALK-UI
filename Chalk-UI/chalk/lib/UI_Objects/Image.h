@@ -8,7 +8,7 @@
 namespace chk {
 	class image : public UI_Drawable {
 	public:
-		void draw(sf::RenderTexture& Parent_RT) override;
+		void draw(sf::RenderTexture& Parent_RT, const bool& = false) override;
 
 	protected:
 		inline void updateColorAndTexture();

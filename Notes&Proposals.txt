@@ -64,26 +64,16 @@ Proposals for V1.0:
 Proposals for V1.1:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[~] Implement multithreading of rendering to increase FPS and utilize more of CPU. Consider using SIMD along side multithreading, and be sure to add a Max Cores option.
+[ ] Performance Target - 500 FPS w/ 50 boxes
 
-[ ] Make the objectContainer class inherit from UI_Object, and then create a renderableObjectContainer class that inherits from both the objectContainer and drawable.
-    Classes such as box, scrollBox, button, etc should all be descendents of the renderableObjectContainer class.
-    The class should have a drawChildren function.
-
-[ ] Add frustum culling
+[IMPOSSIBLE DUE TO OPENGL RESTRICTIONS] Implement multithreading of rendering to increase FPS and utilize more of CPU. Consider using SIMD along side multithreading, and be sure to add a Max Cores option.
 
 [ ] Optimize the refresh function, there is no need to redraw the children of ObjectContainers if none of the children have a percent based sizing.
-
-[ ] Divide the UI_Objects in the instance Class into 64-object chunks for the sake of efficiency and speed
-
-[ ] Performance Target - 1000 FPS w/ 50 boxes (2 cores or less).
-
-[ ] The events within the UI_Object class take up lots of memory - about 900 bytes per UI_Object. Consider rewriting the code to use less RAM.
 
 [ ] In the objectChild class add a vector of pointers to UI_Objects* to hold all visible children,
 	that way invisible children do not have to be iterated through in draw calls, thus rendering time will be decreased.
 
-[ ] Complete tests/StressTest and tests/HolisticTest
+[~] Complete tests/StressTest and tests/HolisticTest
 
 [ ] Add a text alignment option for textBoxes
 
@@ -169,8 +159,17 @@ Proposals for V1.5:
 Proposals for V2.0:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+[ ] Performance Target - 1000 FPS w/ 50 boxes
+
+[ ] Divide the UI_Objects in the instance Class into 64-object chunks for the sake of efficiency and speed
+
 [ ] Rewrite the graphics portion of SFML to be compatible with Vulkan - use glslangValidator to convert all GLSL (OpenGL) shaders into SPIR-V (Vulkan).
     To convert a shader from SPIR-V to GLSL, use SPIRV-Cross.
+
+[ ] The events within the UI_Drawable class take up lots of memory - about 900 bytes per UI_Object. Consider rewriting the code to use less RAM.
+
+
+[ ] Optimize performance w/ multi-threaded, tile based rendering.
 
 [ ] Rewrite SFML and Chalk UI to allow for multiple windows at a time.
 

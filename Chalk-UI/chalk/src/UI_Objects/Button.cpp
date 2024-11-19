@@ -1,10 +1,11 @@
 #include <chalk/lib/UI_Objects/Button.h>
 
 namespace chk {
-	void button::draw(sf::RenderTexture& Parent_RT) {
-
-		M_RT->clear(M_CurrentFillColor);
-		drawChildren(*M_RT);
+	void button::draw(sf::RenderTexture& Parent_RT, const bool& drawChdrn) {
+		if (drawChdrn) {
+			M_RT->clear(M_CurrentFillColor);
+			drawChildren(*M_RT);
+		}
 		M_RT->display();
 		M_rect.setTexture(&M_RT->getTexture());
 		Parent_RT.draw(M_rect);

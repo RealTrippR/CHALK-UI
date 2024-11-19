@@ -8,7 +8,7 @@
 
 namespace chk {
 	class button : public box {
-		void draw(sf::RenderTexture& Parent_RT) override;
+		void draw(sf::RenderTexture& Parent_RT, const bool& drawChdrn = true) override;
 	public:
 		void setFillColorOnHover(const sf::Color color);
 

@@ -150,12 +150,10 @@
     <ClInclude Include="..\..\chalk\lib\UI_Headers.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Box.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Button.h" />
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\formattedText.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Grid.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Image.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Object_Container.h" />
-    <ClInclude Include="..\..\chalk\lib\UI_Objects\RenderableObjectContainer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="..\..\chalk\lib\UI_Objects\ScrollBox.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Slider.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Text.h" />
@@ -188,6 +186,7 @@
     <ClCompile Include="..\..\chalk\src\SFML_Extensions\RoundedRectangle.cpp" />
     <ClCompile Include="..\..\chalk\src\UI_Objects\Box.cpp" />
     <ClCompile Include="..\..\chalk\src\UI_Objects\Button.cpp" />
+    <ClCompile Include="..\..\chalk\src\UI_Objects\formattedText.cpp" />
     <ClCompile Include="..\..\chalk\src\UI_Objects\Grid.cpp" />
     <ClCompile Include="..\..\chalk\src\UI_Objects\Image.cpp" />
     <ClCompile Include="..\..\chalk\src\UI_Objects\Object_Container.cpp" />

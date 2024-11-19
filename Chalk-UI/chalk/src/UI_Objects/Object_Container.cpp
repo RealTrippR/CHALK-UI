@@ -4,40 +4,43 @@ using namespace chk;
 
 void objectContainer::drawChildren(sf::RenderTexture& RT) {
 	// single threaded rendering
-	if (config.getMaxCores() == unsigned short(1)) {
-		for (auto& Z_Level : M_ZIndexDrawMap) {
-			for (auto& obj : Z_Level.second) {
-				if (obj->getVisibility()) {
-					obj->draw(RT);
-				}
+	//if (config.getMaxCores() == unsigned short(1)) {
+	for (auto& Z_Level : M_ZIndexDrawMap) {
+		for (auto& obj : Z_Level.second) {
+			if (obj->getVisibility()) {
+				obj->draw(RT);
 			}
 		}
 	}
-	// multi-threaded rendering
-	else {
-		using std::thread;
-		const unsigned short maxThreads = config.getMaxCores();
+	//}
 
-		for (auto& Z_Level : M_ZIndexDrawMap) {
-			auto v = Z_Level.second;
-			for (auto& obj : Z_Level.second) {
-				if (!obj->getVisibility()) {
-					continue;
-				}
+	//// multi-threaded rendering
+	//else {
+	//	using std::thread;
+	//	const unsigned short maxThreads = config.getMaxCores();
 
-				// predraw children
-				//std::thread t1(obj, RT);
-				//t1.jio
-			}
-		}
-		for (auto& Z_Level : M_ZIndexDrawMap) {
-			for (auto& obj : Z_Level.second) {
-				if (obj->getVisibility()) {
-					//obj->draw(RT, false);
-				}
-			}
-		}
-	}
+	//	for (auto& Z_Level : M_ZIndexDrawMapOnlyObjectContainers) {
+	//		auto v = Z_Level.second;
+	//		
+	//		for (objectContainer* obj : Z_Level.second) {
+	//			if (!obj->getVisibility()) {
+	//				continue;
+	//			}
+
+	//			obj->clearRenderTexture();
+	//			//// predraw children
+	//			std::thread t1(&chk::objectContainer::drawChildren, this, std::ref(RT));
+	//			t1.join();
+	//		}
+	//	}
+	//	for (auto& Z_Level : M_ZIndexDrawMap) {
+	//		for (auto& obj : Z_Level.second) {
+	//			if (obj->getVisibility()) {
+	//				obj->draw(RT);
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 void objectContainer::updateTransform(bool callToParent) {
@@ -74,17 +77,37 @@ void objectContainer::addChild(UI_Object* obj) {
 	if (asDrawable) {
 		M_ZIndexDrawMap[asDrawable->getZIndex()].push_back(asDrawable);
 	}
+	// erase from Z Index Map only objectContainers
+	objectContainer* asContainer = dynamic_cast<objectContainer*>(obj);
+	if (asContainer) {
+		M_ZIndexDrawMapOnlyObjectContainers[asContainer->getZIndex()].push_back(asContainer);
+	}
+
 	onChildAdded(obj);
 	refresh();
 }
 
 // This function removes the child from the parent, and by default this function deallocates it as well.
-void objectContainer::removeChild(UI_Object* obj, bool decallocate) { 		// there might be a logic error within this function 
+void objectContainer::removeChild(UI_Object* obj, bool decallocate) {
 	auto& vec = M_NameMap[obj->getName()];
 	vec.erase(std::remove(vec.begin(), vec.end(), obj), vec.end());
 
 	M_Children.erase(std::remove(M_Children.begin(), M_Children.end(), obj), M_Children.end());
+	
+	// erase from Z Index Map
+	UI_Drawable* asDrawable = dynamic_cast<UI_Drawable*>(obj);
+	if (asDrawable) {
+		std::vector<UI_Drawable*>& vec = M_ZIndexDrawMap[asDrawable->getZIndex()];
+		vec.erase(std::remove(vec.begin(), vec.end(), asDrawable), vec.end());
+	}
 
+	// erase from Z Index Map only objectContainers
+	objectContainer* asContainer = dynamic_cast<objectContainer*>(obj);
+	if (asContainer) {
+		std::vector<objectContainer*>& vec = M_ZIndexDrawMapOnlyObjectContainers[asContainer->getZIndex()];
+		vec.erase(std::remove(vec.begin(), vec.end(), asContainer), vec.end());
+	}
+	
 	onChildRemoved(obj);
 
 	if (decallocate) {
@@ -188,4 +211,44 @@ void objectContainer::handleChildZIndexUpdated(UI_Drawable* obj, const int ZInde
 	/// add the object to it's new ZIndex
 	std::vector<UI_Drawable*>& vec2 = M_ZIndexDrawMap[ZIndexTo];
 	vec2.push_back(obj);
+}
+
+
+// swaps the draw order of two children.
+		// If both objects have a different Z index, then their Z indexes will be swapped.
+inline void objectContainer::swapChildren(UI_Drawable* obj1, UI_Drawable* obj2) {
+	const short z1 = obj1->getZIndex();
+	const short z2 = obj2->getZIndex();
+	auto& v1 = M_ZIndexDrawMap[z1];
+	auto i1 = std::find(v1.begin(), v1.end(), obj1);
+	auto& v2 = M_ZIndexDrawMap[z2];
+	auto i2 = std::find(v2.begin(), v2.end(), obj2);
+
+	if (z1 == z2) {
+		std::iter_swap(i1, i2);
+	}
+	else {
+		// If objects have different Z-indices, move each to the other's vector
+		v1.erase(i1);
+		v2.erase(i2);
+		v1.push_back(obj2);
+		v2.push_back(obj1);
+
+		obj1->setZIndex(z2);
+		obj2->setZIndex(z1);
+	}
+	refresh();
+}
+
+// moves the child to a target index within it's Z index group.
+// everything to the right of the target index will be shifted over one to make room for the child.
+inline void objectContainer::intMoveChildToIndex(UI_Drawable* obj, const int index) {
+	std::vector<UI_Drawable*>& v1 = M_ZIndexDrawMap[obj->getZIndex()];
+	v1.erase(std::remove(v1.begin(), v1.end(), obj), v1.end());
+	v1.resize(v1.size() + 1);
+	for (int i = v1.size() - 2; i >= index; --i) {
+		std::iter_swap(v1[i], v1[i + 1]);
+	}
+	v1[index] = obj;
+	refresh();
 }

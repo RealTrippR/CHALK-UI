@@ -10,7 +10,7 @@
 namespace chk {
 	class textBox : public UI_Drawable {
 	public:
-		void draw(sf::RenderTexture& Parent_RT) override;
+		void draw(sf::RenderTexture& Parent_RT, const bool& =false) override;
 	public:
 		Event<textBox> onStringUpdated;
 		Event<textBox> onStringEntered;
