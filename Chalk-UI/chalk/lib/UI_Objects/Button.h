@@ -68,6 +68,18 @@ namespace chk {
 				refresh();
 			});
 		}
+
+		// deep copy - needed to prevent the copying of events
+		button(const button& other) : box(other) {
+			M_OutlineColor = other.M_OutlineColor;
+			M_CurrentFillColor = other.M_CurrentFillColor;
+
+			M_CurrentOutlineColor = other.M_CurrentOutlineColor;
+			M_FillColorOnHover = other.M_FillColorOnHover;
+			M_OutlineColorOnHover = other.M_OutlineColorOnHover;
+			M_FillColorOnClick = other.M_FillColorOnClick;
+			M_OutlineColorOnClick = other.M_OutlineColorOnClick;
+		}
 	private:
 
 		bool M_Hovered = false; // true if currently being hovered over

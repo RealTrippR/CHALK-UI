@@ -79,12 +79,12 @@ Proposals for V1.1:
 
 [ ] Add a text alignment option for textBoxes
 
-[✓] Add proper support for multiline textboxes
+[~] Add proper support for multiline textboxes
 
 [ ] Optimize the getCharacterIndexAtMousePosition in the textbox class
 
-[ ] Make a function to compare lambdas in the event class - this should be possible by comparing the memory addresses of the lambdas.
-    Don't forgot to optimize the onMouseClickFunction of the textBox class.
+[~] Make a function to compare lambdas in the event class - this should be possible by comparing the memory addresses of the lambdas.
+    Don't forget to optimize the onMouseClickFunction of the textBox class as well as it's constructor lambdas.
 
 [ ] Allow for Instances of UI_Objects to be overwritten with ==, rather than removing the instance and then creating a copy of the object.
 
@@ -100,7 +100,7 @@ Proposals for V1.1:
 Proposals for V1.2:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[ ] Consider adding a dedicated keybind class (this was implemented in a pre-1.0 version, but later removed)
+[ ] Consider adding a dedicated keybind class (this was implemented in a pre-1.0 version, but later removed). It should be very similar to the event class, except it can only be binded to functions that take a key and a consumed index.
 
 [ ] Allow for the locking of all input.
 

@@ -4,7 +4,7 @@
 
 void UI_INIT() {
 	using namespace chk;
-	box& b = Instance.New<box>();
+	box& b = Instance.New<box>("TextHolder");
 	b.setParent(&Workspace);
 	b.setPosition({ 10,10 });
 	b.setSize({250,200});
@@ -12,7 +12,7 @@ void UI_INIT() {
 	b.setOutlineColor(sf::Color::White);
 	b.setOutlineThickness(2);
 
-	text& t = Instance.New<text>();
+	text& t = Instance.New<text>("Text");
 	t.setParent(&b);
 	t.setCharacterSize(15);
 	t.setPosition({ .5,.5,percent });
@@ -20,7 +20,7 @@ void UI_INIT() {
 	t.setString("This is a text Object.\nIt supports multiple lines.\nBy default, it's bounds (size) are\nset to the size of the Text");
 
 
-	box& tbHolder = Instance.New<box>(&b);
+	box& tbHolder = Instance.New<box>(&b, "textBoxHolder"); // notice the first argument in the Instance.New function - this means that tbHolder a copy of b
 	tbHolder.setParent(&Workspace);
 	tbHolder.setPosition({ 500,10 });
 	tbHolder.setSize({200,100});
@@ -33,6 +33,17 @@ void UI_INIT() {
 	tb.setCharacterSize(20);
 	tb.setString({ "This is a textbox.\nThis is a textbox." });
 
+	button& bu = Instance.New<button>("Button");
+	bu.setParent(&Workspace);
+	bu.setFillColor(sf::Color(40,40,40));
+	bu.setFillColorOnHover(sf::Color(60, 60, 60));
+	bu.setFillColorOnClick(sf::Color::Blue);
+	bu.setPosition({ 10,250 });
+
+	
+	button& bu2 = Instance.New<button>(&bu);
+	bu2.setParent(&Workspace);
+	bu2.setPosition({ 120,250 });
 	
 }
 

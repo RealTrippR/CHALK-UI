@@ -10,9 +10,9 @@ namespace chk {
 		// when this function is called, it will call all the functions binded to this event
 		void invoke(T* val) {
 			int tmp = 0;
-			for (auto& f : M_BindedFunctionsWithArgsAndConsumedIndex) {
+			/*for (auto& f : M_BindedFunctionsWithArgsAndConsumedIndex) {
 				f(val, tmp);
-			}
+			}*/
 			for (auto& f : M_BindedFunctionsWithArgs) {
 				f(val);
 			}
@@ -21,13 +21,14 @@ namespace chk {
 			}
 		}
 
+		inline void bind(std::function<void(T*, int&)> func) {
+			M_BindedFunctionsWithArgsAndConsumedIndex.push_back(func);
+		}
+
 		inline void bind(std::function<void(T*)> func) {
 			//if (!isAlreadyBound(func,M_BindedFunctionsWithArgs)) {
 				M_BindedFunctionsWithArgs.push_back(func);
 			//}
-		}
-		inline void bind(std::function<void(T*,int&)> func) {
-			M_BindedFunctionsWithArgsAndConsumedIndex.push_back(func);
 		}
 
 		inline void bind(std::function<void()> func) {
@@ -35,6 +36,7 @@ namespace chk {
 				M_BindedFunctionsNoArgs.push_back(func);
 			//}
 		}
+
 
 		// also broken, because lambdas cant be compared.
 		/*inline void unbind(std::function<void(T*)> func) {
@@ -61,6 +63,29 @@ namespace chk {
 		bool checkForBinding(std::function<void()> func) {
 			return isAlreadyBound(func, M_BindedFunctionsNoArgs);
 		}*/
+
+		template<typename FuncType>
+		bool isAlreadyBound(const std::function<FuncType>& func, const std::vector<std::function<FuncType>>& functionList) {
+			return std::any_of(functionList.begin(), functionList.end(),
+				[&func](const std::function<FuncType>& existingFunc) {
+					// Check if both function pointers match (non-null)
+					auto funcPtr = func.target<FuncType>();
+					auto existingFuncPtr = existingFunc.target<FuncType>();
+					return funcPtr && existingFuncPtr && funcPtr == existingFuncPtr;
+				});
+		}
+
+		bool checkForBinding(std::function<void(T*)> func) {
+			return isAlreadyBound(func, M_BindedFunctionsWithArgs);
+		}
+
+		bool checkForBinding(std::function<void()> func) {
+			return isAlreadyBound(func, M_BindedFunctionsNoArgs);
+		}
+
+		bool checkForBinding(std::function<void(T*, int&)> func) {
+			return isAlreadyBound(func, M_BindedFunctionsWithArgsAndConsumedIndex);
+		}
 
 		// returns as reference
 		inline std::function<void(T*)>& getBindingsWithArgs() {

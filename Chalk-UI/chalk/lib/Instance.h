@@ -18,13 +18,17 @@ namespace chk {
 			} else {
 				obj = new T(*copyFrom);
 				obj->M_parent = NULL;
-				//obj->setParent(NULL);
 			}
 			if (!name.empty()) {
 				obj->setName(name);
 			}
-			M_objects.push_back(obj);
-
+			if (obj) {
+				M_objects.push_back(obj);
+			}
+			else {
+				std::cerr << "FAILED TO CREATE OBJ - OBJ WAS NULL!";
+				throw std::runtime_error("FAILED TO CREATE OBJ - OBJ WAS NULL!");
+			}
 			dirty_render_flag = true; //refresh
 
 			return *obj;
