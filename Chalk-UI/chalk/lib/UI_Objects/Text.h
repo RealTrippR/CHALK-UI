@@ -8,7 +8,7 @@
 #include <chalk/lib/Instance.h>
 #include <chalk/lib/UI_Objects/UI_Drawable.h>
 #include <chalk/lib/UI_Objects/Object_Container.h>
-#include <chalk/lib/FontManager.h>
+#include <chalk/lib/Text_Handling/FontManager.h>
 
 
 namespace chk {
@@ -20,6 +20,30 @@ namespace chk {
 	public:
 		void setPosition(UI_Vector2f pos);
 		UI_Vector2f getPosition();
+
+	public:
+		// setters
+		void setFont(const std::string& filename);
+
+		void setFillColor(const sf::Color& color);
+
+		void setOutlineColor(const sf::Color& color);
+
+		void setOutlineThickness(const int& size);
+
+		void setCharacterSize(const int& size);
+
+		void setLetterSpacing(const int& spacing);
+
+		void setLineSpacing(const int& spacing);
+
+		void setString(const std::string& string);
+
+		//void setTextAlignment(const float& alignment);
+
+		void setSizeToTextBounds(const bool& sizeToBounds);
+
+		//void setSizeToContent(bool sizeToContent);
 	public:
 		// getters
 		std::string getString();
@@ -38,28 +62,8 @@ namespace chk {
 
 		int getLineSpacing();
 
-		bool getSizeToContent();
-
-	public:
-		// setters
-		void setFont(const std::string& filename);
-
-		void setFillColor(const sf::Color& color);
-
-		void setOutlineColor(const sf::Color& color);
-
-		void setOutlineThickness(const int& size);
-
-		void setCharacterSize(const int& size);
-
-		void setLetterSpacing(const int& spacing);
-		
-
-		void setLineSpacing(const int& spacing);
-
-		void setString(const std::string& string);
-
-		void setSizeToContent(bool sizeToContent);
+		bool getSizeToTextBounds();
+		//bool getSizeToContent();
 
 	public:
 		text() {
@@ -74,7 +78,9 @@ namespace chk {
 
 		std::string M_String;
 
-		bool M_SizeToContent = true;
+		float M_textAlignment = 0;
+
+		bool M_sizeToTextBounds = true;
 	};
 }
 

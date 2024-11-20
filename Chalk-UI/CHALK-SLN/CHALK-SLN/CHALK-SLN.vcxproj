@@ -138,13 +138,15 @@
     <ClInclude Include="..\..\chalk\lib\DirtyRenderFlag.h" />
     <ClInclude Include="..\..\chalk\lib\Enums.h" />
     <ClInclude Include="..\..\chalk\lib\Events\Event.h" />
-    <ClInclude Include="..\..\chalk\lib\FontHandle.h" />
-    <ClInclude Include="..\..\chalk\lib\FontManager.h" />
     <ClInclude Include="..\..\chalk\lib\Input.h" />
     <ClInclude Include="..\..\chalk\lib\Instance.h" />
     <ClInclude Include="..\..\chalk\lib\SFML_Extensions\RoundedRectangle.h" />
     <ClInclude Include="..\..\chalk\lib\StandardEvents.h" />
     <ClInclude Include="..\..\chalk\lib\StandardFunctions.h" />
+    <ClInclude Include="..\..\chalk\lib\Text_Handling\FontHandle.h" />
+    <ClInclude Include="..\..\chalk\lib\Text_Handling\FontManager.h" />
+    <ClInclude Include="..\..\chalk\lib\Text_Handling\FormattedTextChunk.h" />
+    <ClInclude Include="..\..\chalk\lib\Text_Handling\TextChunk.h" />
     <ClInclude Include="..\..\chalk\lib\UI.h" />
     <ClInclude Include="..\..\chalk\lib\UI_FloatRect.h" />
     <ClInclude Include="..\..\chalk\lib\UI_Headers.h" />
@@ -174,7 +176,12 @@
     <ClCompile Include="..\..\..\Engine Tests\InputAndEventsTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\Engine Tests\StressTest.cpp" />
+    <ClCompile Include="..\..\..\Engine Tests\StressTest.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Engine Tests\WindowTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>

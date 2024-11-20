@@ -2,12 +2,6 @@
 
 namespace chk {
 	void textBox::draw(sf::RenderTexture& Parent_RT, const bool&b) {
-		sf::RectangleShape s; // debug rect
-		s.setFillColor(sf::Color::Green);
-		s.setPosition(getPositionPixels());
-		s.setSize(getSizePixels());
-		Parent_RT.draw(s);
-
 		Parent_RT.draw(M_txt);
 		if (!M_InsertionBarHidden) {
 			Parent_RT.draw(M_insertionBar);
@@ -20,7 +14,6 @@ namespace chk {
 		if ( !sf::Mouse::isButtonPressed(sf::Mouse::Left) ) {
 			return;
 		}
-
 
 		if (M_Enabled) {
 
@@ -45,11 +38,12 @@ namespace chk {
 		sf::Text tmp = M_txt; // gets height of standard character, in this case 'A'
 		tmp.setString("A");
 		int yOffset = -tmp.getLocalBounds().top;
+		//int yOffset = M_txt.getLineSpacing();
 		int charHeight = tmp.getLocalBounds().height;
 
 		//M_Size = UI_Vector2f(M_txt.getGlobalBounds().width, charHeight, absolute);
 
-		M_pixelOffset.y = yOffset; // consider adding a M_privatePixelOffset for situations like these
+		//M_pixelOffset.y = yOffset; // consider adding a M_privatePixelOffset for situations like these
 		M_txt.setPosition(getPositionPixels()+sf::Vector2f(0,yOffset));
 		updateInsertionBar();
 	}
@@ -59,9 +53,9 @@ namespace chk {
 		if (M_txt.getString().getSize() > 0) {
 			int charWidth = getCharacterWidthAtIndex(i);
 			M_insertionBar.setPosition(M_txt.findCharacterPos(i).x + charWidth - M_txt.getLetterSpacing()
-				, M_txt.getPosition().y - M_pixelOffset.y);
+				, M_txt.findCharacterPos(i).y - M_pixelOffset.y);
 		}
-		else {
+		else { // if the string is empty
 			M_insertionBar.setPosition(M_txt.getPosition().x
 				, M_txt.getPosition().y - M_pixelOffset.y);
 		}
@@ -229,7 +223,6 @@ namespace chk {
 		for (int i = 0; i < M_txt.getString().getSize(); ++i) {
 			sf::Vector2f charPosition = M_txt.findCharacterPos(i);
 			const sf::FloatRect textBounds = M_txt.getGlobalBounds();
-
 			float characterWidth = M_txt.findCharacterPos(i + 1).x - charPosition.x;
 
 			sf::FloatRect LocalCharBounds = sf::FloatRect(charPosition.x, charPosition.y, characterWidth, M_txt.getCharacterSize());
@@ -238,7 +231,8 @@ namespace chk {
 				return i;
 			}
 		}
-		if (pos.x > M_txt.getPosition().x) {
+		// if the position is to the right of the end character, return -1.
+		if (pos.x >= M_txt.getPosition().x + M_txt.getGlobalBounds().width) {
 			return M_txt.getString().getSize() - 1;
 		}
 		else {

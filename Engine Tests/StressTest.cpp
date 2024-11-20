@@ -64,15 +64,14 @@ void UI_Init() {
 }
 
 int main() {
-	using namespace chk;
 	sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML window", sf::Style::Default);
-	init(window);
+	chk::init(window);
 	chk::setGlobalAntiAliasing(16);
 	chk::config.setMaxCores(4);
 
 	UI_Init();
 
-	chk::text* t = &Instance.New<text>();
+	chk::text* t = &chk::Instance.New<chk::text>();
 	t->setParent(&Workspace);
 	t->setPosition(UI_Vector2f(650, 20));
 	t->setCharacterSize(14);
@@ -84,6 +83,6 @@ int main() {
 
 		t->setString("FPS:" + std::to_string(1000.f / chk::timeRecord::millisecondsLastTick));
 
-		dirty_render_flag = true; // constantly refresh
+		chk::dirty_render_flag = true; // constantly refresh
 	}
 }

@@ -50,8 +50,8 @@ namespace chk {
 		return M_txt.getLineSpacing();
 	}
 
-	bool text::getSizeToContent() {
-		return M_SizeToContent;
+	bool text::getSizeToTextBounds() {
+		return M_sizeToTextBounds;
 	}
 
 	// setters
@@ -105,24 +105,26 @@ namespace chk {
 		refresh();
 	}
 
-	void text::setSizeToContent(bool sizeToContent) {
-		M_SizeToContent = sizeToContent;
+	void text::setSizeToTextBounds(const bool& sizeToBounds) {
+		M_sizeToTextBounds = sizeToBounds;
 		updateTransform();
 		refresh();
 	}
 
 	void text::setSizeFromTextBounds() {
+		if (M_sizeToTextBounds) {
+			sf::Text tmp = M_txt; // gets height of standard character, in this case 'A'
+			tmp.setString("A");
+			int yOffset = -tmp.getLocalBounds().top;
+			//int charHeight = tmp.getLocalBounds().height;
 
-		sf::Text tmp = M_txt; // gets height of standard character, in this case 'A'
-		tmp.setString("A");
-		int yOffset = -tmp.getLocalBounds().top;
-		int charHeight = tmp.getLocalBounds().height;
+			int height = M_txt.getGlobalBounds().height;
+			M_Size = UI_Vector2f(M_txt.getGlobalBounds().width, height, absolute);
+			std::cout << "H: " << height << "\n";
 
-		M_Size = UI_Vector2f(M_txt.getGlobalBounds().width, charHeight, absolute);
-
-		M_pixelOffset.y = yOffset; // consider adding a M_privatePixelOffset for situations like these
-		M_txt.setPosition(getPositionPixels());
-		refresh();
+			M_pixelOffset.y = yOffset; // consider adding a M_privatePixelOffset for situations like these
+			M_txt.setPosition(getPositionPixels());
+			refresh();
+		}
 	}
-
 }

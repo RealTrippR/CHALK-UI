@@ -52,6 +52,9 @@
     <Filter Include="lib\SFML_Extensions">
       <UniqueIdentifier>{d2f872b4-0467-4954-9047-d9dc59504c26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib\Text_Handling">
+      <UniqueIdentifier>{4e821a6e-d6db-4174-ad24-31e230e08594}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\chalk\lib\UI_PaddingData.h">
@@ -73,12 +76,6 @@
       <Filter>lib</Filter>
     </ClInclude>
     <ClInclude Include="..\..\chalk\lib\Enums.h">
-      <Filter>lib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\chalk\lib\FontHandle.h">
-      <Filter>lib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\chalk\lib\FontManager.h">
       <Filter>lib</Filter>
     </ClInclude>
     <ClInclude Include="..\..\chalk\lib\Input.h">
@@ -129,9 +126,6 @@
     <ClInclude Include="..\..\chalk\lib\UI_Objects\Text.h">
       <Filter>lib\UI_Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\chalk\lib\UI_Objects\Textbox.h">
-      <Filter>lib\UI_Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\chalk\lib\UI_Objects\UI_Drawable.h">
       <Filter>lib\UI_Objects</Filter>
     </ClInclude>
@@ -154,6 +148,21 @@
       <Filter>lib\Audio</Filter>
     </ClInclude>
     <ClInclude Include="..\..\chalk\lib\UI_Objects\formattedText.h">
+      <Filter>lib\UI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Text_Handling\FormattedTextChunk.h">
+      <Filter>lib\Text_Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Text_Handling\FontHandle.h">
+      <Filter>lib\Text_Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Text_Handling\FontManager.h">
+      <Filter>lib\Text_Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\Text_Handling\TextChunk.h">
+      <Filter>lib\Text_Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\chalk\lib\UI_Objects\Textbox.h">
       <Filter>lib\UI_Objects</Filter>
     </ClInclude>
   </ItemGroup>

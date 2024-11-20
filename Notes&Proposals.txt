@@ -73,11 +73,15 @@ Proposals for V1.1:
 [ ] In the objectChild class add a vector of pointers to UI_Objects* to hold all visible children,
 	that way invisible children do not have to be iterated through in draw calls, thus rendering time will be decreased.
 
+[ ] Remove the unnessecary secondary bool argument from the draw function in UI_Drawables
+
 [~] Complete tests/StressTest and tests/HolisticTest
 
 [ ] Add a text alignment option for textBoxes
 
-[ ] Add proper support for multiline textboxes, as well as clipping for text and textboxes that extend beyond their maximum size
+[✓] Add proper support for multiline textboxes
+
+[ ] Optimize the getCharacterIndexAtMousePosition in the textbox class
 
 [ ] Make a function to compare lambdas in the event class - this should be possible by comparing the memory addresses of the lambdas.
     Don't forgot to optimize the onMouseClickFunction of the textBox class.
@@ -89,7 +93,7 @@ Proposals for V1.1:
 [ ] Add an instancedImage class, indentical to image, but uses less memory because rather than storing a image for every image object,
     it holds a reference to an image that can be shared across multiple instancedImage objects
 
-[ ] Remove the useless Engine.h header
+[✓] Remove the useless Engine.h header
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -100,9 +104,7 @@ Proposals for V1.2:
 
 [ ] Allow for the locking of all input.
 
-[ ] Allow for integration with OpenGL
-
-[ ] Implement shaders
+[ ] Allow for integration with OpenGL - Implement shaders
 
 [ ] Divide the sf::Text in textboxes and text into 256-byte chunks for the sake of efficiency, or create a largeText and largeTextbox class for this purpose.
 
@@ -142,7 +144,6 @@ Proposals for V1.3:
 Proposals for V1.4:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 [ ] Implement an animation library that adheres to css standards.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -163,6 +164,13 @@ Proposals for V2.0:
 
 [ ] Divide the UI_Objects in the instance Class into 64-object chunks for the sake of efficiency and speed
 
+DIRECTX 12:
+[ ] Rewrite the graphics portion of SFML to use DirectX 12
+    (https://github.com/septag/glslcc)
+    (https://learn.microsoft.com/en-us/windows/uwp/gaming/glsl-to-hlsl-reference)
+
+
+VULKAN:
 [ ] Rewrite the graphics portion of SFML to be compatible with Vulkan - use glslangValidator to convert all GLSL (OpenGL) shaders into SPIR-V (Vulkan).
     To convert a shader from SPIR-V to GLSL, use SPIRV-Cross.
 
@@ -181,3 +189,9 @@ Proposals for V2.0:
 [ ] If I do ever end up rewriting SFML's code, then I should omptimize the resizing of the RenderTexture with realloc(), if it isn't already.
 
 [ ] Rewrite the sf::Texture to support anti-aliasing
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Proposals for V2.1:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[ ] Support DirectX 12

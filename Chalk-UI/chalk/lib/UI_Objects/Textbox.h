@@ -5,7 +5,8 @@
 #include <chalk/lib/DirtyRenderFlag.h>
 #include <chalk/lib/Instance.h>
 #include <chalk/lib/UI_Objects/UI_Drawable.h>
-#include <chalk/lib/FontManager.h>
+#include <chalk/lib/UI_Objects/Object_Container.h>
+#include <chalk/lib/Text_Handling/FontManager.h>
 
 namespace chk {
 	class textBox : public UI_Drawable {
@@ -56,6 +57,7 @@ namespace chk {
 
 		void setInsertionBarColor(const sf::Color color);
 
+		void setMaxLineCount(const unsigned int lc);
 	public:
 		// GETTERS
 		bool getEnabled();
@@ -176,6 +178,7 @@ namespace chk {
 		}
 
 	private:
+
 		int getCharacterIndexAtMousePosition();
 
 		int getCharacterWidthAtIndex(int i);
@@ -201,6 +204,8 @@ namespace chk {
 
 		unsigned int M_millisecondsInsertionBarVisible = 500;
 		unsigned int M_millisecondsInsertionBarHidden = 800;
+
+		unsigned int M_maxLineCount = 1;
 
 		float M_currentTimerMilli = 0;
 	};

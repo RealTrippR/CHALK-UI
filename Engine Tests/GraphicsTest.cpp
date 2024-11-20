@@ -20,8 +20,8 @@ void UI_Init() {
 int main() {
 	using namespace chk;
 	sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML window"); // I should move this to init, bc there is no default function in SFML to retrieve the name of a window
-	init(window);
-	setGlobalAntiAliasing(8);
+	chk::init(window);
+	chk::setGlobalAntiAliasing(8);
 
 	UI_Init(); // creates the UI Objects for this project
 
