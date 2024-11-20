@@ -13,6 +13,8 @@ namespace chk {
 	public:
 
 		virtual ~UI_Object() {} // Virtual destructor to make this class polymorphic
+		
+		UI_Object(const UI_Object&) = delete; // Delete copy constructor
 
 		inline virtual void updateTransform(bool callToParent = false) {
 

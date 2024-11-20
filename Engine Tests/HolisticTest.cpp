@@ -31,7 +31,8 @@ void UI_INIT() {
 	tb.setSize({ 1,1,percent });
 	tb.setPosition({ 0,0 });
 	tb.setCharacterSize(20);
-	tb.setString({ "This is a textbox.\nThis is a textbox." });
+	tb.setString({ "This is a textbox.\nThis is a textbox.\n||" });
+	tb.setMaxLineCount(3);
 
 	button& bu = Instance.New<button>("Button");
 	bu.setParent(&Workspace);
@@ -44,9 +45,6 @@ void UI_INIT() {
 	button& bu2 = Instance.New<button>(&bu, "Button2");
 	bu2.setParent(&Workspace);
 	bu2.setPosition({ 120,250 });
-	bu2.onMouseEnterEvent.bind([]() {
-		std::cout << "BU2 Enter\n";
-	});
 }
 
 int main() {

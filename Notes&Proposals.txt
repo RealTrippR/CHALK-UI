@@ -86,8 +86,6 @@ Proposals for V1.1:
 [~] Make a function to compare lambdas in the event class - this should be possible by comparing the memory addresses of the lambdas.
     Don't forget to optimize the onMouseClickFunction of the textBox class as well as it's constructor lambdas.
 
-[ ] Allow for Instances of UI_Objects to be overwritten with ==, rather than removing the instance and then creating a copy of the object.
-
 [ ] optimize the updateTransformGrid function of the grid class.
 
 [ ] Add an instancedImage class, indentical to image, but uses less memory because rather than storing a image for every image object,
