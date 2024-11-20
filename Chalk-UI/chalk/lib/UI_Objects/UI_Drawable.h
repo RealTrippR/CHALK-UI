@@ -25,7 +25,17 @@ namespace chk {
 		}*/
 
 		void updateTransformUI_Object(bool callToParent = false);
-		
+
+		// deep copy to prevent the copying of events
+		UI_Drawable(const UI_Drawable &other) : UI_Object(other) {
+			M_pixelOffset = other.M_pixelOffset;
+			M_Size = other.M_Size;
+			M_Origin = other.M_Origin;
+			M_Margin = other.M_Margin;
+			M_InputHandlingType = other.M_InputHandlingType;
+			M_ZIndex = other.M_ZIndex;
+			M_InputBoundsExtension = other.M_InputBoundsExtension;
+		}
 	public:
 		// returns true if it intersects the absolute bounds of this UI_Object, relevant to the left upper corner of the screen.
 		inline bool intersectsAbsoluteBounds(sf::Vector2f absolutePos, bool returnFalseIfInvisible = true, bool includeInputBoundsExtension = true) {
@@ -101,9 +111,6 @@ namespace chk {
 
 		void setInputBoundsExtension(const UI_PaddingData boundsExtension);
 
-		// sets rotation, in degrees
-		void setRotation(float degrees);
-
 		void setVisibility(bool visible);
 
 		void setInputHandlingType(inputHandlingType type);
@@ -121,8 +128,6 @@ namespace chk {
 
 		UI_PaddingData getInputBoundsExtension();
 
-		// returns rotation, in degrees
-		float getRotation();
 
 		// returns the absolute size in pixels
 		virtual sf::Vector2f getSizePixels(bool subtractMargin = true);
@@ -162,9 +167,6 @@ namespace chk {
 		//UI_PaddingData M_Padding;
 		UI_PaddingData M_Margin;
 		UI_PaddingData M_InputBoundsExtension;
-
-
-		float M_Rotation = 0;
 
 		short M_ZIndex = 0;
 
