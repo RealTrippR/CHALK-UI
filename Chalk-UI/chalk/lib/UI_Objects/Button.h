@@ -58,7 +58,6 @@ namespace chk {
 		}
 	private:
 		inline void init() {
-			std::cout << "CONSTRUCTOR CALLED!\n" << this << "\n";
 			this->onLeftMouseClickedEvent.bind([this]() {
 				M_CurrentFillColor = M_FillColorOnClick;
 				M_CurrentOutlineColor = M_OutlineColorOnClick;
