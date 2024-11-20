@@ -16,7 +16,8 @@ namespace chk {
 			if (copyFrom == nullptr) {
 				obj = new T;
 			} else {
-				obj = new T(*copyFrom);
+				obj = new T;
+				new (obj) T(*copyFrom);
 				obj->M_parent = NULL;
 			}
 			if (!name.empty()) {

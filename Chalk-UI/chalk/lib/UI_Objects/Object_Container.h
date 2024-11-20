@@ -27,19 +27,25 @@ namespace chk {
 		// when the object is destroyed, all of it's children will be deallocated
 		~objectContainer() {
 			clearAllChildren();
+			
+			if (M_RT) {
+				delete M_RT;
+				M_RT = nullptr;
+			}
 		}
 
 		objectContainer() : UI_Drawable() {
-			if (!M_RT) {
-				M_RT = new sf::RenderTexture;
-				updateRenderTexture();
-			}
+			init();
 		}
 
 
 
 		// deep copy
 		objectContainer(const objectContainer& other) : UI_Drawable(other) {
+			init();
+		}
+	private:
+		inline void init() {
 			if (!M_RT) {
 				M_RT = new sf::RenderTexture;
 			}

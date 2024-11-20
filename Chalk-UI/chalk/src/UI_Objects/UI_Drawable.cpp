@@ -32,12 +32,6 @@ namespace chk {
         updateTransform();
         refresh();
     }
-
-    void UI_Drawable::setRotation(float degrees) {
-        M_Rotation = degrees;
-        updateTransform();
-        refresh();
-    }
     
     void UI_Drawable::setZIndex(int index) {
         if (M_parent) {
@@ -67,10 +61,6 @@ namespace chk {
 
     void UI_Drawable::setInputBoundsExtension(const UI_PaddingData boundsExtension) {
         M_InputBoundsExtension = boundsExtension;
-    }
-
-    float UI_Drawable::getRotation() {
-        return M_Rotation;
     }
 
     short UI_Drawable::getZIndex() {

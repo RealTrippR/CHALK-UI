@@ -41,36 +41,12 @@ namespace chk {
 		const sf::Color getOutlineColorOnClick();
 	public:
 		button() : box() {
-			this->onLeftMouseClickedEvent.bind([this]() {
-				M_CurrentFillColor = M_FillColorOnClick;
-				M_CurrentOutlineColor = M_OutlineColorOnClick;
-				M_HeldDown = true;
-				refresh();
-			});
-			this->onMouseHoveredEvent.bind([this]() {
-				M_Hovered = true;
-				M_CurrentFillColor = M_FillColorOnHover;
-				M_CurrentOutlineColor = M_OutlineColorOnHover;
-				refresh();
-			});
-			this->onMouseExitEvent.bind([this]() {
-				if (!M_HeldDown) {
-					M_CurrentFillColor = M_FillColor;
-					M_CurrentOutlineColor = M_OutlineColor;
-					refresh();
-				}
-				M_Hovered = false;
-			});
-			chk::onMouseRelease.bind([this]() {
-				M_CurrentFillColor = M_FillColor;
-				M_CurrentOutlineColor = M_OutlineColor;
-				M_HeldDown = false;
-				refresh();
-			});
+			init();
 		}
 
 		// deep copy - needed to prevent the copying of events
 		button(const button& other) : box(other) {
+			init();
 			M_OutlineColor = other.M_OutlineColor;
 			M_CurrentFillColor = other.M_CurrentFillColor;
 
@@ -79,6 +55,36 @@ namespace chk {
 			M_OutlineColorOnHover = other.M_OutlineColorOnHover;
 			M_FillColorOnClick = other.M_FillColorOnClick;
 			M_OutlineColorOnClick = other.M_OutlineColorOnClick;
+		}
+	private:
+		inline void init() {
+			std::cout << "CONSTRUCTOR CALLED!\n" << this << "\n";
+			this->onLeftMouseClickedEvent.bind([this]() {
+				M_CurrentFillColor = M_FillColorOnClick;
+				M_CurrentOutlineColor = M_OutlineColorOnClick;
+				M_HeldDown = true;
+				refresh();
+				});
+			this->onMouseHoveredEvent.bind([this]() {
+				M_Hovered = true;
+				M_CurrentFillColor = M_FillColorOnHover;
+				M_CurrentOutlineColor = M_OutlineColorOnHover;
+				refresh();
+				});
+			this->onMouseExitEvent.bind([this]() {
+				if (!M_HeldDown) {
+					M_CurrentFillColor = M_FillColor;
+					M_CurrentOutlineColor = M_OutlineColor;
+					refresh();
+				}
+				M_Hovered = false;
+				});
+			chk::onMouseRelease.bind([this]() {
+				M_CurrentFillColor = M_FillColor;
+				M_CurrentOutlineColor = M_OutlineColor;
+				M_HeldDown = false;
+				refresh();
+				});
 		}
 	private:
 

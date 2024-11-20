@@ -32,6 +32,7 @@ namespace chk {
 
 		// deep copy
 		box(const box& other) : objectContainer(other) {
+
 			setFillColor(other.M_FillColor);
 			setOutlineColor(other.M_rect.getOutlineColor());
 			setOutlineThickness(other.M_rect.getOutlineThickness());
@@ -40,20 +41,10 @@ namespace chk {
 			updateRenderTexture();
 		}
 
-		~box() {
-			if (M_RT) {
-				delete M_RT;
-				M_RT = nullptr;
-			}
-
-			//for (auto& c : M_Children) {
-				//c->parent = nullptr;
-			//}
-		}
+	public:
 
 		sf::RenderTexture* getRenderTexture();
 
-	public:
 		 void setFillColor(const sf::Color fillColor);
 
 		 const sf::Color getFillColor();

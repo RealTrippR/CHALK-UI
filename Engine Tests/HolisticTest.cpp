@@ -17,7 +17,7 @@ void UI_INIT() {
 	t.setCharacterSize(15);
 	t.setPosition({ .5,.5,percent });
 	t.setOrigin({ .5,.5,percent });
-	t.setString("This is a text Object.\nIt supports multiple lines.\nBy default, it's bounds (size) are\nset to the size of the Text");
+	t.setString("This is a text Object.\nIt supports multiple lines.\nBy default, it's size is\nset to the size of the Text");
 
 
 	box& tbHolder = Instance.New<box>(&b, "textBoxHolder"); // notice the first argument in the Instance.New function - this means that tbHolder a copy of b
@@ -41,10 +41,12 @@ void UI_INIT() {
 	bu.setPosition({ 10,250 });
 
 	
-	button& bu2 = Instance.New<button>(&bu);
+	button& bu2 = Instance.New<button>(&bu, "Button2");
 	bu2.setParent(&Workspace);
 	bu2.setPosition({ 120,250 });
-	
+	bu2.onMouseEnterEvent.bind([]() {
+		std::cout << "BU2 Enter\n";
+	});
 }
 
 int main() {

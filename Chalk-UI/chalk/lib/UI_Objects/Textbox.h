@@ -87,7 +87,32 @@ namespace chk {
 	public:
 		// default Constructor
 		textBox() : UI_Drawable() {
+			init();
+		}
+		
+		// copy constructor
+		textBox(const textBox& other) : textBox() {
+			init();
 
+			M_Enabled = other.M_Enabled;
+
+			M_InsertionBarHidden = true;
+
+			M_FontHandle = other.M_FontHandle;
+
+			M_txt = other.M_txt;
+
+			M_insertionBar = other.M_insertionBar;
+
+			M_millisecondsInsertionBarVisible = other.M_millisecondsInsertionBarVisible;
+			M_millisecondsInsertionBarHidden = other.M_millisecondsInsertionBarHidden;
+
+			updateTransform();
+			refresh();
+		}
+
+	private:
+		inline void init() {
 			setFont("arial.ttf");
 			setInputBoundsExtension({ 10,5,10,5 });
 			setLetterSpacing(2);
@@ -108,10 +133,10 @@ namespace chk {
 						refresh();
 					}
 				}
-			});
+				});
 
 			// omptimize this function once the lambdas in events are made comparable.
-			onKeyPress.bind([this](sf::Keyboard::Key *k, int &consumedIndex) {
+			onKeyPress.bind([this](sf::Keyboard::Key* k, int& consumedIndex) {
 				if (M_currentlySelectedIndex != -2) {
 
 					if (*k == sf::Keyboard::Escape && consumedIndex < 1) {
@@ -145,40 +170,10 @@ namespace chk {
 					updateTransform();
 					refresh();
 				}
-			});
-
-			/*chk::onMouseClick.bind([this]() {
-			
-				// this code is faulty because it will deselect the textbox even if a different textbox was clicked,
-				// consider passing a vector of all clicked objects through the onMouseClick event, see if one of them was a textbox that's not this one.
-				auto mPos = getMousePosition();
-				if (!intersectsAbsoluteBounds(sf::Vector2f(mPos.x, mPos.y))) {
-					deselect();
-				}
-			});*/
-		}
-		
-		// copy constructor
-		textBox(const textBox& other) : textBox() {
-			M_Enabled = other.M_Enabled;
-
-			M_InsertionBarHidden = true;
-
-			M_FontHandle = other.M_FontHandle;
-
-			M_txt = other.M_txt;
-
-			M_insertionBar = other.M_insertionBar;
-
-			M_millisecondsInsertionBarVisible = other.M_millisecondsInsertionBarVisible;
-			M_millisecondsInsertionBarHidden = other.M_millisecondsInsertionBarHidden;
-
-			updateTransform();
-			refresh();
+				});
 		}
 
 	private:
-
 		int getCharacterIndexAtMousePosition();
 
 		int getCharacterWidthAtIndex(int i);

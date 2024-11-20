@@ -26,6 +26,8 @@ namespace chk {
 
 		void updateTransformUI_Object(bool callToParent = false);
 		
+		UI_Drawable() : UI_Object() {};
+
 		// deep copy to prevent the copying of events
 		UI_Drawable(const UI_Drawable &other) : UI_Object(other) {
 			M_pixelOffset = other.M_pixelOffset;
