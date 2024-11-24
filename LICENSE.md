@@ -1,4 +1,4 @@
-**CHALK UI License V1.0 (C) - 2024, Tripp Robins**
+**CHALK UI License V1.0 (C) - 2024, Tripp R**
 
 1) Definitions
 - 'work', 'software' - the original work, available as source code and/or executable files.
